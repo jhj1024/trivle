@@ -9,7 +9,6 @@ var dbConfig = {
    password: 'root',
    port: 3306,
    database: 'trivle'
-   connectionLimit : 50
 };
 var pool = mysql.createPool(dbConfig);
 
