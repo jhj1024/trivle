@@ -6,16 +6,17 @@ var mysql = require('mysql');
 var pool = mysql.createPool({
   connectionLimit: 5,
   host     :'192.168.35.236',
+  port     : 3306,
   user     :'trivle',
   password :'root',
-  database :'trivle'   
+  database :'trivle',
 });
 
 function throwDice(diceCount) {
   var midText = 0;
   var sum = 3;
   var diceCount = 1;
-  console.log('ONE');
+
   pool.getConnection(function(err, connection) {
     if(err){
       console.log('err :' + err);
