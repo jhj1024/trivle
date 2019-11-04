@@ -1,27 +1,38 @@
 const uuid = require('uuid').v4
 const _ = require('lodash')
 const { DOMAIN } = require('../config')
+
 var mysql = require('mysql');
-var dbconfig = require('../database.js');
-var pool = mysql.createPool(dbconfig);
+var pool = mysql.createPool({
+  connectionLimit: 5,
+  host     :'106.10.50.174',
+  user     :'trivle',
+  password :'root',
+  database :'trivle'   
+});
 
 function throwDice(diceCount) {
-    var sum = 3;
-    var diceCount = 1;
-    pool.getConnection(function(err, connection) {
-        var sqlForCart = "SELECT * FROM trivel.clothes;";
-        connection.query(sqlForCart, function(err, rows) {
-            if (err) {
-                console.log('err :' + err);
-                var midText = "NO"
-            } 
-            else {
-                var midText = "OK"
-            }
-        })
-    });
-
-    return {midText, sum, diceCount}
+  var midText = 0;
+  var sum = 3;
+  var diceCount = 1;
+  console.log('ONE');
+  pool.getConnection(function(err, connection) {
+    if(err){
+      console.log('err :' + err);
+    }
+    else{
+      var sqlForCart = "SELECT * FROM trivel.clothes;";
+      connection.query(sqlForCart, function(err, rows) {
+        if (err) {
+          console.log('err :' + err);
+        } 
+        else {
+          midText = 1;
+        }
+      })
+    }
+  });
+  return {midText, sum, diceCount}
 }
 
 
@@ -45,7 +56,7 @@ class NPKRequest {
     const parameters = this.action.parameters
 
     switch (actionName) {
-    case 'ThrowDiceAction' || 'ThrowYesAction':
+      case 'ThrowDiceAction' || 'ThrowYesAction':
       let diceCount = 1 //entity가 필수가 아닌 경우 default로 개수 정해둠
       if (!!parameters) {
         const diceCountSlot = parameters.diceCount //파라미터 중 하나인 diceCount
