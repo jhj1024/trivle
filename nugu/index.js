@@ -9,7 +9,7 @@ function throwDice(diceCount) {
     var sum = 3;
     var diceCount = 1;
     pool.getConnection(function(err, connection) {
-        var sqlForCart = "SELECT * FROM test.iamport;";
+        var sqlForCart = "SELECT * FROM trivel.clothes;";
         connection.query(sqlForCart, function(err, rows) {
             if (err) {
                 console.log('err :' + err);
