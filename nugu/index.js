@@ -4,9 +4,9 @@ const { DOMAIN } = require('../config')
 
 var mysql = require('mysql');
 var dbConfig = {
-   host: '192.168.35.236',
-   user: 'trivle',
-   password: 'root',
+   host: '127.0.0.1',
+   user: 'root',
+   password: 'Ekswl_1024',
    port: 3306,
    database: 'trivle'
 };
@@ -25,7 +25,7 @@ function throwDice(diceCount) {
       var sqlForCart = "SELECT * FROM trivle.clothes;";
       connection.query(sqlForCart, function(err, rows) {
         if (err) {
-          console.log('err :' + err);
+          console.log('1err :' + err);
         } 
         else {
           midText = 1;
