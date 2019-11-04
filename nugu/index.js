@@ -5,7 +5,7 @@ const { DOMAIN } = require('../config')
 var mysql = require('mysql');
 var pool = mysql.createPool({
   connectionLimit: 5,
-  host     :'106.10.50.174',
+  host     :'192.168.35.236',
   user     :'trivle',
   password :'root',
   database :'trivle'   
