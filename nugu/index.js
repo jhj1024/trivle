@@ -3,14 +3,15 @@ const _ = require('lodash')
 const { DOMAIN } = require('../config')
 
 var mysql = require('mysql');
-var pool = mysql.createPool({
-  connectionLimit: 5,
-  host     :'192.168.35.236',
-  port     : 3306,
-  user     :'trivle',
-  password :'root',
-  database :'trivle',
-});
+var dbConfig = {
+   host: '192.168.35.236',
+   user: 'trivle',
+   password: 'root',
+   port: 3306,
+   database: 'trivle'
+   connectionLimit : 50
+};
+var pool = mysql.createPool(dbConfig);
 
 function throwDice(diceCount) {
   var midText = 0;
@@ -22,7 +23,7 @@ function throwDice(diceCount) {
       console.log('err :' + err);
     }
     else{
-      var sqlForCart = "SELECT * FROM trivel.clothes;";
+      var sqlForCart = "SELECT * FROM trivle.clothes;";
       connection.query(sqlForCart, function(err, rows) {
         if (err) {
           console.log('err :' + err);
