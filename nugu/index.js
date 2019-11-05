@@ -1,45 +1,92 @@
 const uuid = require('uuid').v4
 const _ = require('lodash')
 const { DOMAIN } = require('../config')
-
 var mysql = require('mysql');
 var dbConfig = {
-   host: '127.0.0.1',
-   user: 'root',
-   password: 'Ekswl_1024',
-   port: 3306,
-   database: 'trivle'
+ host: '127.0.0.1',
+ user: 'root',
+ password: 'Ekswl_1024',
+ port: 3306,
+ database: 'trivle'
 };
 var pool = mysql.createPool(dbConfig);
 
-function throwDice(diceCount) {
-  var midText = 0;
-  var sum = 3;
-  var diceCount = 1;
-
+//--------------------------------------------------------------
+function Set_List(DestinationForSet) { //몇박몇일에 대한 데이터도 인자로 추가
+  console.log(DestinationForSet); 
+  /*
   pool.getConnection(function(err, connection) {
     if(err){
-      console.log('err :' + err);
+      console.log('DB_connection_err :' + err);
     }
     else{
-      var sqlForCart = "SELECT * FROM trivle.clothes;";
+      var sqlForCart = "SELECT FROM  WHERE";
       connection.query(sqlForCart, function(err, rows) {
         if (err) {
-          console.log('1err :' + err);
-          midText = 1;
+          console.log('query_err :' + err);
+          
         } 
         else {
-          midText = 2;
+          
         }
       })
     }
-  });
-  return {midText, sum, diceCount}
+  })
+  */
+  return {DestinationForSet}
 }
 
+function Delete_List(DestinationForDelete) {
+  console.log(DestinationForDelete);
+  /*
+  pool.getConnection(function(err, connection) {
+    if(err){
+      console.log('DB_connection_err :' + err);
+    }
+    else{
+      var sqlForCart = "SELECT FROM  WHERE";
+      connection.query(sqlForCart, function(err, rows) {
+        if (err) {
+          console.log('query_err :' + err);
+          
+        } 
+        else {
+          
+        }
+      })
+    }
+  })
+  */
+  return {DestinationForDelete}
+}
 
+function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
+  console.log(DestinationForListen);
+  /*
+  pool.getConnection(function(err, connection) {
+    if(err){
+      console.log('DB_connection_err :' + err);
+    }
+    else{
+      var sqlForCart = "SELECT FROM  WHERE";
+      connection.query(sqlForCart, function(err, rows) {
+        if (err) {
+          console.log('query_err :' + err);
+          
+        } 
+        else {
+          
+        }
+      })
+    }
+  })
+  */
+  return {DestinationForListen}
+}
+
+//--------------------------------------------------------------
 class NPKRequest {
-  constructor (httpReq) { //httpReq의 body에 context와 action이 옴(도큐먼트 참조)
+  constructor (httpReq) { //httpReq의 body에서 context와 action 추출
     this.context = httpReq.body.context
     this.action = httpReq.body.action
     console.log(`NPKRequest: ${JSON.stringify(this.context)}, ${JSON.stringify(this.action)}`)
@@ -49,6 +96,7 @@ class NPKRequest {
   do(npkResponse) { 
     this.actionRequest(npkResponse)
   }
+
   actionRequest(npkResponse) {
     console.log('actionRequest')
     console.dir(this.action)
@@ -58,21 +106,32 @@ class NPKRequest {
     const parameters = this.action.parameters
 
     switch (actionName) {
-      case 'ThrowDiceAction' || 'ThrowYesAction':
-      let diceCount = 1 //entity가 필수가 아닌 경우 default로 개수 정해둠
+      case 'Set_List':
       if (!!parameters) {
-        const diceCountSlot = parameters.diceCount //파라미터 중 하나인 diceCount
-        if (parameters.length != 0 && diceCountSlot) {
-          diceCount = parseInt(diceCountSlot.value)
-        }
-
-        if (isNaN(diceCount)) {
-          diceCount = 1
-        }
+        const DestinationForSet = parameters.DestinationForSet.value //여행지
+        //몇박몇일에 대한 데이터도 파라미터로 추가 
       }
-      const throwResult = throwDice(diceCount) //주사위를 던지는 함수 throwDice실행하여 결과를 throwResult에 저장
-      npkResponse.setOutputParameters(throwResult) //response output parameter set
-      break
+      const result = Set_List(DestinationForSet) //함수 실행
+      npkResponse.Set_List_Output(result) //함수 결과를 output 파라미터에 저장
+      break;
+
+      case 'Delete_List':
+      if (!!parameters) {
+        const DestinationForDelete = parameters.DestinationForDelete.value //여행지
+      }
+      const result = Delete_List(DestinationForDelete) //함수 실행
+      npkResponse.Delete_List_Output(result) //함수 결과를 output 파라미터에 저장
+      break;
+
+      case 'Listen_List':
+      if (!!parameters) {
+        const DestinationForListen = parameters.DestinationForListen.value //여행지
+        //읽을 카테고리 데이터도 파라미터로 추가
+      }
+      const result = Listen_List(DestinationForListen) //함수 실행
+      npkResponse.Listen_List_Output(result) //함수 결과를 output 파라미터에 저장
+      break;
+      
     }
   }
 }
@@ -86,11 +145,22 @@ class NPKResponse {
     this.directives = []
   }
 
-  setOutputParameters(throwResult) { //response out 규격 즉, 결과 파라미터 저장
+  //function 결과 파라미터 규격 설정
+  Set_List_Output(result) {
     this.output = {
-      diceCount: throwResult.diceCount,
-      sum: throwResult.sum,
-      midText: throwResult.midText,
+      Destination1: result.DestinationForSet
+    }
+  }
+
+  Delete_List_Output(result) {
+    this.output = {
+      Destination2: result.DestinationForDelete
+    }
+  }
+
+  Listen_List_Output(result) {
+    this.output = {
+      Destination3: result.DestinationForListen
     }
   }
 }
