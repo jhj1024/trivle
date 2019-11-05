@@ -112,27 +112,28 @@ class NPKRequest {
     switch (actionName) {
       case 'Set_List':
       if (!!parameters) {
-        const DestinationForSe = parameters.DestinationForSet.value //여행지
+        const DestinationForSet = parameters.DestinationForSet //여행지
+        console.log(DestinationForSet.value)
         //몇박몇일에 대한 데이터도 파라미터로 추가 
       }
-      result = Set_List(DestinationForSe) //함수 실행
+      result = Set_List(DestinationForSet) //함수 실행
       npkResponse.Set_List_Output(result) //함수 결과를 output 파라미터에 저장
       break;
 
       case 'Delete_List':
       if (!!parameters) {
-        const DestinationForDelete = parameters.DestinationForDelete.value //여행지
+        const DestinationForDelete = parameters.DestinationForDelete //여행지
       }
-      result = Delete_List(DestinationForDelete) //함수 실행
+      result = Delete_List(DestinationForDelete.value) //함수 실행
       npkResponse.Delete_List_Output(result) //함수 결과를 output 파라미터에 저장
       break;
 
       case 'Listen_List':
       if (!!parameters) {
-        const DestinationForListen = parameters.DestinationForListen.value //여행지
+        const DestinationForListen = parameters.DestinationForListen //여행지
         //읽을 카테고리 데이터도 파라미터로 추가
       }
-      result = Listen_List(DestinationForListen) //함수 실행
+      result = Listen_List(DestinationForListen.value) //함수 실행
       npkResponse.Listen_List_Output(result) //함수 결과를 output 파라미터에 저장
       break;
       
