@@ -104,6 +104,7 @@ class NPKRequest {
     //액션 이름과 파라미터 저장(모두 nugu play kit의 액션과 파라미터 이름임)
     const actionName = this.action.actionName 
     const parameters = this.action.parameters
+    const result = null
 
     switch (actionName) {
       case 'Set_List':
@@ -111,7 +112,7 @@ class NPKRequest {
         const DestinationForSet = parameters.DestinationForSet.value //여행지
         //몇박몇일에 대한 데이터도 파라미터로 추가 
       }
-      const result = Set_List(DestinationForSet) //함수 실행
+      result = Set_List(DestinationForSet) //함수 실행
       npkResponse.Set_List_Output(result) //함수 결과를 output 파라미터에 저장
       break;
 
@@ -119,7 +120,7 @@ class NPKRequest {
       if (!!parameters) {
         const DestinationForDelete = parameters.DestinationForDelete.value //여행지
       }
-      const result = Delete_List(DestinationForDelete) //함수 실행
+      result = Delete_List(DestinationForDelete) //함수 실행
       npkResponse.Delete_List_Output(result) //함수 결과를 output 파라미터에 저장
       break;
 
@@ -128,7 +129,7 @@ class NPKRequest {
         const DestinationForListen = parameters.DestinationForListen.value //여행지
         //읽을 카테고리 데이터도 파라미터로 추가
       }
-      const result = Listen_List(DestinationForListen) //함수 실행
+      result = Listen_List(DestinationForListen) //함수 실행
       npkResponse.Listen_List_Output(result) //함수 결과를 output 파라미터에 저장
       break;
       
