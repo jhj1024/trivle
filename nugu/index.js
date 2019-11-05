@@ -26,9 +26,10 @@ function throwDice(diceCount) {
       connection.query(sqlForCart, function(err, rows) {
         if (err) {
           console.log('1err :' + err);
+          midText = 1;
         } 
         else {
-          midText = 1;
+          midText = 2;
         }
       })
     }
