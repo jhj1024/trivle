@@ -111,7 +111,7 @@ class NPKRequest {
 
     switch (actionName) {
       case 'Set_List':
-      const DestinationForSet = parameters.DestinationForSet //여행지
+      let DestinationForSet = parameters.DestinationForSet //여행지
       console.log(DestinationForSet.value)
       //몇박몇일에 대한 데이터도 파라미터로 추가 
 
