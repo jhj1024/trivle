@@ -112,10 +112,10 @@ class NPKRequest {
     switch (actionName) {
       case 'Set_List':
       if (!!parameters) {
-        const DestinationForSet = parameters.DestinationForSet.value //여행지
+        const DestinationForSe = parameters.DestinationForSet.value //여행지
         //몇박몇일에 대한 데이터도 파라미터로 추가 
       }
-      result = Set_List(DestinationForSet) //함수 실행
+      result = Set_List(DestinationForSe) //함수 실행
       npkResponse.Set_List_Output(result) //함수 결과를 output 파라미터에 저장
       break;
 
