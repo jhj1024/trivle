@@ -13,7 +13,8 @@ var pool = mysql.createPool(dbConfig);
 
 //--------------------------------------------------------------
 function Set_List(DestinationForSet) { //몇박몇일에 대한 데이터도 인자로 추가
-  console.log(DestinationForSet); 
+  const Destination = DestinationForSet;
+  console.log(Destination); 
   /*
   pool.getConnection(function(err, connection) {
     if(err){
@@ -33,11 +34,12 @@ function Set_List(DestinationForSet) { //몇박몇일에 대한 데이터도 인
     }
   })
   */
-  return {DestinationForSet}
+  return {Destination}
 }
 
 function Delete_List(DestinationForDelete) {
-  console.log(DestinationForDelete);
+  const Destination = DestinationForDelete;
+  console.log(Destination); 
   /*
   pool.getConnection(function(err, connection) {
     if(err){
@@ -57,11 +59,12 @@ function Delete_List(DestinationForDelete) {
     }
   })
   */
-  return {DestinationForDelete}
+  return {Destination}
 }
 
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
-  console.log(DestinationForListen);
+  const Destination = DestinationForListen;
+  console.log(Destination); 
   /*
   pool.getConnection(function(err, connection) {
     if(err){
@@ -81,7 +84,7 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
     }
   })
   */
-  return {DestinationForListen}
+  return {Destination}
 }
 
 //--------------------------------------------------------------
@@ -149,19 +152,19 @@ class NPKResponse {
   //function 결과 파라미터 규격 설정
   Set_List_Output(result) {
     this.output = {
-      Destination1: result.DestinationForSet
+      Destination1: result.Destination
     }
   }
 
   Delete_List_Output(result) {
     this.output = {
-      Destination2: result.DestinationForDelete
+      Destination2: result.Destination
     }
   }
 
   Listen_List_Output(result) {
     this.output = {
-      Destination3: result.DestinationForListen
+      Destination3: result.Destination
     }
   }
 }
