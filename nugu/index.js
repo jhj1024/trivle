@@ -64,7 +64,7 @@ function Delete_List(DestinationForDelete) {
 
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
   const Destination = DestinationForListen;
-  console.log('DestinationForListen: ' + Destination); 
+  console.log('DestinationForListen: 하이하이^^ ' + Destination); 
   /*
   pool.getConnection(function(err, connection) {
     if(err){
@@ -74,14 +74,15 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
       var sqlForCart = "SELECT FROM  WHERE";
       connection.query(sqlForCart, function(err, rows) {
         if (err) {
-          console.log('query_err :' + err);
-          
+          console.log('query_err :' + err);          
         } 
         else {
           
         }
       })
+
     }
+
   })
   */
   return {Destination}
