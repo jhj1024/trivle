@@ -15,13 +15,13 @@ var pool = mysql.createPool(dbConfig);
 function Set_List(DestinationForSet) { //몇박몇일에 대한 데이터도 인자로 추가
   const Destination = DestinationForSet;
   console.log('DestinationForSet: ' + Destination); 
-  /*
+  
   pool.getConnection(function(err, connection) {
     if(err){
       console.log('DB_connection_err :' + err);
     }
     else{
-      var sqlForCart = "SELECT FROM  WHERE";
+      var sqlForCart = "SELECT * FROM clothes;";
       connection.query(sqlForCart, function(err, rows) {
         if (err) {
           console.log('query_err :' + err);
@@ -33,7 +33,7 @@ function Set_List(DestinationForSet) { //몇박몇일에 대한 데이터도 인
       })
     }
   })
-  */
+  
   return {Destination}
 }
 
