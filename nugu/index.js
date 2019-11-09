@@ -3,15 +3,41 @@ const _ = require('lodash')
 const { DOMAIN } = require('../config')
 var mysql = require('mysql');
 var dbConfig = {
- host: '127.0.0.1',
- user: 'root',
- password: 'Ekswl_1024',
- port: 3306,
- database: 'trivle'
+ host     : '45.119.146.152',
+    user     : 'trivle',//계정 아이디
+    password : 'Trivle_96',//계정 비번
+    port     : 1024,
+    database : 'trivle'//접속할 디비
 };
 var pool = mysql.createPool(dbConfig);
 
 //--------------------------------------------------------------
+function Listen_Tip(){
+    let exist = 0
+    /////////////디비에 저장되어 있는 리스트인지 확인/////////////////
+    var mysql = require('mysql');//mysql 모듈 불러오기
+    //mysql 커넥션 생성
+    var connection = mysql.createConnection({
+    host     : '45.119.146.152',
+    user     : 'trivle',//계정 아이디
+    password : 'Trivle_96',//계정 비번
+    port     : 1024,
+    database : 'trivle'//접속할 디비
+    });
+    connection.connect();//mysql 접속
+    
+    connection.query('SELECT * from T', function(err, rows) {
+        if (!err){
+                const rand = Math.floor(Math.random() * 8)
+                return {rows[rand]};
+            }
+        }
+        else
+            console.log('Error while performing Query.', err);
+    });
+    connection.end();
+}
+
 function Set_List(DestinationForSet) { //몇박몇일에 대한 데이터도 인자로 추가
   const Destination = DestinationForSet;
   console.log('DestinationForSet: ' + Destination); 
