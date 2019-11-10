@@ -10,26 +10,34 @@ var dbConfig = {
     database : 'trivle'//접속할 디비
 };
 var pool = mysql.createPool(dbConfig);
-//pool.connect();
+
 //--------------------------------------------------------------
 function Start(DestinationForSet) {
     let exist = 0
     /////////////디비에 저장되어 있는 리스트인지 확인/////////////////
     
    //리스트가 만들어진 여행장소를 location 테이블에 저장했다고 가정
-    pool.getConnection('SELECT * from location', function(err, rows) {
-        if (!err){
-            if(rows.length == 0)
-                exist = 0
-            else{
-                for(var i=0; i<rows.length;i++){
-                    if(rows[i].L == DestinationForSet)
-                        exist = 1
-                }
-            }
-        }
-        else
+    pool.getConnection(function(err, connection) {
+        if (err)
             console.log('Error while performing Query.', err);
+        else{
+            var sqlForStart = "SELECT * from location";
+            connection.query(sqlForStart, function(err, rows){
+                if(err){
+                    console.log('Error while performing Query.', err);
+                }
+                else{
+                    if(rows.length == 0)
+                        exist = 0
+                    else{
+                        for(var i=0; i<rows.length;i++){
+                            if(rows[i].L == DestinationForSet)
+                                exist = 1
+                        }
+                    }
+                }
+            })
+        }
     });
     ////////////기존 리스트에 있는 경우////////////
     if(exist == 1)
@@ -40,16 +48,19 @@ function Start(DestinationForSet) {
 }
 
 function Listen_Tip(){
-    let Tip = '';    
-    pool.getConnection('SELECT * from T', function(err, rows) {
-        if (!err){
+    let Tip = '';  
+    pool.getConnection(function(err, connection) {
+        if (err)
+            console.log('Error while performing Query.', err);
+        else{
+            var sqlForTip = "SELECT * from T";
+            connection.query(sqlForTip, function(err, rows){
                 const rand = Math.floor(Math.random() * 8);
                 Tip = rows[rand].T;
                 console.log(Tip);
                 return {Tip};
+            })
         }
-        else
-            console.log('Error while performing Query.', err);
     });
 }
 
