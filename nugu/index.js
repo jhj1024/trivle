@@ -66,14 +66,14 @@ function Listen_Tip(){
 
 function Set_List(DestinationForSet) { //몇박몇일에 대한 데이터도 인자로 추가
   const hey = DestinationForSet.type; //국내/해외인지 엔티티 타입(in/ hey)
-  const DestinationForset = DestinationForSet.value; //여행지 이름 (런던, 파리, 강원도)
+  const Destinationvalue = DestinationForSet.value; //여행지 이름 (런던, 파리, 강원도)
   
 
-  console.log('DestinationForSet: ' + typeof(DestinationForSet));
+  console.log('Destinationvalue: ' + typeof(Destinationvalue));
   var sql = 'Create table ? SELECT * FROM IS;'
 
     pool.getConnection(function(err, connection) {
-        connection.query(sql, DestinationForset.toString(), function(err, rows) {
+        connection.query(sql, Destinationvalue, function(err, rows) {
           if (err) {
             console.log('Error Create Query.', err);
           } 
@@ -82,7 +82,7 @@ function Set_List(DestinationForSet) { //몇박몇일에 대한 데이터도 인
           }
         });
     })
-  return {DestinationForset}
+  return {Destinationvalue}
 }
 
 function Delete_List(DestinationForDelete) {
