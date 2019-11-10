@@ -244,7 +244,7 @@ class NPKResponse {
 
   Listen_Tip_Output(result) {
     this.output = {
-      TIP: result
+      TIP: result.Tip
     }
   }
 }
