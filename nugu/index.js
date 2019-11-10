@@ -49,7 +49,7 @@ function Start(DestinationForSet) {
        New(DestinationForSet, DestinationForSet.type);
 }
 
-function Listen_Tip(){
+function Listen_Tip(DestinationForSet){
     let Tip = '';
     /////////////디비에 저장되어 있는 리스트인지 확인/////////////////
     var mysql = require('mysql');//mysql 모듈 불러오기
@@ -204,7 +204,7 @@ class NPKRequest {
       break;
             
       case 'Listen_Tip':
-      result = Listen_Tip() //함수 실행
+      result = Listen_Tip(DestinationForSet) //함수 실행
       console.log(result)
       console.log('@@@@@@@')
       npkResponse.Listen_Tip_Output(result) //함수 결과를 output 파라미터에 저장
