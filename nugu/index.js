@@ -300,7 +300,7 @@ class NPKRequest {
       case 'Listen_Tip':
       const DestinationForTip = parameters.DestinationForTip //여행지
       
-      result = Listen_Tip(DestinationForTip.value) //함수 실행
+      result = Listen_Tip(DestinationForTip) //함수 실행
       console.log(result)
       console.log('@@@@@@@')
       npkResponse.Listen_Tip_Output(result) //함수 결과를 output 파라미터에 저장
