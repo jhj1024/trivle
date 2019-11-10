@@ -66,7 +66,7 @@ function Listen_Tip(){
 
 function Set_List(DestinationForSet) { //몇박몇일에 대한 데이터도 인자로 추가
   const hey = DestinationForSet.type; //국내/해외인지 엔티티 타입(in/ hey)
-  const DestinationForset = DestinationForSet.value; //여행지 이름 (런던, 파리, 강원도)
+  const DestinationForset = DestinationForSet.value.prototype.toString; //여행지 이름 (런던, 파리, 강원도)
   
   console.log('DestinationForSet: ' + DestinationForSet);
   var sql = 'Create table ? SELECT * FROM IS;'
@@ -110,7 +110,7 @@ function Delete_List(DestinationForDelete) {
 }
 
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
-  const Destination = DestinationForListen;
+  const Destination = DestinationForListen.prototype.toString;
   const result = "응아니야";
   console.log('DestinationForListen: ' + Destination); 
   
