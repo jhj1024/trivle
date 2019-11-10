@@ -151,8 +151,8 @@ function Make_Out_Long(DestinationForset,FewDay)
 //--------------------------------------------------
 
 //SY------------------------------------------------
-function Listen_Tip(DestinationForListen){
-    let Destination = DestinationForListen;
+function Listen_Tip(DestinationForTip){
+    let Destination = DestinationForTip;
     let result = '';  
     pool.getConnection(function(err, connection) {
         if (err)
@@ -297,7 +297,7 @@ class NPKRequest {
       break;
             
       case 'Listen_Tip':
-      const DestinationForListen = parameters.DestinationForListen //여행지
+      const DestinationForTip = parameters.DestinationForTip //여행지
       
       result = Listen_Tip(DestinationForListen.value) //함수 실행
       console.log(result)
