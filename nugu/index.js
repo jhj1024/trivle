@@ -10,7 +10,7 @@ var dbConfig = {
     database : 'trivle'//접속할 디비
 };
 var pool = mysql.createPool(dbConfig);
-var TIP = ""; 
+let TIP = ""; 
 //SY--------------------------------------------------------------
 function Start(DestinationForSet) {
     let exist = 0
@@ -211,6 +211,7 @@ function Listen_Tip(DestinationForTip){
 
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
   let Destination = DestinationForListen;
+  let listen = '응';
   console.log('Destination: ' + Destination); 
   console.log('Destination type: ' + typeof(Destination)); 
 
@@ -226,16 +227,16 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
         } 
         else {
           console.log(rows[0])
-          var listen = rows[0].P
+          listen = rows[0].P
           console.log('결과: ' + listen); 
+          return {listen}
         }
       })
 
     }
 
   })
-  
-  return {listen}
+  return {listen} 
 }
 
 //--------------------------------------------------------------
