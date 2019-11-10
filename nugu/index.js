@@ -235,7 +235,7 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
         } 
         else {
           console.log(rows[0])
-          listen = rows[0].P;
+          listen = rows[0].P
           console.log('결과: ' + listen); 
         }
       })
