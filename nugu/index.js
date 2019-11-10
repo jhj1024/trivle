@@ -10,7 +10,7 @@ var dbConfig = {
     database : 'trivle'//접속할 디비
 };
 var pool = mysql.createPool(dbConfig);
-
+pool.connection();
 //--------------------------------------------------------------
 function Start(DestinationForSet) {
     let exist = 0
@@ -31,7 +31,6 @@ function Start(DestinationForSet) {
         else
             console.log('Error while performing Query.', err);
     });
-    connection.end();
     ////////////기존 리스트에 있는 경우////////////
     if(exist == 1)
         Read(DestinationForSet);
@@ -52,7 +51,6 @@ function Listen_Tip(){
         else
             console.log('Error while performing Query.', err);
     });
-    connection.end();
 }
 
 function Set_List(DestinationForSet) { //몇박몇일에 대한 데이터도 인자로 추가
