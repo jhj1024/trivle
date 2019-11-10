@@ -12,6 +12,43 @@ var dbConfig = {
 var pool = mysql.createPool(dbConfig);
 
 //--------------------------------------------------------------
+function Start(DestinationForSet) {
+    let exist = 0
+    /////////////디비에 저장되어 있는 리스트인지 확인/////////////////
+    var mysql = require('mysql');//mysql 모듈 불러오기
+    //mysql 커넥션 생성
+    var connection = mysql.createConnection({
+    host     : '45.119.146.152',
+    user     : 'trivle',//계정 아이디
+    password : 'Trivle_96',//계정 비번
+    port     : 1024,
+    database : 'trivle'//접속할 디비
+    });
+    connection.connect();//mysql 접속
+   //리스트가 만들어진 여행장소를 location 테이블에 저장했다고 가정
+    connection.query('SELECT * from location', function(err, rows) {
+        if (!err){
+            if(rows.length == 0)
+                exist = 0
+            else{
+                for(var i=0; i<rows.length;i++){
+                    if(rows[i].L == DestinationForSet)
+                        exist = 1
+                }
+            }
+        }
+        else
+            console.log('Error while performing Query.', err);
+    });
+    connection.end();
+    ////////////기존 리스트에 있는 경우////////////
+    if(exist == 1)
+        Read(DestinationForSet);
+    ////////////기존 리스트에 없는 경우////////////
+    else
+       New(DestinationForSet, DestinationForSet.type);
+}
+
 function Listen_Tip(){
     let Tip = '';
     /////////////디비에 저장되어 있는 리스트인지 확인/////////////////
