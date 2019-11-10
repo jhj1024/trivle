@@ -67,7 +67,7 @@ function Listen_Tip(){
         if (!err){
                 const rand = Math.floor(Math.random() * 8);
                 Tip = rows[rand].T;
-                //console.log(Tip);
+                console.log(Tip);
                 return {Tip};
         }
         else
