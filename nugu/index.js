@@ -191,7 +191,6 @@ function Listen_Tip(){
     //let Destination = DestinationForTip;
     
     let TIP ='';
-    //var TIP = ""; 
     pool.getConnection(function(err, connection) {
         if (err)
             console.log('Error while performing Query.', err);
@@ -205,6 +204,7 @@ function Listen_Tip(){
         }
 
     });
+    console.log(TIP);
     return {TIP};
 }
 
@@ -233,7 +233,6 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
       })
 
     }
-
   })
   return {listen} 
 }
@@ -259,7 +258,7 @@ class NPKRequest {
     //액션 이름과 파라미터 저장(모두 nugu play kit의 액션과 파라미터 이름임)
     const actionName = this.action.actionName 
     const parameters = this.action.parameters
-    let result = null
+    let result = '';
 
     switch (actionName) {
       case 'Set_List':
