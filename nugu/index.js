@@ -170,13 +170,14 @@ function Listen_Tip(){
 
 function Set_List(DestinationForSet) { //몇박몇일에 대한 데이터도 인자로 추가
   const hey = DestinationForSet.type; //국내/해외인지 엔티티 타입(in/ hey)
-  const DestinationForset = DestinationForSet.value.prototype.toString; //여행지 이름 (런던, 파리, 강원도)
+  const Destinationvalue = this.DestinationForSet.value; //여행지 이름 (런던, 파리, 강원도)
   
-  console.log('DestinationForSet: ' + DestinationForSet);
+
+  console.log('Destinationvalue: ' + typeof(Destinationvalue));
   var sql = 'Create table ? SELECT * FROM IS;'
 
     pool.getConnection(function(err, connection) {
-        connection.query(sql, DestinationForset, function(err, rows) {
+        connection.query(sql, Destinationvalue, function(err, rows) {
           if (err) {
             console.log('Error Create Query.', err);
           } 
@@ -185,7 +186,7 @@ function Set_List(DestinationForSet) { //몇박몇일에 대한 데이터도 인
           }
         });
     })
-  return {DestinationForset}
+  return {Destinationvalue}
 }
 
 function Delete_List(DestinationForDelete) {
@@ -214,7 +215,7 @@ function Delete_List(DestinationForDelete) {
 }
 
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
-  const Destination = DestinationForListen.prototype.toString;
+  const Destination = DestinationForListen.toString();
   const result = "응아니야";
   console.log('DestinationForListen: ' + Destination); 
   
@@ -245,10 +246,10 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
 //--------------------------------------------------------------
 class NPKRequest {
   constructor (httpReq) { //httpReq의 body에서 context와 action 추출
-    console.log(httpReq.body)
+    //console.log(httpReq.body)
     this.context = httpReq.body.context
     this.action = httpReq.body.action
-    console.log(`NPKRequest: ${JSON.stringify(this.context)}, ${JSON.stringify(this.action)}`)
+    //console.log(`NPKRequest: ${JSON.stringify(this.context)}, ${JSON.stringify(this.action)}`)
   }
   
   //reqeust 처리
@@ -294,7 +295,7 @@ class NPKRequest {
             
       case 'Listen_Tip':
       result = Listen_Tip() //함수 실행
-      console.log(result)
+      console.log(result.TIP)
       console.log('@@@@@@@')
       npkResponse.Listen_Tip_Output(result) //함수 결과를 output 파라미터에 저장
       break;
