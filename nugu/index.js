@@ -218,16 +218,16 @@ function Delete_List(DestinationForDelete) {
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
   let Destination = DestinationForListen;
   let result = "응아니야";
-  console.log('DestinationForListen: ' + Destination); 
-  console.log('Destinationtype: ' + typeof(Destination)); 
+  console.log('Destination: ' + Destination); 
+  console.log('Destination type: ' + typeof(Destination)); 
   
   pool.getConnection(function(err, connection) {
     if(err){
       console.log('DB_connection_err :' + err);
     }
     else{
-      var sqlForListen = "SELECT * FROM ?;";
-      connection.query(sqlForListen, Destination, function(err, rows) {
+      var sqlForListen = "SELECT * FROM " + Destination + ";"
+      connection.query(sqlForListen, function(err, rows) {
         if (err) {
           console.log('query_err :' + err);          
         } 
