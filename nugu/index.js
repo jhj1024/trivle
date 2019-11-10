@@ -49,7 +49,7 @@ function Start(DestinationForSet) {
 
 //JH------------------------------------
 function Make_List(DestinationForSet, Type){
-  if(Type) //국내인경우
+  if(Type == "IN") //국내인경우
   {
       Make_In(DestinationForset,FewDay);
   }
@@ -101,7 +101,7 @@ function Make_In_Short(DestinationForset,FewDay)
   })
 }
 
-function Make_In_Long(DestinationForset,FewDay);
+function Make_In_Long(DestinationForset,FewDay)
 {
   var sql = 'Create table ? SELECT * FROM IL where = ?;'
 
@@ -116,7 +116,8 @@ function Make_In_Long(DestinationForset,FewDay);
       });
   })
 }
-function Make_Out_short(DestinationForset,FewDay);
+
+function Make_Out_short(DestinationForset,FewDay)
 {
   var sql = 'Create table ? SELECT * FROM OS where = ?;'
 
@@ -132,7 +133,7 @@ function Make_Out_short(DestinationForset,FewDay);
   })
 }
 
-function Make_Out_Long(DestinationForset,FewDay);
+function Make_Out_Long(DestinationForset,FewDay)
 {
   var sql = 'Create table ? SELECT * FROM OL where = ?;'
 
