@@ -263,6 +263,7 @@ class NPKRequest {
     const parameters = this.action.parameters
     let result = null
 
+    console.log('액션먼저?')
     switch (actionName) {
       case 'Set_List':
       let DestinationForSet = parameters.DestinationForSet //여행지
@@ -292,7 +293,7 @@ class NPKRequest {
             
       case 'Listen_Tip':
       //const DestinationForTip = parameters.DestinationForTip //여행지
-      
+      console.log('어떤거 먼저?')
       result = Listen_Tip() //함수 실행
       console.log('3'+result)
       console.log('@@@@@@@')
