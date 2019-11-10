@@ -283,7 +283,7 @@ class NPKRequest {
 
       const result1 = Listen_List(DestinationForListen.value) //함수 실행
       console.log('함수결과' + result.listen)
-      npkResponse.Listen_List_Output(result) //함수 결과를 output 파라미터에 저장
+      npkResponse.Listen_List_Output(result1) //함수 결과를 output 파라미터에 저장
       break;
             
       case 'Listen_Tip':
