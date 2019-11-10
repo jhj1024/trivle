@@ -151,8 +151,9 @@ function Make_Out_Long(DestinationForset,FewDay)
 //--------------------------------------------------
 
 //SY------------------------------------------------
-function Listen_Tip(){
-    const TIP = '';  
+function Listen_Tip(DestinationForListen){
+    let Destination = DestinationForListen;
+    let result = '';  
     pool.getConnection(function(err, connection) {
         if (err)
             console.log('Error while performing Query.', err);
@@ -162,7 +163,7 @@ function Listen_Tip(){
                 const rand = Math.floor(Math.random() * 8);
                 TIP = rows[rand].T;
                 console.log(TIP);
-                return {TIP};
+                return {result};
             })
         }
 
@@ -296,7 +297,9 @@ class NPKRequest {
       break;
             
       case 'Listen_Tip':
-      result = Listen_Tip() //함수 실행
+      const DestinationForListen = parameters.DestinationForListen //여행지
+      
+      result = Listen_Tip(DestinationForListen.value) //함수 실행
       console.log(result)
       console.log('@@@@@@@')
       npkResponse.Listen_Tip_Output(result) //함수 결과를 output 파라미터에 저장
@@ -336,7 +339,7 @@ class NPKResponse {
 
   Listen_Tip_Output(result) {
     this.output = {
-      TIP: result.TIP,
+      TIP: result.result
     }
   }
 }
