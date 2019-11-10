@@ -11,7 +11,7 @@ var dbConfig = {
 };
 var pool = mysql.createPool(dbConfig);
 
-//--------------------------------------------------------------
+//SY--------------------------------------------------------------
 function Start(DestinationForSet) {
     let exist = 0
     /////////////디비에 저장되어 있는 리스트인지 확인/////////////////
@@ -44,9 +44,113 @@ function Start(DestinationForSet) {
         Read(DestinationForSet);
     ////////////기존 리스트에 없는 경우////////////
     else
-       New(DestinationForSet, DestinationForSet.type);
+       Make_List(DestinationForSet, DestinationForSet.type);
 }
 
+//JH------------------------------------
+function Make_List(DestinationForSet, Type){
+  if(Type) //국내인경우
+  {
+      Make_In(DestinationForset,FewDay);
+  }
+  else //해외인경우
+  {
+      Make_Out(DestinationForset,FewDay);
+  }
+}
+
+function Make_In(DestinationForset,FewDay)
+{
+  if(FewDay<=7)
+  {
+      Make_In_Short();
+  }
+  else
+  {
+      Make_In_Long();
+  }
+}
+
+
+function Make_Out(DestinationForset,FewDay)
+{
+  if(FewDay<=7)
+  {
+      Make_Out_Short();
+  }
+  else
+  {
+      Make_Out_Long();
+  }
+}
+
+//생성 함수
+function Make_In_Short(DestinationForset,FewDay)
+{
+  var sql = 'Create table ? SELECT * FROM IS where = ?;'
+
+  pool.getConncetion(function(err, connection) {
+      connection.query(sql, DestinationForset, function(err, rows) {
+        if (err) {
+          console.log('Error Create Query.', err);
+        } 
+        else {
+          console.log("Create table");
+        }
+      });
+  })
+}
+
+function Make_In_Long(DestinationForset,FewDay);
+{
+  var sql = 'Create table ? SELECT * FROM IL where = ?;'
+
+  pool.getConncetion(function(err, connection) {
+      connection.query(sql, DestinationForset, function(err, rows) {
+        if (err) {
+          console.log('Error Create Query.', err);
+        } 
+        else {
+          console.log("Create table");
+        }
+      });
+  })
+}
+function Make_Out_short(DestinationForset,FewDay);
+{
+  var sql = 'Create table ? SELECT * FROM OS where = ?;'
+
+  pool.getConncetion(function(err, connection) {
+      connection.query(sql, DestinationForset, function(err, rows) {
+        if (err) {
+          console.log('Error Create Query.', err);
+        } 
+        else {
+          console.log("Create table");
+        }
+      });
+  })
+}
+
+function Make_Out_Long(DestinationForset,FewDay);
+{
+  var sql = 'Create table ? SELECT * FROM OL where = ?;'
+
+  pool.getConncetion(function(err, connection) {
+      connection.query(sql, DestinationForset, function(err, rows) {
+        if (err) {
+          console.log('Error Create Query.', err);
+        } 
+        else {
+          console.log("Create table");
+        }
+      });
+  })
+}
+
+//--------------------------------------------------
+
+//SY------------------------------------------------
 function Listen_Tip(){
     let TIP = '';  
     pool.getConnection(function(err, connection) {
@@ -61,12 +165,13 @@ function Listen_Tip(){
                 return {TIP};
             })
         }
+
     });
 }
 
 function Set_List(DestinationForSet) { //몇박몇일에 대한 데이터도 인자로 추가
   const hey = DestinationForSet.type; //국내/해외인지 엔티티 타입(in/ hey)
-  const Destinationvalue = this.DestinationForSet.value; //여행지 이름 (런던, 파리, 강원도)
+  const Destinationvalue = DestinationForSet.value; //여행지 이름 (런던, 파리, 강원도)
   
 
   console.log('Destinationvalue: ' + typeof(Destinationvalue));
@@ -111,7 +216,7 @@ function Delete_List(DestinationForDelete) {
 }
 
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
-  const Destination = DestinationForListen.toString();
+  const Destination = DestinationForListen;
   const result = "응아니야";
   console.log('DestinationForListen: ' + Destination); 
   
@@ -120,8 +225,8 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
       console.log('DB_connection_err :' + err);
     }
     else{
-      var sqlForListen = "SELECT * FROM " + Destination;
-      connection.query(sqlForListen, function(err, rows) {
+      var sqlForListen = "SELECT * FROM ?;";
+      connection.query(sqlForListen, Destination, function(err, rows) {
         if (err) {
           console.log('query_err :' + err);          
         } 
