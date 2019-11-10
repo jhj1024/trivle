@@ -200,11 +200,12 @@ function Listen_Tip(){
             connection.query(sqlForTip, function(err, rows){
                 const rand = Math.floor(Math.random() * 8);
                 TIP = rows[rand].T;
-                console.log(TIP);
+                console.log('1'+TIP);
             })
         }
     });
 
+    console.log('2'+TIP);
     return {TIP};
 }
 
@@ -292,7 +293,7 @@ class NPKRequest {
       //const DestinationForTip = parameters.DestinationForTip //여행지
       
       result = Listen_Tip() //함수 실행
-      console.log(result)
+      console.log('3'+result)
       console.log('@@@@@@@')
       npkResponse.Listen_Tip_Output(result) //함수 결과를 output 파라미터에 저장
       break;
