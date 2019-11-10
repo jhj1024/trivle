@@ -120,8 +120,9 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
           console.log('query_err :' + err);          
         } 
         else {
+          console.log(rows[0])
           result = rows[0].P;
-          console.log(result)
+          console.log('결과: ' + result); 
         }
       })
 
