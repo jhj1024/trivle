@@ -49,6 +49,8 @@ function Start(DestinationForSet) {
 
 //JH------------------------------------
 function Make_List(DestinationForSet, Type){
+  
+  console.log('DestinationForMake: ' + Destination); 
   if(Type = "IN") //국내인경우
   {
       Make_In(DestinationForset,FewDay);
@@ -61,6 +63,8 @@ function Make_List(DestinationForSet, Type){
 
 function Make_In(DestinationForset,FewDay)
 {
+  
+  console.log('MakeIn: ' + Destination); 
   if(FewDay<=7)
   {
       Make_In_Short();
@@ -74,6 +78,8 @@ function Make_In(DestinationForset,FewDay)
 
 function Make_Out(DestinationForset,FewDay)
 {
+  
+  console.log('MakeOut: ' + Destination); 
   if(FewDay<=7)
   {
       Make_Out_Short();
@@ -87,6 +93,9 @@ function Make_Out(DestinationForset,FewDay)
 //생성 함수
 function Make_In_Short(DestinationForset,FewDay)
 {
+  
+  console.log('MakeInShort: ' + Destination); 
+
   var sql = 'Create table ? SELECT * FROM IS where = ?;'
 
   pool.getConncetion(function(err, connection) {
@@ -103,6 +112,8 @@ function Make_In_Short(DestinationForset,FewDay)
 
 function Make_In_Long(DestinationForset,FewDay)
 {
+  
+  console.log('MakeInLong: ' + Destination); 
   var sql = 'Create table ? SELECT * FROM IL where = ?;'
 
   pool.getConncetion(function(err, connection) {
@@ -119,6 +130,8 @@ function Make_In_Long(DestinationForset,FewDay)
 
 function Make_Out_short(DestinationForset,FewDay)
 {
+  
+  console.log('MakeOutShort: ' + Destination); 
   var sql = 'Create table ? SELECT * FROM OS where = ?;'
 
   pool.getConncetion(function(err, connection) {
@@ -135,6 +148,8 @@ function Make_Out_short(DestinationForset,FewDay)
 
 function Make_Out_Long(DestinationForset,FewDay)
 {
+  
+  console.log('MakeOutLong: ' + Destination); 
   var sql = 'Create table ? SELECT * FROM OL where = ?;'
 
   pool.getConncetion(function(err, connection) {
@@ -149,6 +164,26 @@ function Make_Out_Long(DestinationForset,FewDay)
   })
 }
 
+function Delete_List(DestinationForDelete) {
+
+  const Destination = DestinationForDelete;
+  console.log('DestinationForDelete: ' + Destination); 
+
+  var sql = 'Delete FROM ? where = ?;'
+
+  pool.getConncetion(function(err, connection) {
+      connection.query(sql, DestinationForset, function(err, rows) {
+        if (err) {
+          console.log('Error Create Query.', err);
+        } 
+        else {
+          console.log("Create table");
+        }
+      });
+  })
+
+  return {Destination}
+}
 //--------------------------------------------------
 
 //SY------------------------------------------------
@@ -171,54 +206,10 @@ function Listen_Tip(DestinationForTip){
     });
 }
 
-function Set_List(DestinationForSet) { //몇박몇일에 대한 데이터도 인자로 추가
-  const hey = DestinationForSet.type; //국내/해외인지 엔티티 타입(in/ hey)
-  const Destinationvalue = DestinationForSet.value; //여행지 이름 (런던, 파리, 강원도)
-  
-
-  console.log('Destinationvalue: ' + typeof(Destinationvalue));
-  var sql = 'Create table ? SELECT * FROM IS;'
-
-    pool.getConnection(function(err, connection) {
-        connection.query(sql, Destinationvalue, function(err, rows) {
-          if (err) {
-            console.log('Error Create Query.', err);
-          } 
-          else {
-            console.log("Create table");
-          }
-        });
-    })
-  return {Destinationvalue}
-}
-
-function Delete_List(DestinationForDelete) {
-  const Destination = DestinationForDelete;
-  console.log('DestinationForDelete: ' + Destination); 
-  /*
-  pool.getConnection(function(err, connection) {
-    if(err){
-      console.log('DB_connection_err :' + err);
-    }
-    else{
-      var sqlForCart = "SELECT FROM  WHERE";
-      connection.query(sqlForCart, function(err, rows) {
-        if (err) {
-          console.log('query_err :' + err);
-          
-        } 
-        else {
-          
-        }
-      })
-    }
-  })
-  */
-  return {Destination}
-}
 
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
   let Destination = DestinationForListen;
+  let listen = '응';
   console.log('Destination: ' + Destination); 
   console.log('Destination type: ' + typeof(Destination)); 
 
@@ -234,7 +225,7 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
         } 
         else {
           console.log(rows[0])
-          var listen = rows[0].P
+          listen = rows[0].P
           console.log('결과: ' + listen); 
         }
       })
