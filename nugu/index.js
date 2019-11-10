@@ -189,6 +189,8 @@ function Delete_List(DestinationForDelete) {
 //SY------------------------------------------------
 function Listen_Tip(DestinationForTip){
     let Destination = DestinationForTip;
+    
+    let TIP ='';
     //var TIP = ""; 
     pool.getConnection(function(err, connection) {
         if (err)
@@ -199,11 +201,11 @@ function Listen_Tip(DestinationForTip){
                 const rand = Math.floor(Math.random() * 8);
                 TIP = rows[rand].T;
                 console.log(TIP);
-                return {TIP};
             })
         }
 
     });
+    return {TIP};
 }
 
 
