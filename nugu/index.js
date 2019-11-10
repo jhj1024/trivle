@@ -31,7 +31,6 @@ function Listen_Tip(){
                 const rand = Math.floor(Math.random() * 8)
                 let result = rows[rand]
                 return result;
-            }
         }
         else
             console.log('Error while performing Query.', err);
