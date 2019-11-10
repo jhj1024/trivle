@@ -200,7 +200,7 @@ function Listen_Tip(){
             connection.query(sqlForTip, function(err, rows){
                 const rand = Math.floor(Math.random() * 8);
                 TIP = rows[rand].T;
-                console.log(TIP); 
+                console.log(TIP);
             })
         }
 
