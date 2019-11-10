@@ -190,7 +190,8 @@ function Delete_List(DestinationForDelete) {
 function Listen_Tip(){
     //let Destination = DestinationForTip;
     
-    let TIP ='시러~';
+    //var TIP ='시러~';
+    //let TIP ='시러~';
     //var TIP = ""; 
     pool.getConnection(function(err, connection) {
         if (err)
@@ -199,7 +200,7 @@ function Listen_Tip(){
             var sqlForTip = "SELECT * from T";
             connection.query(sqlForTip, function(err, rows){
                 const rand = Math.floor(Math.random() * 8);
-                TIP = rows[rand].T;
+                var TIP = rows[rand].T;
                 console.log(TIP);
             })
         }
