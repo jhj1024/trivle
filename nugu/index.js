@@ -13,8 +13,7 @@ var pool = mysql.createPool(dbConfig);
 
 //--------------------------------------------------------------
 function Listen_Tip(){
-    let Tip = ''
-    let exist = 0
+    let Tip = '';
     /////////////디비에 저장되어 있는 리스트인지 확인/////////////////
     var mysql = require('mysql');//mysql 모듈 불러오기
     //mysql 커넥션 생성
@@ -29,10 +28,10 @@ function Listen_Tip(){
     
     connection.query('SELECT * from T', function(err, rows) {
         if (!err){
-                const rand = Math.floor(Math.random() * 8)
-                Tip = rows[rand].T
-                //console.log(Tip)
-                return {Tip}
+                const rand = Math.floor(Math.random() * 8);
+                Tip = rows[rand].T;
+                //console.log(Tip);
+                return {Tip};
         }
         else
             console.log('Error while performing Query.', err);
@@ -206,7 +205,7 @@ class NPKResponse {
 
   Listen_Tip_Output(result) {
     this.output = {
-      TIP: result.Tip
+      TIP: result
     }
   }
 }
