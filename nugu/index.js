@@ -190,7 +190,7 @@ function Delete_List(DestinationForDelete) {
 function Listen_Tip(){
     //let Destination = DestinationForTip;
     
-    let TIP ='';
+    let TIP ='시러~';
     //var TIP = ""; 
     pool.getConnection(function(err, connection) {
         if (err)
