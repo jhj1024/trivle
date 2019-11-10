@@ -138,6 +138,13 @@ class NPKRequest {
     let result = null
 
     switch (actionName) {
+      case 'Delete_List':
+      const DestinationForDelete = parameters.DestinationForDelete //여행지
+      
+      result = Delete_List(DestinationForDelete.value) //함수 실행
+      console.log(result)
+      npkResponse.Delete_List_Output(result) //함수 결과를 output 파라미터에 저장
+      break;
       case 'Set_List':
       let DestinationForSet = parameters.DestinationForSet //여행지
       //몇박몇일에 대한 데이터도 파라미터로 추가 
@@ -163,7 +170,13 @@ class NPKRequest {
       console.log(result)
       npkResponse.Listen_List_Output(result) //함수 결과를 output 파라미터에 저장
       break;
-      
+            
+      case 'Listen_Tip':
+      result = Listen_Tip() //함수 실행
+      console.log(result)
+      npkResponse.Listen_Tip_Output(result) //함수 결과를 output 파라미터에 저장
+      break;
+            
     }
   }
 }
