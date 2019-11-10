@@ -212,7 +212,7 @@ function Listen_Tip(){
 
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
   let Destination = DestinationForListen;
-  var listen = '응';
+  var listen = '다쿠아즈';
   console.log('Destination: ' + Destination); 
   console.log('Destination type: ' + typeof(Destination)); 
 
@@ -228,7 +228,7 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
         } 
         else {
           console.log(rows[0])
-          var listen = rows[0].P     
+          listen = rows[0].P     
         }
       })
 
@@ -283,7 +283,7 @@ class NPKRequest {
       const DestinationForListen = parameters.DestinationForListen //여행지
       //읽을 카테고리 데이터도 파라미터로 추가
 
-      const result1 = Listen_List(DestinationForListen.value) //함수 실행
+      const result1 = await Listen_List(DestinationForListen.value) //함수 실행
       console.log('함수결과' + result1.listen)
       npkResponse.Listen_List_Output(result1) //함수 결과를 output 파라미터에 저장
       break;
