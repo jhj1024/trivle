@@ -66,28 +66,22 @@ function Listen_Tip(){
 
 function Set_List(DestinationForSet) { //몇박몇일에 대한 데이터도 인자로 추가
   const hey = DestinationForSet.type; //국내/해외인지 엔티티 타입(in/ hey)
-  const Destination = DestinationForSet.value; //여행지 이름 (런던, 파리, 강원도)
+  const DestinationForset = DestinationForSet.value; //여행지 이름 (런던, 파리, 강원도)
+  
   console.log('DestinationForSet: ' + Destination);
-  /*
-  pool.getConnection(function(err, connection) {
-    if(err){
-      console.log('DB_connection_err :' + err);
-    }
-    else{
-      var sqlForCart = "SELECT * FROM clothes;";
-      connection.query(sqlForCart, function(err, rows) {
-        if (err) {
-          console.log('query_err :' + err);
-          
-        } 
-        else {
-          
-        }
-      })
-    }
-  })
-  */
-  return {Destination}
+  var sql = 'Create table ? SELECT * FROM IS;'
+
+    pool.getConncetion(function(err, connection) {
+        connection.query(sql, DestinationForset, function(err, rows) {
+          if (err) {
+            console.log('Error Create Query.', err);
+          } 
+          else {
+            console.log("Create table");
+          }
+        });
+    })
+  return {DestinationForset}
 }
 
 function Delete_List(DestinationForDelete) {
@@ -217,7 +211,7 @@ class NPKResponse {
   //function 결과 파라미터 규격 설정
   Set_List_Output(result) {
     this.output = {
-      Destination1: result.Destination
+      Destination1: result.DestinationForset
     }
   }
 
