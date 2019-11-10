@@ -10,7 +10,7 @@ var dbConfig = {
     database : 'trivle'//접속할 디비
 };
 var pool = mysql.createPool(dbConfig);
-let TIP = ""; 
+//let TIP = ""; 
 //SY--------------------------------------------------------------
 function Start(DestinationForSet) {
     let exist = 0
@@ -187,8 +187,10 @@ function Delete_List(DestinationForDelete) {
 //--------------------------------------------------
 
 //SY------------------------------------------------
-function Listen_Tip(DestinationForTip){
-    let Destination = DestinationForTip;
+function Listen_Tip(){
+    //let Destination = DestinationForTip;
+    
+    let TIP ='';
     //var TIP = ""; 
     pool.getConnection(function(err, connection) {
         if (err)
@@ -199,11 +201,11 @@ function Listen_Tip(DestinationForTip){
                 const rand = Math.floor(Math.random() * 8);
                 TIP = rows[rand].T;
                 console.log(TIP);
-                return {TIP};
             })
         }
 
     });
+    return {TIP};
 }
 
 
@@ -287,9 +289,9 @@ class NPKRequest {
       break;
             
       case 'Listen_Tip':
-      const DestinationForTip = parameters.DestinationForTip //여행지
+      //const DestinationForTip = parameters.DestinationForTip //여행지
       
-      result = Listen_Tip(DestinationForTip) //함수 실행
+      result = Listen_Tip() //함수 실행
       console.log(result)
       console.log('@@@@@@@')
       npkResponse.Listen_Tip_Output(result) //함수 결과를 output 파라미터에 저장
