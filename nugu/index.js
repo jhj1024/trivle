@@ -68,7 +68,7 @@ function Set_List(DestinationForSet) { //몇박몇일에 대한 데이터도 인
   const hey = DestinationForSet.type; //국내/해외인지 엔티티 타입(in/ hey)
   const DestinationForset = DestinationForSet.value; //여행지 이름 (런던, 파리, 강원도)
   
-  console.log('DestinationForSet: ' + Destination);
+  console.log('DestinationForSet: ' + DestinationForSet);
   var sql = 'Create table ? SELECT * FROM IS;'
 
     pool.getConncetion(function(err, connection) {
