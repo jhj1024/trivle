@@ -48,7 +48,7 @@ function Start(DestinationForSet) {
 }
 
 function Listen_Tip(){
-    let Tip = '';  
+    let TIP = '';  
     pool.getConnection(function(err, connection) {
         if (err)
             console.log('Error while performing Query.', err);
@@ -56,9 +56,9 @@ function Listen_Tip(){
             var sqlForTip = "SELECT * from T";
             connection.query(sqlForTip, function(err, rows){
                 const rand = Math.floor(Math.random() * 8);
-                Tip = rows[rand].T;
-                console.log(Tip);
-                return {Tip};
+                TIP = rows[rand].T;
+                console.log(TIP);
+                return {TIP};
             })
         }
     });
@@ -229,7 +229,7 @@ class NPKResponse {
 
   Listen_Tip_Output(result) {
     this.output = {
-      TIP: result.Tip,
+      TIP: result.TIP,
     }
   }
 }
