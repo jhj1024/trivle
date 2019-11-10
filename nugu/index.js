@@ -206,6 +206,7 @@ function Listen_Tip(){
         }
 
     });
+    console.log(TIP);
     return {TIP};
 }
 
