@@ -227,14 +227,14 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
           console.log(rows[0])
           listen = rows[0].P
           console.log('결과: ' + listen); 
+          return {listen}
         }
       })
 
     }
 
   })
-  
-  return {listen}
+  return {listen} 
 }
 
 //--------------------------------------------------------------
