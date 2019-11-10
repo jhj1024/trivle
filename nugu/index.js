@@ -61,12 +61,13 @@ function Listen_Tip(){
                 return {TIP};
             })
         }
+
     });
 }
 
 function Set_List(DestinationForSet) { //몇박몇일에 대한 데이터도 인자로 추가
   const hey = DestinationForSet.type; //국내/해외인지 엔티티 타입(in/ hey)
-  const Destinationvalue = this.DestinationForSet.value; //여행지 이름 (런던, 파리, 강원도)
+  const Destinationvalue = DestinationForSet.value; //여행지 이름 (런던, 파리, 강원도)
   
 
   console.log('Destinationvalue: ' + typeof(Destinationvalue));
@@ -111,7 +112,7 @@ function Delete_List(DestinationForDelete) {
 }
 
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
-  const Destination = DestinationForListen.toString();
+  const Destination = DestinationForListen;
   const result = "응아니야";
   console.log('DestinationForListen: ' + Destination); 
   
@@ -120,8 +121,8 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
       console.log('DB_connection_err :' + err);
     }
     else{
-      var sqlForListen = "SELECT * FROM " + Destination;
-      connection.query(sqlForListen, function(err, rows) {
+      var sqlForListen = "SELECT * FROM ?;";
+      connection.query(sqlForListen, Destination, function(err, rows) {
         if (err) {
           console.log('query_err :' + err);          
         } 
