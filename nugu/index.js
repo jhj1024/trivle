@@ -212,7 +212,7 @@ function Listen_Tip(){
 
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
   let Destination = DestinationForListen;
-  let listen = '응';
+  var listen = '응';
   console.log('Destination: ' + Destination); 
   console.log('Destination type: ' + typeof(Destination)); 
 
@@ -228,8 +228,7 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
         } 
         else {
           console.log(rows[0])
-          let listen1 = rows[0].P
-          listen = listen1         
+          var listen = rows[0].P     
         }
       })
 
