@@ -10,7 +10,7 @@ var dbConfig = {
     database : 'trivle'//접속할 디비
 };
 var pool = mysql.createPool(dbConfig);
-
+var TIP = ""; 
 //SY--------------------------------------------------------------
 function Start(DestinationForSet) {
     let exist = 0
@@ -154,7 +154,7 @@ function Make_Out_Long(DestinationForset,FewDay)
 //SY------------------------------------------------
 function Listen_Tip(DestinationForTip){
     let Destination = DestinationForTip;
-    var result = "";  
+    //var TIP = ""; 
     pool.getConnection(function(err, connection) {
         if (err)
             console.log('Error while performing Query.', err);
@@ -162,9 +162,9 @@ function Listen_Tip(DestinationForTip){
             var sqlForTip = "SELECT * from T";
             connection.query(sqlForTip, function(err, rows){
                 const rand = Math.floor(Math.random() * 8);
-                result = rows[rand].T;
-                console.log(result);
-                return {result};
+                TIP = rows[rand].T;
+                console.log(TIP);
+                return {TIP};
             })
         }
 
@@ -339,7 +339,7 @@ class NPKResponse {
 
   Listen_Tip_Output(result) {
     this.output = {
-      TIP: result.result
+      TIP: result.TIP
     }
   }
 }
