@@ -116,6 +116,7 @@ function Make_In_Long(DestinationForset,FewDay)
       });
   })
 }
+
 function Make_Out_short(DestinationForset,FewDay)
 {
   var sql = 'Create table ? SELECT * FROM OS where = ?;'
@@ -151,8 +152,8 @@ function Make_Out_Long(DestinationForset,FewDay)
 //--------------------------------------------------
 
 //SY------------------------------------------------
-function Listen_Tip(DestinationForListen){
-    let Destination = DestinationForListen;
+function Listen_Tip(DestinationForTip){
+    let Destination = DestinationForTip;
     let result = '';  
     pool.getConnection(function(err, connection) {
         if (err)
@@ -297,9 +298,9 @@ class NPKRequest {
       break;
             
       case 'Listen_Tip':
-      const DestinationForListen = parameters.DestinationForListen //여행지
+      const DestinationForTip = parameters.DestinationForTip //여행지
       
-      result = Listen_Tip(DestinationForListen.value) //함수 실행
+      result = Listen_Tip(DestinationForTip) //함수 실행
       console.log(result)
       console.log('@@@@@@@')
       npkResponse.Listen_Tip_Output(result) //함수 결과를 output 파라미터에 저장
