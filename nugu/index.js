@@ -29,9 +29,9 @@ function Listen_Tip(){
     connection.query('SELECT * from T', function(err, rows) {
         if (!err){
                 const rand = Math.floor(Math.random() * 8)
-                console.log(rows[rand])
-                const result = rows[rand]
-                return {result}
+                const Tip = rows[rand]
+                console.log(Tip)
+                return {Tip}
         }
         else
             console.log('Error while performing Query.', err);
@@ -167,6 +167,7 @@ class NPKRequest {
       case 'Listen_Tip':
       result = Listen_Tip() //함수 실행
       console.log(result)
+      console.log('@@@@@@@')
       npkResponse.Listen_Tip_Output(result) //함수 결과를 output 파라미터에 저장
       break;
             
@@ -204,7 +205,7 @@ class NPKResponse {
 
   Listen_Tip_Output(result) {
     this.output = {
-      TIP: result
+      TIP: result.Tip
     }
   }
 }
