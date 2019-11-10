@@ -190,7 +190,6 @@ function Delete_List(DestinationForDelete) {
 function Listen_Tip(){
     //let Destination = DestinationForTip;
     
-    //var TIP ='시러~';
     let TIP ='시러~';
     //var TIP = ""; 
     pool.getConnection(function(err, connection) {
@@ -201,19 +200,18 @@ function Listen_Tip(){
             connection.query(sqlForTip, function(err, rows){
                 const rand = Math.floor(Math.random() * 8);
                 TIP = rows[rand].T;
-                console.log(TIP);
+                console.log(TIP); 
             })
         }
 
     });
-    console.log(TIP);
     return {TIP};
 }
 
 
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
   let Destination = DestinationForListen;
-  var listen = '응';
+  let listen = '응';
   console.log('Destination: ' + Destination); 
   console.log('Destination type: ' + typeof(Destination)); 
 
@@ -229,13 +227,14 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
         } 
         else {
           console.log(rows[0])
-          var listen = rows[0].P     
+          listen = rows[0].P
+          console.log('결과: ' + listen); 
         }
       })
 
     }
+
   })
-  console.log(listen)
   return {listen} 
 }
 
@@ -260,7 +259,7 @@ class NPKRequest {
     //액션 이름과 파라미터 저장(모두 nugu play kit의 액션과 파라미터 이름임)
     const actionName = this.action.actionName 
     const parameters = this.action.parameters
-    let result = '';
+    let result = null
 
     switch (actionName) {
       case 'Set_List':
