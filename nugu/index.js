@@ -228,16 +228,14 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
         } 
         else {
           console.log(rows[0])
-          let listen1 = rows[0].P         
+          let listen1 = rows[0].P
+          listen = listen1         
         }
       })
 
     }
-
   })
-
-  console.log('결과: ' + listen);
-  console.log('결과1: ' + listen1); 
+  console.log(listen)
   return {listen} 
 }
 
