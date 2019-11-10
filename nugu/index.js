@@ -201,6 +201,12 @@ class NPKResponse {
       Destination3: result.Destination
     }
   }
+
+  Listen_Tip_Output(result) {
+    this.output = {
+      TIP: result
+    }
+  }
 }
 
 
