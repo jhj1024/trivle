@@ -190,7 +190,7 @@ class NPKRequest {
             
       case 'Listen_Tip':
       result = Listen_Tip() //함수 실행
-      console.log(result)
+      console.log(result.TIP)
       console.log('@@@@@@@')
       npkResponse.Listen_Tip_Output(result) //함수 결과를 output 파라미터에 저장
       break;
