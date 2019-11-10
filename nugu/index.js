@@ -156,6 +156,7 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
 //--------------------------------------------------------------
 class NPKRequest {
   constructor (httpReq) { //httpReq의 body에서 context와 action 추출
+    console.log(httpReq.body)
     this.context = httpReq.body.context
     this.action = httpReq.body.action
     console.log(`NPKRequest: ${JSON.stringify(this.context)}, ${JSON.stringify(this.action)}`)
