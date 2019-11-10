@@ -48,8 +48,8 @@ function Start(DestinationForSet) {
 }
 
 //JH------------------------------------
-function Make_List(DestinationForSet, FewDay){
-  if(DestinationForset) //국내인경우
+function Make_List(DestinationForSet, Type){
+  if(Type) //국내인경우
   {
       Make_In(DestinationForset,FewDay);
   }
