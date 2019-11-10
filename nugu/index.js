@@ -187,8 +187,8 @@ function Delete_List(DestinationForDelete) {
 //--------------------------------------------------
 
 //SY------------------------------------------------
-function Listen_Tip(DestinationForTip){
-    let Destination = DestinationForTip;
+function Listen_Tip(){
+    //let Destination = DestinationForTip;
     
     let TIP ='';
     //var TIP = ""; 
@@ -290,10 +290,10 @@ class NPKRequest {
       break;
             
       case 'Listen_Tip':
-      const DestinationForTip = parameters.DestinationForTip //여행지
+      //const DestinationForTip = parameters.DestinationForTip //여행지
       
-      result = Listen_Tip(DestinationForTip) //함수 실행
-      console.log(result.TIP)
+      result = Listen_Tip() //함수 실행
+      console.log(result)
       console.log('@@@@@@@')
       npkResponse.Listen_Tip_Output(result) //함수 결과를 output 파라미터에 저장
       break;
