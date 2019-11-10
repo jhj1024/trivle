@@ -162,8 +162,8 @@ function Listen_Tip(DestinationForTip){
             var sqlForTip = "SELECT * from T";
             connection.query(sqlForTip, function(err, rows){
                 const rand = Math.floor(Math.random() * 8);
-                TIP = rows[rand].T;
-                console.log(TIP);
+                result = rows[rand].T;
+                console.log(result);
                 return {result};
             })
         }
