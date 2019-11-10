@@ -190,7 +190,8 @@ function Delete_List(DestinationForDelete) {
 function Listen_Tip(){
     //let Destination = DestinationForTip;
     
-    let TIP ='';
+    //var TIP ='시러~';
+    //let TIP ='시러~';
     //var TIP = ""; 
     pool.getConnection(function(err, connection) {
         if (err)
@@ -199,7 +200,7 @@ function Listen_Tip(){
             var sqlForTip = "SELECT * from T";
             connection.query(sqlForTip, function(err, rows){
                 const rand = Math.floor(Math.random() * 8);
-                TIP = rows[rand].T;
+                var TIP = rows[rand].T;
                 console.log(TIP);
             })
         }
@@ -227,13 +228,14 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
         } 
         else {
           console.log(rows[0])
-          listen = rows[0].P
-          console.log('결과: ' + listen); 
+          let listen1 = rows[0].P
+          listen = listen1         
         }
       })
 
     }
   })
+  console.log(listen)
   return {listen} 
 }
 
@@ -283,7 +285,7 @@ class NPKRequest {
       //읽을 카테고리 데이터도 파라미터로 추가
 
       const result1 = Listen_List(DestinationForListen.value) //함수 실행
-      console.log('함수결과' + result.listen)
+      console.log('함수결과' + result1.listen)
       npkResponse.Listen_List_Output(result1) //함수 결과를 output 파라미터에 저장
       break;
             
