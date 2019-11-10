@@ -204,7 +204,6 @@ function Listen_Tip(){
                 console.log('QURr'+TIP);
             })
         }
-
     });
     console.log(TIP);
     return {TIP};
