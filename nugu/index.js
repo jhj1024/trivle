@@ -216,9 +216,10 @@ function Delete_List(DestinationForDelete) {
 }
 
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
-  const Destination = DestinationForListen;
-  const result = "응아니야";
+  let Destination = DestinationForListen;
+  let result = "응아니야";
   console.log('DestinationForListen: ' + Destination); 
+  console.log('Destinationtype: ' + typeof(Destination)); 
   
   pool.getConnection(function(err, connection) {
     if(err){
@@ -288,7 +289,6 @@ class NPKRequest {
       case 'Listen_List':
       const DestinationForListen = parameters.DestinationForListen //여행지
       //읽을 카테고리 데이터도 파라미터로 추가
-
       result = Listen_List(DestinationForListen.value) //함수 실행
       console.log(result)
       npkResponse.Listen_List_Output(result) //함수 결과를 output 파라미터에 저장
