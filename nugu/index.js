@@ -191,7 +191,7 @@ function Listen_Tip(){
     //let Destination = DestinationForTip;
     
     //var TIP ='시러~';
-    //let TIP ='시러~';
+    let TIP ='시러~';
     //var TIP = ""; 
     pool.getConnection(function(err, connection) {
         if (err)
@@ -200,7 +200,7 @@ function Listen_Tip(){
             var sqlForTip = "SELECT * from T";
             connection.query(sqlForTip, function(err, rows){
                 const rand = Math.floor(Math.random() * 8);
-                var TIP = rows[rand].T;
+                TIP = rows[rand].T;
                 console.log(TIP);
             })
         }
