@@ -219,7 +219,7 @@ function Delete_List(DestinationForDelete) {
 
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
   let Destination = DestinationForListen;
-  var listen = "응아니야";
+  var listen;
   console.log('Destination: ' + Destination); 
   console.log('Destination type: ' + typeof(Destination)); 
 
