@@ -227,7 +227,6 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
           console.log(rows[0])
           listen = rows[0].P
           console.log('결과: ' + listen); 
-          return {listen}
         }
       })
 
@@ -282,7 +281,7 @@ class NPKRequest {
       const DestinationForListen = parameters.DestinationForListen //여행지
       //읽을 카테고리 데이터도 파라미터로 추가
 
-      result = Listen_List(DestinationForListen.value) //함수 실행
+      const result1 = Listen_List(DestinationForListen.value) //함수 실행
       console.log('함수결과' + result.listen)
       npkResponse.Listen_List_Output(result) //함수 결과를 output 파라미터에 저장
       break;
