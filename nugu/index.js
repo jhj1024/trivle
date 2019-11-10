@@ -216,17 +216,11 @@ function Delete_List(DestinationForDelete) {
 }
 
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
-<<<<<<< HEAD
   let Destination = DestinationForListen;
   let result = "응아니야";
   console.log('Destination: ' + Destination); 
   console.log('Destination type: ' + typeof(Destination)); 
-=======
-  const Destination = DestinationForListen;
-  const result = "응아니야";
-  console.log('DestinationForListen: ' + Destination); 
->>>>>>> 1fef0e12871f12127661c56cfce8a5c840ebe72d
-  
+
   pool.getConnection(function(err, connection) {
     if(err){
       console.log('DB_connection_err :' + err);
