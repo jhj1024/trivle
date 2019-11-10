@@ -218,7 +218,7 @@ function Delete_List(DestinationForDelete) {
 
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
   let Destination = DestinationForListen;
-  let result = "응아니야";
+  var listen = "응아니야";
   console.log('Destination: ' + Destination); 
   console.log('Destination type: ' + typeof(Destination)); 
 
@@ -234,8 +234,8 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
         } 
         else {
           console.log(rows[0])
-          result = rows[0].P;
-          console.log('결과: ' + result); 
+          listen = rows[0].P;
+          console.log('결과: ' + listen); 
         }
       })
 
@@ -243,7 +243,7 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
 
   })
   
-  return {result}
+  return {listen}
 }
 
 //--------------------------------------------------------------
@@ -292,7 +292,7 @@ class NPKRequest {
       //읽을 카테고리 데이터도 파라미터로 추가
 
       result = Listen_List(DestinationForListen.value) //함수 실행
-      console.log(result)
+      console.log('함수결과' + result)
       npkResponse.Listen_List_Output(result) //함수 결과를 output 파라미터에 저장
       break;
             
@@ -333,7 +333,7 @@ class NPKResponse {
 
   Listen_List_Output(result) {
     this.output = {
-      Destination3: result.result
+      Destination3: result.listen
     }
   }
 
