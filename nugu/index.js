@@ -229,7 +229,7 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
           console.log('query_err :' + err);          
         } 
         else {
-          console.log(rows[0])z
+          console.log(rows[0])
           listen = rows[0].P     
         }
       })
