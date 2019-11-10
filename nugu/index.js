@@ -259,7 +259,7 @@ class NPKRequest {
     //액션 이름과 파라미터 저장(모두 nugu play kit의 액션과 파라미터 이름임)
     const actionName = this.action.actionName 
     const parameters = this.action.parameters
-    let result = null
+    let result = '';
 
     switch (actionName) {
       case 'Set_List':
