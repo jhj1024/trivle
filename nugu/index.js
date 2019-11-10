@@ -49,6 +49,8 @@ function Start(DestinationForSet) {
 
 //JH------------------------------------
 function Make_List(DestinationForSet, Type){
+  
+  console.log('DestinationForMake: ' + Destination); 
   if(Type = "IN") //국내인경우
   {
       Make_In(DestinationForset,FewDay);
@@ -61,6 +63,8 @@ function Make_List(DestinationForSet, Type){
 
 function Make_In(DestinationForset,FewDay)
 {
+  
+  console.log('MakeIn: ' + Destination); 
   if(FewDay<=7)
   {
       Make_In_Short();
@@ -74,6 +78,8 @@ function Make_In(DestinationForset,FewDay)
 
 function Make_Out(DestinationForset,FewDay)
 {
+  
+  console.log('MakeOut: ' + Destination); 
   if(FewDay<=7)
   {
       Make_Out_Short();
@@ -87,6 +93,9 @@ function Make_Out(DestinationForset,FewDay)
 //생성 함수
 function Make_In_Short(DestinationForset,FewDay)
 {
+  
+  console.log('MakeInShort: ' + Destination); 
+
   var sql = 'Create table ? SELECT * FROM IS where = ?;'
 
   pool.getConncetion(function(err, connection) {
@@ -103,6 +112,8 @@ function Make_In_Short(DestinationForset,FewDay)
 
 function Make_In_Long(DestinationForset,FewDay)
 {
+  
+  console.log('MakeInLong: ' + Destination); 
   var sql = 'Create table ? SELECT * FROM IL where = ?;'
 
   pool.getConncetion(function(err, connection) {
@@ -119,6 +130,8 @@ function Make_In_Long(DestinationForset,FewDay)
 
 function Make_Out_short(DestinationForset,FewDay)
 {
+  
+  console.log('MakeOutShort: ' + Destination); 
   var sql = 'Create table ? SELECT * FROM OS where = ?;'
 
   pool.getConncetion(function(err, connection) {
@@ -135,6 +148,8 @@ function Make_Out_short(DestinationForset,FewDay)
 
 function Make_Out_Long(DestinationForset,FewDay)
 {
+  
+  console.log('MakeOutLong: ' + Destination); 
   var sql = 'Create table ? SELECT * FROM OL where = ?;'
 
   pool.getConncetion(function(err, connection) {
@@ -167,25 +182,6 @@ function Delete_List(DestinationForDelete) {
       });
   })
 
-  /*
-  pool.getConnection(function(err, connection) {
-    if(err){
-      console.log('DB_connection_err :' + err);
-    }
-    else{
-      var sqlForCart = "SELECT FROM  WHERE";
-      connection.query(sqlForCart, function(err, rows) {
-        if (err) {
-          console.log('query_err :' + err);
-          
-        } 
-        else {
-          
-        }
-      })
-    }
-  })
-  */
   return {Destination}
 }
 //--------------------------------------------------
