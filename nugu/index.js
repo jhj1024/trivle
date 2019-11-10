@@ -190,8 +190,7 @@ function Delete_List(DestinationForDelete) {
 function Listen_Tip(){
     //let Destination = DestinationForTip;
     
-    //var TIP ='시러~';
-    //let TIP ='시러~';
+    let TIP ='시러~';
     //var TIP = ""; 
     pool.getConnection(function(err, connection) {
         if (err)
@@ -200,12 +199,14 @@ function Listen_Tip(){
             var sqlForTip = "SELECT * from T";
             connection.query(sqlForTip, function(err, rows){
                 const rand = Math.floor(Math.random() * 8);
-                var TIP = rows[rand].T;
-                console.log(TIP);
+                TIP = rows[rand].T;
+
+                console.log('1' + TIP);
             })
         }
-
     });
+
+    console.log('2'+TIP);
     return {TIP};
 }
 
@@ -213,6 +214,7 @@ function Listen_Tip(){
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
   let Destination = DestinationForListen;
   var listen = '다쿠아즈';
+
   console.log('Destination: ' + Destination); 
   console.log('Destination type: ' + typeof(Destination)); 
 
@@ -227,14 +229,14 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
           console.log('query_err :' + err);          
         } 
         else {
-          console.log(rows[0])
+          console.log(rows[0])z
           listen = rows[0].P     
         }
       })
 
     }
+
   })
-  console.log(listen)
   return {listen} 
 }
 
@@ -259,8 +261,9 @@ class NPKRequest {
     //액션 이름과 파라미터 저장(모두 nugu play kit의 액션과 파라미터 이름임)
     const actionName = this.action.actionName 
     const parameters = this.action.parameters
-    let result = '';
+    let result = null
 
+    console.log('액션먼저?')
     switch (actionName) {
       case 'Set_List':
       let DestinationForSet = parameters.DestinationForSet //여행지
@@ -290,9 +293,9 @@ class NPKRequest {
             
       case 'Listen_Tip':
       //const DestinationForTip = parameters.DestinationForTip //여행지
-      
+      console.log('어떤거 먼저?')
       result = Listen_Tip() //함수 실행
-      console.log(result)
+      console.log('3'+result)
       console.log('@@@@@@@')
       npkResponse.Listen_Tip_Output(result) //함수 결과를 output 파라미터에 저장
       break;
