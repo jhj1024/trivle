@@ -114,8 +114,8 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
       console.log('DB_connection_err :' + err);
     }
     else{
-      var sqlForListen = "SELECT * FROM ?";
-      connection.query(sqlForListen, Destination, function(err, rows) {
+      var sqlForListen = "SELECT * FROM " + Destination;
+      connection.query(sqlForListen, function(err, rows) {
         if (err) {
           console.log('query_err :' + err);          
         } 
