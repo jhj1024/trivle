@@ -49,7 +49,7 @@ function Start(DestinationForSet) {
 
 //JH------------------------------------
 function Make_List(DestinationForSet, Type){
-  if(Type) //국내인경우
+  if(Type = "IN") //국내인경우
   {
       Make_In(DestinationForset,FewDay);
   }
@@ -152,7 +152,7 @@ function Make_Out_Long(DestinationForset,FewDay)
 
 //SY------------------------------------------------
 function Listen_Tip(){
-    let TIP = '';  
+    const TIP = '';  
     pool.getConnection(function(err, connection) {
         if (err)
             console.log('Error while performing Query.', err);
@@ -161,7 +161,7 @@ function Listen_Tip(){
             connection.query(sqlForTip, function(err, rows){
                 const rand = Math.floor(Math.random() * 8);
                 TIP = rows[rand].T;
-                //console.log(TIP);
+                console.log(TIP);
                 return {TIP};
             })
         }
@@ -216,10 +216,16 @@ function Delete_List(DestinationForDelete) {
 }
 
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
+<<<<<<< HEAD
   let Destination = DestinationForListen;
   let result = "응아니야";
   console.log('Destination: ' + Destination); 
   console.log('Destination type: ' + typeof(Destination)); 
+=======
+  const Destination = DestinationForListen;
+  const result = "응아니야";
+  console.log('DestinationForListen: ' + Destination); 
+>>>>>>> 1fef0e12871f12127661c56cfce8a5c840ebe72d
   
   pool.getConnection(function(err, connection) {
     if(err){
@@ -289,14 +295,14 @@ class NPKRequest {
       case 'Listen_List':
       const DestinationForListen = parameters.DestinationForListen //여행지
       //읽을 카테고리 데이터도 파라미터로 추가
+
       result = Listen_List(DestinationForListen.value) //함수 실행
       console.log(result)
       npkResponse.Listen_List_Output(result) //함수 결과를 output 파라미터에 저장
       break;
             
       case 'Listen_Tip':
-      result = Listen_Tip()//함수 실행
-      console.log('@@@@@@@')
+      result = Listen_Tip() //함수 실행
       console.log(result)
       console.log('@@@@@@@')
       npkResponse.Listen_Tip_Output(result) //함수 결과를 output 파라미터에 저장
