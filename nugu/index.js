@@ -118,28 +118,30 @@ function Delete_List(DestinationForDelete) {
 
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
   const Destination = DestinationForListen;
-  console.log('DestinationForListen: 하이하이^^ ' + Destination); 
-  /*
+  const result = "응아니야";
+  console.log('DestinationForListen: ' + Destination); 
+  
   pool.getConnection(function(err, connection) {
     if(err){
       console.log('DB_connection_err :' + err);
     }
     else{
-      var sqlForCart = "SELECT FROM  WHERE";
-      connection.query(sqlForCart, function(err, rows) {
+      var sqlForListen = "SELECT * FROM " + Destination;
+      connection.query(sqlForListen, function(err, rows) {
         if (err) {
           console.log('query_err :' + err);          
         } 
         else {
-          
+          result = rows[0].P;
+          console.log(result)
         }
       })
 
     }
 
   })
-  */
-  return {Destination}
+  
+  return {result}
 }
 
 //--------------------------------------------------------------
@@ -227,7 +229,7 @@ class NPKResponse {
 
   Listen_List_Output(result) {
     this.output = {
-      Destination3: result.Destination
+      Destination3: result.result
     }
   }
 
