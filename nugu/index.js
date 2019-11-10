@@ -71,7 +71,7 @@ function Set_List(DestinationForSet) { //몇박몇일에 대한 데이터도 인
   console.log('DestinationForSet: ' + DestinationForSet);
   var sql = 'Create table ? SELECT * FROM IS;'
 
-    pool.getConncetion(function(err, connection) {
+    pool.getConnection(function(err, connection) {
         connection.query(sql, DestinationForset, function(err, rows) {
           if (err) {
             console.log('Error Create Query.', err);
