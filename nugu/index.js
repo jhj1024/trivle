@@ -10,7 +10,7 @@ var dbConfig = {
     database : 'trivle'//접속할 디비
 };
 var pool = mysql.createPool(dbConfig);
-pool.connection();
+pool.connect();
 //--------------------------------------------------------------
 function Start(DestinationForSet) {
     let exist = 0
