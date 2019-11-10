@@ -10,7 +10,7 @@ var dbConfig = {
     database : 'trivle'//접속할 디비
 };
 var pool = mysql.createPool(dbConfig);
-
+var TIP = ""; 
 //SY--------------------------------------------------------------
 function Start(DestinationForSet) {
     let exist = 0
@@ -189,7 +189,7 @@ function Delete_List(DestinationForDelete) {
 //SY------------------------------------------------
 function Listen_Tip(DestinationForTip){
     let Destination = DestinationForTip;
-    let result = '';  
+    //var TIP = ""; 
     pool.getConnection(function(err, connection) {
         if (err)
             console.log('Error while performing Query.', err);
@@ -199,7 +199,7 @@ function Listen_Tip(DestinationForTip){
                 const rand = Math.floor(Math.random() * 8);
                 TIP = rows[rand].T;
                 console.log(TIP);
-                return {result};
+                return {TIP};
             })
         }
 
@@ -209,7 +209,6 @@ function Listen_Tip(DestinationForTip){
 
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
   let Destination = DestinationForListen;
-  var listen = "응아니야";
   console.log('Destination: ' + Destination); 
   console.log('Destination type: ' + typeof(Destination)); 
 
@@ -225,7 +224,7 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
         } 
         else {
           console.log(rows[0])
-          listen = rows[0].P;
+          var listen = rows[0].P
           console.log('결과: ' + listen); 
         }
       })
@@ -330,7 +329,7 @@ class NPKResponse {
 
   Listen_Tip_Output(result) {
     this.output = {
-      TIP: result.result
+      TIP: result.TIP
     }
   }
 }
