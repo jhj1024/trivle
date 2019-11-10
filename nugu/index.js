@@ -201,7 +201,7 @@ function Listen_Tip(){
                 const rand = Math.floor(Math.random() * 8);
                 TIP = rows[rand].T;
 
-                console.log('**' + TIP);
+                console.log('1' + TIP);
             })
         }
     });
