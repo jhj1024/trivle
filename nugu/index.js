@@ -191,6 +191,7 @@ function Listen_Tip(){
     //let Destination = DestinationForTip;
     
     let TIP ='';
+    //var TIP = ""; 
     pool.getConnection(function(err, connection) {
         if (err)
             console.log('Error while performing Query.', err);
@@ -204,7 +205,6 @@ function Listen_Tip(){
         }
 
     });
-    console.log(TIP);
     return {TIP};
 }
 
