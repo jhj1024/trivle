@@ -13,9 +13,10 @@ var pool = mysql.createPool(dbConfig);
 
 //--------------------------------------------------------------
 function Set_List(DestinationForSet) { //몇박몇일에 대한 데이터도 인자로 추가
-  const Destination = DestinationForSet;
+  const hey = DestinationForSet.type; //국내/해외인지 엔티티 타입(in/ hey)
+  const Destination = DestinationForSet.value; //여행지 이름 (런던, 파리, 강원도)
   console.log('DestinationForSet: ' + Destination); 
-  
+  /*
   pool.getConnection(function(err, connection) {
     if(err){
       console.log('DB_connection_err :' + err);
@@ -33,7 +34,7 @@ function Set_List(DestinationForSet) { //몇박몇일에 대한 데이터도 인
       })
     }
   })
-  
+  */
   return {Destination}
 }
 
@@ -91,6 +92,7 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
 //--------------------------------------------------------------
 class NPKRequest {
   constructor (httpReq) { //httpReq의 body에서 context와 action 추출
+    console.log(httpReq.body)
     this.context = httpReq.body.context
     this.action = httpReq.body.action
     console.log(`NPKRequest: ${JSON.stringify(this.context)}, ${JSON.stringify(this.action)}`)
@@ -123,7 +125,7 @@ class NPKRequest {
       case 'Delete_List':
       const DestinationForDelete = parameters.DestinationForDelete //여행지
       
-      result = Delete_List(DestinationForDelete.value) //함수 실행
+      result = Delete_List(DestinationForDelete) //함수 실행
       console.log(result)
       npkResponse.Delete_List_Output(result) //함수 결과를 output 파라미터에 저장
       break;
