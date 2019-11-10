@@ -116,6 +116,7 @@ function Make_In_Long(DestinationForset,FewDay)
       });
   })
 }
+
 function Make_Out_short(DestinationForset,FewDay)
 {
   var sql = 'Create table ? SELECT * FROM OS where = ?;'
