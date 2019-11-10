@@ -242,7 +242,7 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
 
   })
   
-  return listen
+  return {listen}
 }
 
 //--------------------------------------------------------------
@@ -291,7 +291,7 @@ class NPKRequest {
       //읽을 카테고리 데이터도 파라미터로 추가
 
       result = Listen_List(DestinationForListen.value) //함수 실행
-      console.log(result)
+      console.log('함수결과' + result)
       npkResponse.Listen_List_Output(result) //함수 결과를 output 파라미터에 저장
       break;
             
