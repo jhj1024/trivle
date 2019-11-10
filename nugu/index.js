@@ -11,7 +11,7 @@ var dbConfig = {
 };
 var pool = mysql.createPool(dbConfig);
 
-//--------------------------------------------------------------
+//SY--------------------------------------------------------------
 function Start(DestinationForSet) {
     let exist = 0
     /////////////디비에 저장되어 있는 리스트인지 확인/////////////////
@@ -44,9 +44,113 @@ function Start(DestinationForSet) {
         Read(DestinationForSet);
     ////////////기존 리스트에 없는 경우////////////
     else
-       New(DestinationForSet, DestinationForSet.type);
+       Make_List(DestinationForSet, DestinationForSet.type);
 }
 
+//JH------------------------------------
+function Make_List(DestinationForSet, Type){
+  if(Type) //국내인경우
+  {
+      Make_In(DestinationForset,FewDay);
+  }
+  else //해외인경우
+  {
+      Make_Out(DestinationForset,FewDay);
+  }
+}
+
+function Make_In(DestinationForset,FewDay)
+{
+  if(FewDay<=7)
+  {
+      Make_In_Short();
+  }
+  else
+  {
+      Make_In_Long();
+  }
+}
+
+
+function Make_Out(DestinationForset,FewDay)
+{
+  if(FewDay<=7)
+  {
+      Make_Out_Short();
+  }
+  else
+  {
+      Make_Out_Long();
+  }
+}
+
+//생성 함수
+function Make_In_Short(DestinationForset,FewDay)
+{
+  var sql = 'Create table ? SELECT * FROM IS where = ?;'
+
+  pool.getConncetion(function(err, connection) {
+      connection.query(sql, DestinationForset, function(err, rows) {
+        if (err) {
+          console.log('Error Create Query.', err);
+        } 
+        else {
+          console.log("Create table");
+        }
+      });
+  })
+}
+
+function Make_In_Long(DestinationForset,FewDay);
+{
+  var sql = 'Create table ? SELECT * FROM IL where = ?;'
+
+  pool.getConncetion(function(err, connection) {
+      connection.query(sql, DestinationForset, function(err, rows) {
+        if (err) {
+          console.log('Error Create Query.', err);
+        } 
+        else {
+          console.log("Create table");
+        }
+      });
+  })
+}
+function Make_Out_short(DestinationForset,FewDay);
+{
+  var sql = 'Create table ? SELECT * FROM OS where = ?;'
+
+  pool.getConncetion(function(err, connection) {
+      connection.query(sql, DestinationForset, function(err, rows) {
+        if (err) {
+          console.log('Error Create Query.', err);
+        } 
+        else {
+          console.log("Create table");
+        }
+      });
+  })
+}
+
+function Make_Out_Long(DestinationForset,FewDay);
+{
+  var sql = 'Create table ? SELECT * FROM OL where = ?;'
+
+  pool.getConncetion(function(err, connection) {
+      connection.query(sql, DestinationForset, function(err, rows) {
+        if (err) {
+          console.log('Error Create Query.', err);
+        } 
+        else {
+          console.log("Create table");
+        }
+      });
+  })
+}
+
+//--------------------------------------------------
+
+//SY------------------------------------------------
 function Listen_Tip(){
     let TIP = '';  
     pool.getConnection(function(err, connection) {
@@ -192,7 +296,7 @@ class NPKRequest {
             
       case 'Listen_Tip':
       result = Listen_Tip() //함수 실행
-      console.log(result)
+      console.log(result.TIP)
       console.log('@@@@@@@')
       npkResponse.Listen_Tip_Output(result) //함수 결과를 output 파라미터에 저장
       break;
