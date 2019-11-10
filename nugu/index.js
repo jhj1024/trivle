@@ -59,7 +59,6 @@ function Listen_Tip(){
                 Tip = rows[rand].T;
                 console.log(Tip);
                 return {Tip};
-                }
             })
         }
     });
