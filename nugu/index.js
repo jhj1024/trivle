@@ -154,7 +154,7 @@ function Make_Out_Long(DestinationForset,FewDay)
 //SY------------------------------------------------
 function Listen_Tip(DestinationForTip){
     let Destination = DestinationForTip;
-    var result = " ";  
+    var result = "";  
     pool.getConnection(function(err, connection) {
         if (err)
             console.log('Error while performing Query.', err);
