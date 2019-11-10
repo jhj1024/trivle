@@ -103,15 +103,49 @@ function Make_In_Short(DestinationForset,FewDay)
 
 function Make_In_Long(DestinationForset,FewDay);
 {
+  var sql = 'Create table ? SELECT * FROM IL where = ?;'
 
+  pool.getConncetion(function(err, connection) {
+      connection.query(sql, DestinationForset, function(err, rows) {
+        if (err) {
+          console.log('Error Create Query.', err);
+        } 
+        else {
+          console.log("Create table");
+        }
+      });
+  })
 }
 function Make_Out_short(DestinationForset,FewDay);
 {
+  var sql = 'Create table ? SELECT * FROM OS where = ?;'
 
+  pool.getConncetion(function(err, connection) {
+      connection.query(sql, DestinationForset, function(err, rows) {
+        if (err) {
+          console.log('Error Create Query.', err);
+        } 
+        else {
+          console.log("Create table");
+        }
+      });
+  })
 }
+
 function Make_Out_Long(DestinationForset,FewDay);
 {
+  var sql = 'Create table ? SELECT * FROM OL where = ?;'
 
+  pool.getConncetion(function(err, connection) {
+      connection.query(sql, DestinationForset, function(err, rows) {
+        if (err) {
+          console.log('Error Create Query.', err);
+        } 
+        else {
+          console.log("Create table");
+        }
+      });
+  })
 }
 
 //--------------------------------------------------
