@@ -29,6 +29,7 @@ function Listen_Tip(){
     connection.query('SELECT * from T', function(err, rows) {
         if (!err){
                 const rand = Math.floor(Math.random() * 8)
+                console.log(rows[rand])
                 let result = rows[rand]
                 return result;
         }
