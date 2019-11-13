@@ -214,7 +214,7 @@ function Listen_Tip(callback){
 
     
     return {TIP};
-}, NPKRequest.actionRequest(npkResponse, callback) {
+}, function NPKRequest.actionRequest(npkResponse, callback) {
     console.log('actionRequest')
     console.dir(this.action)
 
