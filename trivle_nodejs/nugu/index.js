@@ -279,7 +279,7 @@ var Listen_List =
 //--------------------------------------------------------------
 class NPKRequest {
   constructor (httpReq) { //httpReq의 body에서 context와 action 추출
-    //console.log(httpReq.body)
+    console.log(httpReq)
     this.context = httpReq.body.context
     this.action = httpReq.body.action
     //console.log(`NPKRequest: ${JSON.stringify(this.context)}, ${JSON.stringify(this.action)}`)
