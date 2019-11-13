@@ -13,14 +13,14 @@ def Set_List(parameters):
     print('parameters')
     print(parameters)
     
-    hello = {'destination':'hello'}
+    hello = {'parameter':'hello'}
     return hello
 
 def Delete_List(parameters):
     print('parameters')
     print(parameters)
     
-    hello = {'destination':'hello'}
+    hello = {'parameter':'hello'}
     return hello
 
 def Listen_List(parameters):
@@ -47,13 +47,14 @@ def Listen_List(parameters):
     cursor.execute(sql)
     rows = cursor.fetchall()
     print(rows)
+    lists = [list(elem) for elem in rows]
     
-    hello = {'destination':'hello'}
+    hello = {'list':lists}
     return hello
 
 def Listen_Tip(parameters):
     print('parameters')
     print(parameters)
     
-    hello = {'destination':'hello'}
+    hello = {'parameter':'hello'}
     return hello
