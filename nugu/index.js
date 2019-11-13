@@ -212,8 +212,9 @@ function Listen_Tip(callback){
 
     console.log('2'+TIP);
 
+    
     return {TIP};
-}, NPKRequest.actionRequest(npkResponse) {
+}, NPKRequest.actionRequest(npkResponse, callback) {
     console.log('actionRequest')
     console.dir(this.action)
 
@@ -261,7 +262,7 @@ function Listen_Tip(callback){
             
     }
   }
-    ];
+];
 async.waterfall(tasks, function (err) {
     if (err)
         console.log('err');
