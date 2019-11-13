@@ -211,7 +211,7 @@ function Listen_Tip(){
     return {TIP};
 }
 
-
+//지현---------------------------------------------------
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
   let Destination = DestinationForListen;
   var listen = '다쿠아즈';
@@ -295,7 +295,7 @@ class NPKRequest {
       case 'Listen_Tip':
       //const DestinationForTip = parameters.DestinationForTip //여행지
       console.log('어떤거 먼저?')
-      result = callback(Listen_Tip()) //함수 실행
+      result = Listen_Tip() //함수 실행
       console.log('3'+result)
       console.log('@@@@@@@')
       npkResponse.Listen_Tip_Output(result) //함수 결과를 output 파라미터에 저장
