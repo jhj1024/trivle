@@ -10,6 +10,7 @@ var dbConfig = {
     database : 'trivle'//접속할 디비
 };
 var pool = mysql.createPool(dbConfig);
+var async = require('async');
 //let TIP = ""; 
 //SY--------------------------------------------------------------
 function Start(DestinationForSet) {
@@ -187,6 +188,8 @@ function Delete_List(DestinationForDelete) {
 //--------------------------------------------------
 
 //SY------------------------------------------------
+
+
 function Listen_Tip(){
     //let Destination = DestinationForTip;
     
@@ -202,16 +205,19 @@ function Listen_Tip(){
                 TIP = rows[rand].T;
 
                 console.log('1' + TIP);
+                return {TIP};
             })
         }
     });
 
     console.log('2'+TIP);
 
+    
     return {TIP};
-}
+};
+    
 
-
+//지현---------------------------------------------------
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
   let Destination = DestinationForListen;
   var listen = '다쿠아즈';
@@ -244,7 +250,7 @@ function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 
 //--------------------------------------------------------------
 class NPKRequest {
   constructor (httpReq) { //httpReq의 body에서 context와 action 추출
-    //console.log(httpReq.body)
+    console.log(httpReq.body)
     this.context = httpReq.body.context
     this.action = httpReq.body.action
     //console.log(`NPKRequest: ${JSON.stringify(this.context)}, ${JSON.stringify(this.action)}`)
