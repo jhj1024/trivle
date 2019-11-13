@@ -30,16 +30,16 @@ def actionRequest(action):
     
     #python은 switch문이 없으므로 if-else문으로 대체
     if(actionName == 'Set_List'):
-        output = index.listen_list(actionName, parameters)
+        output = index.Set_List(parameters)
         
     elif(actionName == 'Delete_List'):
-        output = index.listen_list(actionName, parameters)
+        output = index.Delete_List(parameters)
         
     elif(actionName == 'Listen_List'):
-        output = index.listen_list(actionName, parameters)
+        output = index.Listen_List(parameters)
         
     elif(actionName == 'Listen_Tip'):
-        output = index.listen_list(actionName, parameters)
+        output = index.Listen_Tip(parameters)
     else:
         output = {}
            
