@@ -10,6 +10,7 @@ var dbConfig = {
     database : 'trivle'//접속할 디비
 };
 var pool = mysql.createPool(dbConfig);
+var async = require('async');
 //let TIP = ""; 
 //SY--------------------------------------------------------------
 function Start(DestinationForSet) {
@@ -187,7 +188,11 @@ function Delete_List(DestinationForDelete) {
 //--------------------------------------------------
 
 //SY------------------------------------------------
-function Listen_Tip(){
+Listen_Tip(function(result){
+           NPKRequest.actionRequest(result);    
+});
+
+function Listen_Tip(callback){
     //let Destination = DestinationForTip;
     
     let TIP ='시러~';
@@ -202,13 +207,13 @@ function Listen_Tip(){
                 TIP = rows[rand].T;
 
                 console.log('1' + TIP);
-                return {TIP};
+                //return {TIP};
             })
         }
     });
 
     console.log('2'+TIP);
-
+    callback(TIP)
     return {TIP};
 }
 
