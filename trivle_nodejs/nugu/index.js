@@ -4,13 +4,15 @@ const { DOMAIN } = require('../config')
 var async = require('async')
 var mysql = require('mysql')
 var dbConfig = {
- host     : '45.119.146.152',
-    user     : 'trivle',//계정 아이디
-    password : 'Trivle_96',//계정 비번
-    port     : 1024,
-    database : 'trivle'//접속할 디비
-  }
+  host     : '45.119.146.152',
+  user     : 'trivle',//계정 아이디
+  password : 'Trivle_96',//계정 비번
+  port     : 1024,
+  database : 'trivle'//접속할 디비
+}
 var pool = mysql.createPool(dbConfig)
+var async = require('async');
+
 //let TIP = ""; 
 let Destination = '';
 //SY--------------------------------------------------------------
@@ -189,11 +191,45 @@ function Delete_List(DestinationForDelete) {
 //--------------------------------------------------
 
 //SY------------------------------------------------
+
+
 function Listen_Tip(){
+  let TIP ='시러~';
+  //var TIP = ""; 
   //let Destination = DestinationForTip;
   
   let TIP ='시러~';
   //var TIP = ""; 
+  pool.getConnection(function(err, connection) {
+      if (err)
+          console.log('Error while performing Query.', err);
+      else{
+          var sqlForTip = "SELECT * from T";
+          connection.query(sqlForTip, function(err, rows){
+              const rand = Math.floor(Math.random() * 8);
+              TIP = rows[rand].T;
+
+              console.log('1' + TIP);
+              return {TIP};
+          })
+      }
+  });
+
+  console.log('2'+TIP);
+
+  
+  return {TIP};
+};
+    
+
+//지현---------------------------------------------------
+function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
+  let Destination = DestinationForListen;
+  var listen = '다쿠아즈';
+
+  console.log('Destination: ' + Destination); 
+  console.log('Destination type: ' + typeof(Destination)); 
+
   pool.getConnection(function(err, connection) {
     if (err)
       console.log('Error while performing Query.', err);
@@ -269,7 +305,8 @@ class NPKRequest {
       let DestinationForSet = parameters.DestinationForSet //여행지
       //몇박몇일에 대한 데이터도 파라미터로 추가 
 
-      result = Set_List(DestinationForSet.value) //함수 실행
+      console.log('시작')
+      result = Start(DestinationForSet.value) //함수 실행
       console.log(result)
       npkResponse.Set_List_Output(result) //함수 결과를 output 파라미터에 저장
       break;
@@ -296,7 +333,7 @@ class NPKRequest {
       case 'Listen_Tip':
       //const DestinationForTip = parameters.DestinationForTip //여행지
       console.log('어떤거 먼저?')
-      result = callback(Listen_Tip()) //함수 실행
+      result = aync(1,Listen_Tip()); //함수 실행
       console.log('3'+result)
       console.log('@@@@@@@')
       npkResponse.Listen_Tip_Output(result) //함수 결과를 output 파라미터에 저장
