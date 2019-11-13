@@ -202,6 +202,7 @@ function Listen_Tip(){
                 TIP = rows[rand].T;
 
                 console.log('1' + TIP);
+                return {TIP};
             })
         }
     });
