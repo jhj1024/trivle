@@ -50,7 +50,7 @@ def NPKResponse(output):
     print(npkResponse)
     return npkResponse
 #------------------------------------------------------------------------------
-
+#------------------------------------------------------------------------------
 @app.route("/nugu/Set_List", methods=['POST'])
 def nugu_set():
     body = request.json #전송받은 json 객체를 dictionary로 변환 
@@ -74,6 +74,6 @@ def nugu_tip():
     body = request.json #전송받은 json 객체를 dictionary로 변환 
     npkResponse = NPKRequest(body)
     return jsonify(npkResponse)
-
+#------------------------------------------------------------------------------
 if __name__ == '__main__':    
     app.run(host="0.0.0.0", port=3000)
