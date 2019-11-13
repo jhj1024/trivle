@@ -4,7 +4,6 @@ trivle 서버 (python run.py)
 """
 from flask import Flask, jsonify
 from flask import request
-import json
 import index
 app = Flask(__name__)
 
