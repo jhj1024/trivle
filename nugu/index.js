@@ -276,7 +276,8 @@ class NPKRequest {
       let DestinationForSet = parameters.DestinationForSet //여행지
       //몇박몇일에 대한 데이터도 파라미터로 추가 
 
-      result = Make_List(DestinationForSet.value) //함수 실행
+      console.log('시작')
+      result = Start(DestinationForSet.value) //함수 실행
       console.log(result)
       npkResponse.Set_List_Output(result) //함수 결과를 output 파라미터에 저장
       break;
