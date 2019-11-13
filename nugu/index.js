@@ -189,8 +189,8 @@ function Delete_List(DestinationForDelete) {
 
 //SY------------------------------------------------
 
-var tasks = [
-function Listen_Tip(callback){
+
+function Listen_Tip(){
     //let Destination = DestinationForTip;
     
     let TIP ='시러~';
@@ -214,62 +214,9 @@ function Listen_Tip(callback){
 
     
     return {TIP};
-}, function NPKRequest.actionRequest(npkResponse, callback) {
-    console.log('actionRequest')
-    console.dir(this.action)
+}, 
+    
 
-    //액션 이름과 파라미터 저장(모두 nugu play kit의 액션과 파라미터 이름임)
-    const actionName = this.action.actionName 
-    const parameters = this.action.parameters
-    let result = null
-
-    console.log('액션먼저?')
-    switch (actionName) {
-      case 'Set_List':
-      let DestinationForSet = parameters.DestinationForSet //여행지
-      //몇박몇일에 대한 데이터도 파라미터로 추가 
-
-      result = Set_List(DestinationForSet.value) //함수 실행
-      console.log(result)
-      npkResponse.Set_List_Output(result) //함수 결과를 output 파라미터에 저장
-      break;
-
-      case 'Delete_List':
-      const DestinationForDelete = parameters.DestinationForDelete //여행지
-      
-      result = Delete_List(DestinationForDelete) //함수 실행
-      console.log(result)
-      npkResponse.Delete_List_Output(result) //함수 결과를 output 파라미터에 저장
-      break;
-
-      case 'Listen_List':
-      const DestinationForListen = parameters.DestinationForListen //여행지
-      //읽을 카테고리 데이터도 파라미터로 추가
-
-      const result1 = Listen_List(DestinationForListen.value) //함수 실행
-      console.log('함수결과' + result1.listen)
-      npkResponse.Listen_List_Output(result1) //함수 결과를 output 파라미터에 저장
-      break;
-            
-      case 'Listen_Tip':
-      //const DestinationForTip = parameters.DestinationForTip //여행지
-      console.log('어떤거 먼저?')
-      result = Listen_Tip() //함수 실행
-      console.log('3'+result)
-      console.log('@@@@@@@')
-      npkResponse.Listen_Tip_Output(result) //함수 결과를 output 파라미터에 저장
-      break;
-            
-    }
-  }
-];
-async.waterfall(tasks, function (err) {
-    if (err)
-        console.log('err');
-    else
-        console.log('done');
-    connection.end();
-});
 //지현---------------------------------------------------
 function Listen_List(DestinationForListen) { //읽을 카테고리 데이터도 인자로 추가
   let Destination = DestinationForListen;
@@ -314,7 +261,7 @@ class NPKRequest {
     this.actionRequest(npkResponse)
   }
 
-  /*actionRequest(npkResponse) {
+  actionRequest(npkResponse) {
     console.log('actionRequest')
     console.dir(this.action)
 
@@ -361,7 +308,7 @@ class NPKRequest {
       break;
             
     }
-  }*/
+  }
 }
 
 class NPKResponse {
