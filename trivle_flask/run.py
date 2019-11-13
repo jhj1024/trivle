@@ -42,7 +42,7 @@ def NPKResponse(output):
     print(npkResponse)
     return npkResponse
 
-@app.route("/nugu/Listen_List", methods=['POST'])
+@app.route("/nugu", methods=['POST'])
 def nugu():
     body = request.json #전송받은 json 객체를 dictionary로 변환 
     print('body')
@@ -56,4 +56,4 @@ def nugu():
     return jsonify(npkResponse)
 
 if __name__ == '__main__':    
-    app.run(host="127.0.0.1", port=3000)
+    app.run(host="45.119.146.152", port=3000)
