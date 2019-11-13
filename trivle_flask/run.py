@@ -42,7 +42,7 @@ def NPKResponse(output):
     print(npkResponse)
     return npkResponse
 
-@app.route("/nugu", methods=['POST'])
+@app.route("/nugu/Listen_List", methods=['POST'])
 def nugu():
     body = request.json #전송받은 json 객체를 dictionary로 변환 
     print('body')

@@ -14,8 +14,8 @@ with conn.cursor() as cursor:
     cursor.execute(sql)
     temp1 = cursor.fetchall()
 '''
-def listen_list(actionName, parameters):
-    print(actionName)
+def listen_list(parameters):
+    print('parameters')
     print(parameters)
     hello = {'destination':'hello'}
     return hello
