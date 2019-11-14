@@ -12,7 +12,7 @@ conn = pymysql.connect(host='45.119.146.152', port=1024, user='trivle', password
 # ------------------------------------------------------------------------------
 def Set_List(parameters):
     print('Set_List: parameters')
-    print(parameters)
+    print('Set:' + parameters['DestinationForSet']['value'])
 
     cursor = conn.cursor()
     sql = 'SELECT * from location;'
