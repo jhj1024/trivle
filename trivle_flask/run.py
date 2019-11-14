@@ -2,7 +2,8 @@
 """
 trivle 서버 (python run.py)
 """
-from flask import Flask, jsonify
+from flask import Flask
+import json
 from flask import request
 import index
 app = Flask(__name__)
@@ -55,25 +56,25 @@ def NPKResponse(output):
 def nugu_set():
     body = request.json #전송받은 json 객체를 dictionary로 변환 
     npkResponse = NPKRequest(body)
-    return jsonify(npkResponse)
+    return (json.dumps(npkResponse, ensure_ascii=False))
 
 @app.route("/nugu/Delete_List", methods=['POST'])
 def nugu_delete():
     body = request.json #전송받은 json 객체를 dictionary로 변환 
     npkResponse = NPKRequest(body)
-    return jsonify(npkResponse)
+    return (json.dumps(npkResponse, ensure_ascii=False))
 
 @app.route("/nugu/Listen_List", methods=['POST'])
 def nugu_listen():
     body = request.json #전송받은 json 객체를 dictionary로 변환 
     npkResponse = NPKRequest(body)
-    return jsonify(npkResponse)
+    return (json.dumps(npkResponse, ensure_ascii=False))
 
 @app.route("/nugu/Listen_Tip", methods=['POST'])
 def nugu_tip():
     body = request.json #전송받은 json 객체를 dictionary로 변환 
-    npkResponse = NPKRequest(body)
-    return jsonify(npkResponse)
+    npkResponse = NPKRequest(body)   
+    return (json.dumps(npkResponse, ensure_ascii=False))
 #------------------------------------------------------------------------------
 if __name__ == '__main__':    
     app.run(host="0.0.0.0", port=3000)
