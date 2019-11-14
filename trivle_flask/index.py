@@ -34,21 +34,21 @@ def Set_List(parameters):
     
     if(parameters['DestinationForSet']['type'] == 'HEY'):
         if(int(parameters['FewDay']['value'])<=7):
-            setsql = 'Create table ' + parameters['DestinationForSet']['value'] + ' SELECT * FROM OS;'
+            setsql = 'Select * Into ' + parameters['DestinationForSet']['value'] + ' from OS;'
             cursor.execute(setsql)
             print('out create table')
         else:
-            setsql = 'Create table ' + parameters['DestinationForSet']['value'] + ' SELECT * FROM OL;'
+            setsql = 'Select * Into ' + parameters['DestinationForSet']['value'] + ' from OS;'
             cursor.execute(setsql)
             print('out long create table')
     
     else:
         if(int(parameters['FewDay']['value'])<=7):
-            setsql = 'Create table ' + parameters['DestinationForSet']['value'] + ' SELECT * FROM IS;'
+            setsql = 'Select * Into ' + parameters['DestinationForSet']['value'] + ' from OS;'
             cursor.execute(setsql)
             print('in create table')
         else:
-            setsql = 'Create table ' + parameters['DestinationForSet']['value'] + ' SELECT * FROM IL;'
+            setsql = 'Select * Into ' + parameters['DestinationForSet']['value'] + ' from OS;'
             cursor.execute(setsql)
             print('in long create table')
 
