@@ -18,8 +18,8 @@ def Set_List(parameters):
     print('aaa')
     print(rows)
     for i in rows:
-        if(i[L] == parameters['DestinationForSet']['value'])
-            print(i[L])
+        if(i['L'] == parameters['DestinationForSet']['value']):
+            print(i['L'])
             exist = 1
             print(exist)
     lists = [list(elem) for elem in rows] #튜플을 리스트로 변환
