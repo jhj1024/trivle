@@ -75,7 +75,7 @@ def Listen_List(parameters):
     for elem in rows:
         if (elem[0] != ''):
             print(type(elem))
-            element = elem
+            element = str(elem)
             lists.extend(list(element))
             
     print(lists)
