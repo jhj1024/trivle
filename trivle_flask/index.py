@@ -24,6 +24,7 @@ def Set_List(parameters):
     for i in rows:
         print(i)
         for j in i:
+            print(j)
             if(j == parameters['DestinationForSet']['value']):
                 exist = 1
                 print(exist)
