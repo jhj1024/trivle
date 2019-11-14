@@ -45,9 +45,11 @@ def Set_List(parameters):
     
     for i in rows:
         print(i)
-        if(i == parameters['DestinationForSet']['value']):
-            exist = 1
-            print(exist)
+        for j in i:
+            print(j)
+            if(j == parameters['DestinationForSet']['value']):
+                exist = 1
+                print(exist)
     
     hello = {'parameter':'hello'}
 
@@ -94,8 +96,11 @@ def Listen_List(parameters):
 
     lists = []
     for elem in rows:
-        if (elem != ''):
-            lists.extend(list(elem))
+        if (elem[0] != ''):
+            print(type(elem))
+            element = elem
+            lists.extend(list(element))
+            
     print(lists)
 
     hello = {'list': lists}  # 'list'는 각자 action parameter와 일치시킬 것
