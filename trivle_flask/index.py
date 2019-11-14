@@ -8,8 +8,20 @@ import pymysql
 conn = pymysql.connect(host='45.119.146.152', port=1024, user='trivle', password='Trivle_96', db='trivle', charset='utf8mb4')
 #------------------------------------------------------------------------------
 def Set_List(parameters):
-    print('parameters')
+    print('Set_List: parameters')
     print(parameters)
+
+    cursor = conn.cursor()
+    sql = 'SELECT * from location;'
+    cursor.execute(sql) #쿼리 수행
+    rows = cursor.fetchall() #결과 가져옴(데이터타입: 튜플)
+    print(rows)
+    
+    for i in rows:
+        print(i)
+        if(i == parameters['DestinationForSet']['value']):
+            exist = 1
+            print(exist)
     
     hello = {'parameter':'hello'}
     return hello
