@@ -68,6 +68,6 @@ def Listen_Tip():
     print(rows[rand])
     lists = [list(elem) for elem in rows]  # 튜플을 리스트로 변환
 
-    hello = {'TIP':'hello'}
+    hello = {'TIP':rows[rand]}
     return hello
 #------------------------------------------------------------------------------
