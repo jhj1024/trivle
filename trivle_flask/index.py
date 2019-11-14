@@ -32,7 +32,7 @@ def Set_List(parameters):
                 hello = {'Destination1':'존재하는 리스트예요. 듣기를 원하시면 ' + parameters['DestinationForSet']['value'] + ' 리스트 들려줘라고 말씀해주세요'}
                 return hello
     
-    if(parameters['DestinationForSet']['type'] == 'Hey'):
+    if(parameters['DestinationForSet']['type'] == 'HEY'):
         if(int(parameters['FewDay']['value'])<=7):
             setsql = 'Create table ' + parameters['DestinationForSet']['value'] + ' SELECT * FROM OS;'
             cursor.execute(setsql)
@@ -46,11 +46,11 @@ def Set_List(parameters):
         if(int(parameters['FewDay']['value'])<=7):
             setsql = 'Create table ' + parameters['DestinationForSet']['value'] + ' SELECT * FROM IS;'
             cursor.execute(setsql)
-            print('out create table')
+            print('in create table')
         else:
             setsql = 'Create table ' + parameters['DestinationForSet']['value'] + ' SELECT * FROM IL;'
             cursor.execute(setsql)
-            print('out long create table')
+            print('in long create table')
 
     hello = {'parameter':parameters['DestinationForSet']['value']+' 여행 체크 리스트를 만들었어요'}
     return hello
