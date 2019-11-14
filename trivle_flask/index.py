@@ -72,8 +72,11 @@ def Listen_List(parameters):
 
     lists = []
     for elem in rows:
-        if (elem != ''):
-            lists.extend(list(elem))
+        if (elem[0] != ''):
+            print(type(elem[0]))
+            element = elem[0].encode('utf-8')
+            lists.extend(list(element))
+            
     print(lists)
 
     hello = {'list': lists}  # 'list'는 각자 action parameter와 일치시킬 것
