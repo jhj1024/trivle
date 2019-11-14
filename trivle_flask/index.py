@@ -92,9 +92,9 @@ def Listen_Tip():
     rows = cursor.fetchall()
 
     rand = randint(0, len(rows)-1)
-    print('@@' + rows[rand])
+    print(rows[rand])
     result = rows[rand]
-    result = result.decode('cp949').encode('utf-8')
+    result = result.encode('utf-8')
     #lists = [list(elem) for elem in rows]  # 튜플을 리스트로 변환
 
     hello = {'TIP':result}
