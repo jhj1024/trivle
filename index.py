@@ -15,10 +15,11 @@ def Set_List(parameters):
     sql = 'SELECT * from location;'
     cursor.execute(sql) #쿼리 수행
     rows = cursor.fetchall() #결과 가져옴(데이터타입: 튜플)
+    print('aaa')
     print(rows)
     for i in rows:
-        if(i[L] == parameters['DestinationForSet']['value'])
-            print(i[L])
+        if(i['L'] == parameters['DestinationForSet']['value']):
+            print(i['L'])
             exist = 1
             print(exist)
     lists = [list(elem) for elem in rows] #튜플을 리스트로 변환
