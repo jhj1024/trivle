@@ -34,19 +34,19 @@ def Set_List(parameters):
     
     if(parameters['DestinationForSet']['type'] == 'Hey'):
         if(int(parameters['FewDay']['value'])<=7):
-            setsql = 'Create table' + parameters['DestinationForSet']['value'] + 'AS SELECT * FROME OS;'
+            setsql = 'Create table' + parameters['DestinationForSet']['value'] + 'AS SELECT * FROM OS;'
             print('out create table')
         else:
-            setsql = 'Create table' + parameters['DestinationForSet']['value'] + 'AS SELECT * FROME OL;'
-            print('in long create table')
+            setsql = 'Create table' + parameters['DestinationForSet']['value'] + 'AS SELECT * FROM OL;'
+            print('out long create table')
     
     else:
         if(int(parameters['FewDay']['value'])<=7):
-            setsql = 'Create table' + parameters['DestinationForSet']['value'] + 'AS SELECT * FROME IS;'
-            print('in create table')
+            setsql = 'Create table' + parameters['DestinationForSet']['value'] + 'AS SELECT * FROM IS;'
+            print('out create table')
         else:
-            setsql = 'Create table' + parameters['DestinationForSet']['value'] + 'AS SELECT * FROME IL;'
-            print('in long create table')
+            setsql = 'Create table' + parameters['DestinationForSet']['value'] + 'AS SELECT * FROM IL;'
+            print('out long create table')
 
     hello = {'parameter':parameters['DestinationForSet']['value']+' 여행 체크 리스트를 만들었어요'}
     return hello
