@@ -65,9 +65,9 @@ def Listen_Tip():
     cursor.execute(sql)  # 쿼리 수행
     rows = cursor.fetchall()
     rand = randint(0, len(rows)-1)
-    print(rows[rand].txt)
+    print(rows[rand].text)
     lists = [list(elem) for elem in rows]  # 튜플을 리스트로 변환
 
-    hello = {'TIP':rows[rand].txt}
+    hello = {'TIP':rows[rand].text}
     return hello
 #------------------------------------------------------------------------------
