@@ -9,7 +9,6 @@ import pymysql
 conn = pymysql.connect(host='45.119.146.152', port=1024, user='trivle', password='Trivle_96', db='trivle',
                        charset='utf8mb4')
 
-
 # ------------------------------------------------------------------------------
 def Set_List(parameters):
     print('Set_List: parameters')
@@ -89,8 +88,8 @@ def Listen_List(parameters):
     lists = []
     for elem in rows:
         if (elem[0] != ''):
-            print(type(elem[0]))
-            element = elem[0].encode('utf-8')
+            print(type(elem))
+            element = elem
             lists.extend(list(element))
             
     print(lists)
