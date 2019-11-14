@@ -32,7 +32,7 @@ def Set_List(parameters):
     if(exist == 1):
         hello = {'Destination1':'존재하는 리스트예요. 듣기를 원하시면 ' + parameters['DestinationForSet']['value'] + '리스트 들려줘라고 말씀해주세요~'}
         return hello
-    else
+    else:
         if(parameters['DestinationForSet']['type'] == 'IN'):
             if(parameters['FewDay']['value']<=7):
                 setsql = ''
