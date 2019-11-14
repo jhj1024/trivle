@@ -33,7 +33,7 @@ def Set_List(parameters):
                 return hello
     
     if(parameters['DestinationForSet']['type'] == 'Hey'):
-        if(parameters['FewDay']['value']<=7):
+        if(int(parameters['FewDay']['value'])<=7):
             setsql = 'Create table' + parameters['DestinationForSet']['value'] + 'AS SELECT * FROME OS;'
             print('out create table')
         else:
@@ -41,7 +41,7 @@ def Set_List(parameters):
             print('in long create table')
     
     else:
-        if(parameters['FewDay']['value']<=7):
+        if(int(parameters['FewDay']['value'])<=7):
             setsql = 'Create table' + parameters['DestinationForSet']['value'] + 'AS SELECT * FROME IS;'
             print('in create table')
         else:
