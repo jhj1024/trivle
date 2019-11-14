@@ -9,6 +9,28 @@ import pymysql
 conn = pymysql.connect(host='45.119.146.152', port=1024, user='trivle', password='Trivle_96', db='trivle',
                        charset='utf8mb4')
 
+# ------------------------------------------------------------------------------
+def Start(parameters):
+    # query 결과물 받아서 return
+    cursor = conn.cursor()
+    sql = "SELECT * from location"
+    cursor.execute(sql)  # 쿼리 수행
+    rows = cursor.fetchall()
+    exist = 0
+    if len(rows) == 0:
+        exist = 0
+    else:
+        for row in rows:
+            if row.L == parameters:
+                exist = 1
+
+    if exist == 1:
+        Read(parameters)
+    else:
+        Make_List(parameters, parameters)
+
+
+
 
 # ------------------------------------------------------------------------------
 def Set_List(parameters):
