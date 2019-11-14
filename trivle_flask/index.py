@@ -29,20 +29,30 @@ def Set_List(parameters):
                 print(exist)
                 break
 
+    hello = {'Destination1':'춘천 여행 리스트 생성과 같이 말씀해주세요~'}
     if(exist == 1):
         hello = {'Destination1':'존재하는 리스트예요. 듣기를 원하시면 ' + parameters['DestinationForSet']['value'] + '리스트 들려줘라고 말씀해주세요~'}
         return hello
     else:
-        if(parameters['DestinationForSet']['type'] == 'IN'):
+        if(parameters['DestinationForSet']['type'] == 'Hey'):
             if(parameters['FewDay']['value']<=7):
-                setsql = ''
+                setsql = 'Create table' + parameters['DestinationForSet']['value'] + 'AS SELECT * FROME OS;'
+                print('out create table')
+            else:
+                setsql = 'Create table' + parameters['DestinationForSet']['value'] + 'AS SELECT * FROME OL;'
+                print('in long create table')
 
-
-
-
-    hello = {'parameter':'hello'}
-
-
+                
+        else:
+            if(parameters['FewDay']['value']<=7):
+                setsql = 'Create table' + parameters['DestinationForSet']['value'] + 'AS SELECT * FROME IS;'
+                print('in create table')
+            else:
+                setsql = 'Create table' + parameters['DestinationForSet']['value'] + 'AS SELECT * FROME IL;'
+                print('in long create table')
+        
+        hello = {'parameter':'hello'}
+        return hello
 
     return hello
 
