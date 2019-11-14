@@ -23,9 +23,10 @@ def Set_List(parameters):
     
     for i in rows:
         print(i)
-        if(i == parameters['DestinationForSet']['value']):
-            exist = 1
-            print(exist)
+        for j in i:
+            if(j == parameters['DestinationForSet']['value']):
+                exist = 1
+                print(exist)
     
     hello = {'parameter':'hello'}
 
