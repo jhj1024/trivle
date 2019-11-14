@@ -20,6 +20,8 @@ def Set_List(parameters):
     rows = cursor.fetchall() #결과 가져옴(데이터타입: 튜플)
     print(rows)
     
+    exist = 0
+    
     for i in rows:
         print(i)
         for j in i:
