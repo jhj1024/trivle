@@ -2,7 +2,7 @@
 """
 trivle 서버 (python run.py)
 """
-from flask import Flask
+from flask import Flask, make_response
 import json
 from flask import request
 import index
@@ -68,7 +68,8 @@ def nugu_delete():
 def nugu_listen():
     body = request.json #전송받은 json 객체를 dictionary로 변환 
     npkResponse = NPKRequest(body)
-    return (json.dumps(npkResponse))
+    Response = make_response(json.dumps(npkResponse, ensure_ascii=False).decode('utf-8'))
+    return (Response)
 
 @app.route("/nugu/Listen_Tip", methods=['POST'])
 def nugu_tip():
