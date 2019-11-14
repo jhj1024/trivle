@@ -2,7 +2,7 @@
 """
 trivle 함수 선언부
 """
-
+from random import *
 import pymysql
 #mysql 접속
 conn = pymysql.connect(host='45.119.146.152', port=1024, user='trivle', password='Trivle_96', db='trivle', charset='utf8mb4')
@@ -53,10 +53,16 @@ def Listen_List(parameters):
     hello = {'list':lists} #'list'는 각자 action parameter와 일치시킬 것
     return hello
 #------------------------------------------------------------------------------
-def Listen_Tip(parameters):
-    print('parameters')
-    print(parameters)
-    
-    hello = {'parameter':'hello'}
+def Listen_Tip():
+    # query 결과물 받아서 return
+    cursor = conn.cursor()
+    sql = "SELECT * from T"
+    cursor.execute(sql)  # 쿼리 수행
+    rows = cursor.fetchall()
+    rand = randint(0, sizeof(rows)-1)
+    print(rows[rand])
+    lists = [list(elem) for elem in rows]  # 튜플을 리스트로 변환
+
+    hello = {'TIP':'hello'}
     return hello
 #------------------------------------------------------------------------------

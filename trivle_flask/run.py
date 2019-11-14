@@ -20,7 +20,7 @@ def NPKRequest(body):
     
     npkResponse = NPKResponse(output)
     return npkResponse
-#------------------------------------------------------------------------------    
+#------------------------------------------------------------------------------
 def actionRequest(action):
     print('action')
     print(action)
@@ -38,7 +38,7 @@ def actionRequest(action):
         output = index.Listen_List(parameters)
         
     elif(actionName == 'Listen_Tip'):
-        output = index.Listen_Tip(parameters)
+        output = index.Listen_Tip()
     else:
         output = {}
            
