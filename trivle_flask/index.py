@@ -48,7 +48,12 @@ def Listen_List(parameters):
     cursor.execute(sql) #쿼리 수행
     rows = cursor.fetchall() #결과 가져옴(데이터타입: 튜플)
     print(rows)
-    lists = [list(elem) for elem in rows] #튜플을 리스트로 변환
+    
+    lists = []
+    for elem in rows:
+        if(elem != ''):
+            lists.extend(list(elem))
+    print(lists)
     
     hello = {'list':lists} #'list'는 각자 action parameter와 일치시킬 것
     return hello
