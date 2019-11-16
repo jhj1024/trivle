@@ -66,9 +66,15 @@ def Delete_List(parameters):
 
     print(Destination)
     # query 결과물 받아서 return
-    cursor = conn.cursor()
-    sql = 'DROP TABLE ' + Destination + ';'
-    cursor.execute(sql)  # 쿼리 수행
+    check = 'SHOW TABLES LIKE ' + Destination + ';'
+    curs.execute(check)
+    result = curs.fetchall()
+    if len(result) == 0:
+        print('테이블 존재 안 함')
+    else:
+        cursor = conn.cursor()
+        sql = 'DROP TABLE ' + Destination + ';'
+        cursor.execute(sql)  # 쿼리 수행
 
 
 # ------------------------------------------------------------------------------
