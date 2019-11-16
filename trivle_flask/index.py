@@ -62,8 +62,18 @@ def Delete_List(parameters):
     print('parameters')
     print(parameters)
 
-    hello = {'parameter': 'hello'}
-    return hello
+    Destination = parameters['DestinationForDelete']['value']  # 여행지
+
+    print('@@@')
+    print(Destination)
+    # query 결과물 받아서 return
+    cursor = conn.cursor()
+    #sql = 'DROP TABLE ' + Destination + ';'
+    #cursor.execute(sql)  # 쿼리 수행
+    #rows = cursor.fetchall()
+
+    #hello = {'parameter': 'hello'}
+    #return hello
 
 
 # ------------------------------------------------------------------------------
