@@ -14,10 +14,10 @@ def Set_List(parameters):
     print('Set_List: parameters')
     print('Set:' + parameters['DestinationForSet']['value'])
 
-    cursor = conn.cursor()
+    cur = conn.cursor()
     sql = 'SELECT * from location;'
-    cursor.execute(sql) #쿼리 수행
-    rows = cursor.fetchall() #결과 가져옴(데이터타입: 튜플)
+    cur.execute(sql) #쿼리 수행
+    rows = cur.fetchall() #결과 가져옴(데이터타입: 튜플)
     print(rows)
     
     exist = 0
@@ -32,26 +32,27 @@ def Set_List(parameters):
                 hello = {'Destination1':'존재하는 리스트예요. 듣기를 원하시면 ' + parameters['DestinationForSet']['value'] + ' 리스트 들려줘라고 말씀해주세요'}
                 return hello
     
+    print(333333333333333333333333333333)
     if(parameters['DestinationForSet']['type'] == 'HEY'):
         if(int(parameters['FewDay']['value'])<=7):
-            print(1)
+            print(11111111111111111111111)
             setsql = 'CREATE TABLE ' +  parameters['DestinationForSet']['value'] + ' SELECT * FROM OS;' 
-            print(2)
-            cursor.execute(setsql)
+            print(222222222222222222222222)
+            cur.execute(setsql)
             print('out create table')
         else:
             setsql = 'CREATE TABLE ' +  parameters['DestinationForSet']['value'] + ' SELECT * FROM OL;'
-            cursor.execute(setsql)
+            cur.execute(setsql)
             print('out long create table')
     
     else:
         if(int(parameters['FewDay']['value'])<=7):
             setsql = 'CREATE TABLE ' +  parameters['DestinationForSet']['value'] + ' SELECT * FROM IS;'
-            cursor.execute(setsql)
+            cur.execute(setsql)
             print('in create table')
         else:
             setsql = 'CREATE TABLE ' +  parameters['DestinationForSet']['value'] + ' SELECT * FROM OL;'
-            cursor.execute(setsql)
+            cur.execute(setsql)
             print('in long create table')
 
     hello = {'parameter':parameters['DestinationForSet']['value']+' 여행 체크 리스트를 만들었어요'}
