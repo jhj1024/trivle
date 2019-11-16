@@ -31,13 +31,13 @@ def Set_List(parameters):
             if(j == parameters['DestinationForSet']['value']):
                 hello = {'Destination1':'존재하는 리스트예요. 듣기를 원하시면 ' + parameters['DestinationForSet']['value'] + ' 리스트 들려줘라고 말씀해주세요'}
                 return hello
-                
+
     cur = conn.cursor()
     print(333333333333333333333333333333)
     if(parameters['DestinationForSet']['type'] == 'HEY'):
         if(int(parameters['FewDay']['value'])<=7):
             print(11111111111111111111111)
-            setsql = 'CREATE TABLE ' +  parameters['DestinationForSet']['value'] + ' SELECT * FROM OS;' 
+            setsql = "CREATE TABLE ' +  parameters['DestinationForSet']['value'] + ' SELECT * FROM OS;"
             print(222222222222222222222222)
             cur.execute(setsql)
             print('out create table')
