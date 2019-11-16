@@ -34,7 +34,7 @@ def Set_List(parameters):
 
     cur = conn.cursor()
     print(333333333333333333333333333333)
-    print(type(parameters['FewDay']['value']))
+    print(type(int(parameters['FewDay']['value'])))
     if(parameters['DestinationForSet']['type'] == 'HEY'):
         if(int(parameters['FewDay']['value'])<=7):
             print(11111111111111111111111)
