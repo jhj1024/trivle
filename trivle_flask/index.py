@@ -38,7 +38,8 @@ def Set_List(parameters):
     if(parameters['DestinationForSet']['type'] == 'HEY'):
         if(int(parameters['FewDay']['value'])<=7):
             print(11111111111111111111111)
-            setsql = "CREATE TABLE ' +  parameters['DestinationForSet']['value'] + ' SELECT * FROM OS;"
+            setsql = "CREATE TABLE 런던 SELECT * FROM OS;'
+            #"CREATE TABLE ' +  parameters['DestinationForSet']['value'] + ' SELECT * FROM OS;"
             print(222222222222222222222222)
             cur.execute(setsql)
             print('out create table')
