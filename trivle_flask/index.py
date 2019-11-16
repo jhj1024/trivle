@@ -67,7 +67,7 @@ def Delete_List(parameters):
     print(Destination)
     # query 결과물 받아서 return
     cursor = conn.cursor()
-    check = 'SHOW TABLES LIKE ' + Destination + ';'
+    check = "SHOW TABLES LIKE '" + Destination + "';"
     cursor.execute(check)
     result = cursor.fetchall()
     if len(result) == 0:
