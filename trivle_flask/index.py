@@ -150,15 +150,7 @@ def Listen_List(parameters):
     
     hello = {'list' : lists[0]}
     
-    
-    hello = {"version":"2.0"}
-    hello["resultCode"] = "OK"
-    hello["output"] = hello
-    hello["directives"] = []
-    
     return hello
-
-
 # ------------------------------------------------------------------------------
 def Listen_Tip():
     # query 결과물 받아서 return
