@@ -5,6 +5,14 @@ trivle 함수 선언부
 from random import *
 import pymysql
 
+import functools 
+import operator  
+  
+def convertTuple(tup): 
+    str = functools.reduce(operator.add, (tup)) 
+    return str
+  
+
 # mysql 접속
 conn = pymysql.connect(host='45.119.146.152', port=1024, user='trivle', password='Trivle_96', db='trivle', use_unicode=True, charset='utf8')
 
@@ -120,7 +128,7 @@ def Listen_List(parameters):
     lists = []
     for elem in rows:
         if (elem[0] != ''):
-            element = ''.join(elem)
+            element = convertTuple(elem) 
             print(type(element))
             lists.append(element)
     lists.append('hello')
