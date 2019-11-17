@@ -59,8 +59,6 @@ def Set_List(parameters):
             print('in long create table')
 
     plusql = "Insert into location(L, fewday) value('trivle." + parameters['DestinationForSet']['value'] + "', '" + parameters['FewDay']['value'] + "');" 
-    print(11111111111111111111111111111)
-    print(plusql)
     cur.execute(plusql)
     hello = {'parameter':parameters['DestinationForSet']['value']+' 여행 체크 리스트를 만들었어요'}
     return hello
@@ -84,6 +82,8 @@ def Delete_List(parameters):
     else:
         sql = 'DROP TABLE ' + Destination + ';'
         cursor.execute(sql)  # 쿼리 수행
+        delsql = "Delete from trivle.location where name like '" + Destination + "';"
+        cursor.execute(delsql)
         result = Destination + ' 여행 리스트를 삭제할게요.'
 
     print('@@')
