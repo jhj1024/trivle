@@ -4,14 +4,7 @@ trivle 함수 선언부
 """
 from random import *
 import pymysql
-
-import functools 
-import operator  
-  
-def convertTuple(tup): 
-    str = functools.reduce(operator.add, (tup)) 
-    return str
-  
+import json
 
 # mysql 접속
 conn = pymysql.connect(host='45.119.146.152', port=1024, user='trivle', password='Trivle_96', db='trivle', use_unicode=True, charset='utf8')
@@ -137,6 +130,7 @@ def Listen_List(parameters):
     print(lists)
 
     hello = {'list': lists}  # 'list'는 각자 action parameter와 일치시킬 것
+    json.dumps(hello)
     return hello
 
 
