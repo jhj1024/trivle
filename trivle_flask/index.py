@@ -122,6 +122,8 @@ def Listen_List(parameters):
         if (elem[0] != ''):
             element = str(elem)
             print(type(element))
+            element = element.encode('utf-8')
+            element = element.decode('unicode_escape')
             lists.append(element)
             
     print(lists)
