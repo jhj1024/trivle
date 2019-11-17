@@ -6,7 +6,7 @@ from random import *
 import pymysql
 
 # mysql 접속
-conn = pymysql.connect(host='45.119.146.152', port=1024, user='trivle', password='Trivle_96', db='trivle')
+conn = pymysql.connect(host='45.119.146.152', port=1024, user='trivle', password='Trivle_96', db='trivle', use_unicode=True, charset='utf8')
 
 # ------------------------------------------------------------------------------
 def Set_List(parameters):
