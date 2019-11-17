@@ -56,6 +56,12 @@ def NPKResponse(output):
     return npkResponse
 #------------------------------------------------------------------------------
 #------------------------------------------------------------------------------
+@app.route("/nugu/Set_Location", methods=['POST'])
+def nugu_set1():
+    body = request.json #전송받은 json 객체를 dictionary로 변환 
+    npkResponse = NPKRequest(body)
+    return (json.dumps(npkResponse, ensure_ascii=False))
+
 @app.route("/nugu/Set_List", methods=['POST'])
 def nugu_set():
     body = request.json #전송받은 json 객체를 dictionary로 변환 
