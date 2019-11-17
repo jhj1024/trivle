@@ -118,7 +118,7 @@ def Listen_List(parameters):
     for elem in rows:
         if (elem[0] != ''):
             element = str(elem)
-            lists.append(element.encode('utf-8'))
+            lists.append(element)
             
     print(lists)
 
