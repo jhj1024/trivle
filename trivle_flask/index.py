@@ -122,7 +122,7 @@ def Listen_List(parameters):
         if (elem[0] != ''):
             element = str(elem)
             print(type(element))
-            lists.append(element.encode('cp949'))
+            lists.append(element)
     lists.append('hello')
             
     print(lists)
