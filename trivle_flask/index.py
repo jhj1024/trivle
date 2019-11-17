@@ -82,7 +82,7 @@ def Delete_List(parameters):
     else:
         sql = 'DROP TABLE ' + Destination + ';'
         cursor.execute(sql)  # 쿼리 수행
-        result = Destination + '여행 리스트를 삭제할게요.'
+        result = Destination + ' 여행 리스트를 삭제할게요.'
 
     print('@@')
     print(result)
