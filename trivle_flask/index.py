@@ -6,8 +6,7 @@ from random import *
 import pymysql
 
 # mysql 접속
-conn = pymysql.connect(host='45.119.146.152', port=1024, user='trivle', password='Trivle_96', db='trivle',
-                       charset='utf8mb4')
+conn = pymysql.connect(host='45.119.146.152', port=1024, user='trivle', password='Trivle_96', db='trivle')
 
 # ------------------------------------------------------------------------------
 def Set_List(parameters):
@@ -122,8 +121,8 @@ def Listen_List(parameters):
     for elem in rows:
         if (elem[0] != ''):
             print(type(elem))
-            element = elem
-            lists.extend(list(element))
+            element = str(elem)
+            lists.append(element)
             
     print(lists)
 
@@ -142,7 +141,7 @@ def Listen_Tip():
     rand = randint(0, len(rows)-1)
     print(rows[rand])
     result = rows[rand]
-    result = result.encode('utf-8')
+    result = result
     #lists = [list(elem) for elem in rows]  # 튜플을 리스트로 변환
 
     hello = {'TIP':result}
