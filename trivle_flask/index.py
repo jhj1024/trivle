@@ -7,13 +7,12 @@ import pymysql
 
 # mysql 접속
 conn = pymysql.connect(host='45.119.146.152', port=1024, user='trivle', password='Trivle_96', db='trivle',
-                       charset='utf8mb4')
+                       charset='utf8')
 
 # ------------------------------------------------------------------------------
 def Set_List(parameters):
     print('Set_List: parameters')
     print('Set:' + parameters['DestinationForSet']['value'])
-
 
     cur = conn.cursor()
     sql = 'SELECT * from location;'
@@ -21,6 +20,7 @@ def Set_List(parameters):
     rows = cur.fetchall() #결과 가져옴(데이터타입: 튜플)
     print(rows)
     
+    exist = 0
 
     hello = {'Destination1':'춘천 여행 리스트 생성과 같이 말씀해주세요'}
 
@@ -30,18 +30,18 @@ def Set_List(parameters):
                 hello = {'Destination1':'존재하는 리스트예요. 듣기를 원하시면 ' + parameters['DestinationForSet']['value'] + ' 리스트 들려줘라고 말씀해주세요'}
                 return hello
 
-    #존재하는 리스트 return
-    #존재하지 않으면 일수를 물어봐야함
-
     cur = conn.cursor()
+    print(333333333333333333333333333333)
+    print(parameters['DestinationForSet']['type'])
+    print(parameters['DestinationForSet']['value'])
 
     if(parameters['DestinationForSet']['type'] == 'HEY'):
         if(int(parameters['FewDay']['value'])<=7):
-            
+            print(11111111111111111111111)
             setsql = "CREATE TABLE " + parameters['DestinationForSet']['value'] + " SELECT * FROM OS;"
             print(setsql)
             #"CREATE TABLE ' +  parameters['DestinationForSet']['value'] + ' SELECT * FROM OS;"
-            
+            print(222222222222222222222222)
             cur.execute(setsql)
             print('out create table')
         else:
@@ -71,23 +71,19 @@ def Delete_List(parameters):
 
     Destination = parameters['DestinationForDelete']['value']  # 여행지
 
-    #print(Destination)
+    print(Destination)
     # query 결과물 받아서 return
     cursor = conn.cursor()
     check = "SHOW TABLES LIKE '" + Destination + "';"
     cursor.execute(check)
-    res = cursor.fetchall()
-    if len(res) == 0:
-        result = '존재하지 않는 여행지에요.'
+    result = cursor.fetchall()
+    if len(result) == 0:
+        print('테이블 존재 안 함')
     else:
         sql = 'DROP TABLE ' + Destination + ';'
         cursor.execute(sql)  # 쿼리 수행
-        result = Destination + '여행 리스트를 삭제할게요.'
 
-    print('@@')
-    print(result)
-    hello = {'DONE': result}
-    return hello
+
 
 # ------------------------------------------------------------------------------
 def Listen_List(parameters):
@@ -122,7 +118,7 @@ def Listen_List(parameters):
     for elem in rows:
         if (elem[0] != ''):
             element = str(elem)
-            lists.append(element)
+            lists.append(element.encode('utf-8'))
             
     print(lists)
 
