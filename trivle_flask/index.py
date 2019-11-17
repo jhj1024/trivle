@@ -118,16 +118,16 @@ def Listen_List(parameters):
     rows = cursor.fetchall()  # 결과 가져옴(데이터타입: 튜플)
     print(rows)
 
-    lists = []
+    lists = {}
     for elem in rows:
         if (elem[0] != ''):
             element = str(elem)
-            lists.append(element)
+            lists['list'] = element
             
     print(lists)
 
-    hello = {'list': lists}  # 'list'는 각자 action parameter와 일치시킬 것
-    hello = json.dumps(hello, ensure_ascii=False)
+    hello = json.dumps(lists, ensure_ascii=False)
+    print(lists)
     return hello
 
 
