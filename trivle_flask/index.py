@@ -39,7 +39,6 @@ def Set_List(parameters):
     
     if(parameters['DestinationForSet']['type'] == 'HEY'):
         if(int(parameters['FewDay']['value'])<=7):
-
             setsql = "CREATE TABLE " + parameters['DestinationForSet']['value'] + " SELECT * FROM OS;"
             cur.execute(setsql)
             print('out create table')
@@ -58,7 +57,6 @@ def Set_List(parameters):
             cur.execute(setsql)
             print('in long create table')
 
-    cur = conn.cursor()
     plusql = "Insert into location(L, fewday) value('" + parameters['DestinationForSet']['value'] + "', '" + parameters['FewDay']['value'] + "');" 
     print(11111111111111111111111111111)
     print(plusql)
