@@ -156,6 +156,8 @@ def Listen_List(parameters):
     
     lists = str(lists)
     lists = re.sub('[()\[\]\'\"]', '',lists)
+    lists = re.sub(', <', '<',lists)
+    lists = re.sub('>, ', '> ',lists)
     hello = {'list': lists}
     
     return hello
