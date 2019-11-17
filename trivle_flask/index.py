@@ -150,6 +150,7 @@ def Listen_List(parameters):
             element = str(elem)
             element = re.sub('[,()\'\"]', '',element)
             lists.append(element)
+            lists.append(' ')
             
     print(lists)
     
