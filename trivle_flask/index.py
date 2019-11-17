@@ -14,14 +14,13 @@ def Set_List(parameters):
     print('Set_List: parameters')
     print('Set:' + parameters['DestinationForSet']['value'])
 
-    
+
     cur = conn.cursor()
     sql = 'SELECT * from location;'
     cur.execute(sql) #쿼리 수행
     rows = cur.fetchall() #결과 가져옴(데이터타입: 튜플)
     print(rows)
     
-    exist = 0
 
     hello = {'Destination1':'춘천 여행 리스트 생성과 같이 말씀해주세요'}
 
@@ -30,6 +29,9 @@ def Set_List(parameters):
             if(j == parameters['DestinationForSet']['value']):
                 hello = {'Destination1':'존재하는 리스트예요. 듣기를 원하시면 ' + parameters['DestinationForSet']['value'] + ' 리스트 들려줘라고 말씀해주세요'}
                 return hello
+
+    #존재하는 리스트 return
+    #존재하지 않으면 일수를 물어봐야함
 
     cur = conn.cursor()
 
