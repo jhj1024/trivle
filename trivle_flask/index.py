@@ -128,8 +128,9 @@ def Listen_List(parameters):
     lists = []
     for elem in rows:
         if (elem[0] != ''):
-            element = convertTuple(elem) 
-            print(type(element))
+            #element = str(elem)
+            #print(type(element))
+            element=elem
             lists.append(element)
     lists.append('hello')
             
