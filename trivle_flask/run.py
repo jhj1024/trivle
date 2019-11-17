@@ -53,7 +53,7 @@ def actionRequest(action):
     return output
 #------------------------------------------------------------------------------
 def NPKResponse(output):
-    npkResponse = {'version':'2.0', 'resultCode':'OK', 'output':output, 'directives': []}
+    npkResponse = {'version':'2.0', 'resultCode':'OK', 'output':{'list':'카드'}, 'directives': []}
     print('npkResponse')
     print(npkResponse)
     return npkResponse
@@ -86,7 +86,6 @@ def nugu_listen1():
 @app.route("/nugu/Listen_List", methods=['POST'])
 def nugu_listen():
     body = request.json #전송받은 json 객체를 dictionary로 변환 
-    #npkResponse = NPKRequest(body)
     npkResponse = NPKRequest(body)
     return (json.dumps(npkResponse, ensure_ascii=False))
 
