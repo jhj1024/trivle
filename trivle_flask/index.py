@@ -14,6 +14,7 @@ def Set_List(parameters):
     print('Set_List: parameters')
     print('Set:' + parameters['DestinationForSet']['value'])
 
+    
     cur = conn.cursor()
     sql = 'SELECT * from location;'
     cur.execute(sql) #쿼리 수행
@@ -31,17 +32,14 @@ def Set_List(parameters):
                 return hello
 
     cur = conn.cursor()
-    print(333333333333333333333333333333)
-    print(parameters['DestinationForSet']['type'])
-    print(parameters['DestinationForSet']['value'])
 
     if(parameters['DestinationForSet']['type'] == 'HEY'):
         if(int(parameters['FewDay']['value'])<=7):
-            print(11111111111111111111111)
+            
             setsql = "CREATE TABLE " + parameters['DestinationForSet']['value'] + " SELECT * FROM OS;"
             print(setsql)
             #"CREATE TABLE ' +  parameters['DestinationForSet']['value'] + ' SELECT * FROM OS;"
-            print(222222222222222222222222)
+            
             cur.execute(setsql)
             print('out create table')
         else:
