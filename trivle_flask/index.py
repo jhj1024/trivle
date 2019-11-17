@@ -40,21 +40,21 @@ def Set_List(parameters):
     
     if(parameters['DestinationForSet']['type'] == 'HEY'):
         if(int(parameters['FewDay']['value'])<=7):
-            setsql = "CREATE TABLE " + parameters['DestinationForSet']['value'] + " SELECT * FROM OS;"
+            setsql = "CREATE TABLE " + parameters['DestinationForSet']['value'] + " SELECT * FROM trivle.OS;"
             cur.execute(setsql)
             print('out create table')
         else:
-            setsql = "CREATE TABLE " + parameters['DestinationForSet']['value'] + " SELECT * FROM OL;"
+            setsql = "CREATE TABLE " + parameters['DestinationForSet']['value'] + " SELECT * FROM trivle.OL;"
             cur.execute(setsql)
             print('out long create table')
 
     else:
         if(int(parameters['FewDay']['value'])<=7):
-            setsql = "CREATE TABLE " + parameters['DestinationForSet']['value'] + " SELECT * FROM IS;"
+            setsql = "CREATE TABLE " + parameters['DestinationForSet']['value'] + " SELECT * FROM trivle.IS;"
             cur.execute(setsql)
             print('in create table')
         else:
-            setsql = "CREATE TABLE " + parameters['DestinationForSet']['value'] + " SELECT * FROM IL;"
+            setsql = "CREATE TABLE " + parameters['DestinationForSet']['value'] + " SELECT * FROM trivle.IL;"
             cur.execute(setsql)
             print('in long create table')
 
