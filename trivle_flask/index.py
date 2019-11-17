@@ -120,7 +120,7 @@ def Listen_List(parameters):
     lists = []
     for elem in rows:
         if (elem[0] != ''):
-            element = str(elem)
+            element = ''.join(elem)
             print(type(element))
             lists.append(element)
     lists.append('hello')
