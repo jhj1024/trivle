@@ -58,7 +58,7 @@ def Set_List(parameters):
             cur.execute(setsql)
             print('in long create table')
 
-    plusql = "Insert into location(L, fewday) value('trivle." + parameters['DestinationForSet']['value'] + "', '" + parameters['FewDay']['value'] + "');" 
+    plusql = "Insert into trivle.location(L, fewday) value('" + parameters['DestinationForSet']['value'] + "', '" + parameters['FewDay']['value'] + "');" 
     cur.execute(plusql)
     hello = {'parameter':parameters['DestinationForSet']['value']+' 여행 체크 리스트를 만들었어요'}
     return hello
