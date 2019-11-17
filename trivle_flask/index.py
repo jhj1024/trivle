@@ -59,6 +59,7 @@ def Set_List(parameters):
             print('in long create table')
 
     plusql = "Insert into trivle.location value('" + parameters['DestinationForSet']['value'] + "', '" + parameters['FewDay']['value'] + "');" 
+    print(123123123)
     print(plusql)
     cur.execute(plusql)
     hello = {'parameter':parameters['DestinationForSet']['value']+' 여행 체크 리스트를 만들었어요'}
@@ -84,6 +85,8 @@ def Delete_List(parameters):
         sql = 'DROP TABLE ' + Destination + ';'
         cursor.execute(sql)  # 쿼리 수행
         delsql = "Delete from trivle.location where place = '" + Destination + "';"
+        print(1111111111111111111)
+        print(delsql)
         cursor.execute(delsql)
         result = Destination + ' 여행 리스트를 삭제할게요.'
 
