@@ -28,7 +28,7 @@ def Set_Location(parameters):
     for i in rows:
         for j in i:
             if(j == parameters['DestinationForSet']['value']):
-                hello = {'Destination1':'존재하는 리스트예요. 듣기를 원하시면 ' + parameters['DestinationForSet']['value'] + ' 리스트 들려줘라고 말씀해주세요'}
+                hello = {'Destination1':'존재'}#하는 리스트예요. 듣기를 원하시면 ' + parameters['DestinationForSet']['value'] + ' 리스트 들려줘라고 말씀해주세요'}
                 return hello
 
     #존재하는 리스트 return
