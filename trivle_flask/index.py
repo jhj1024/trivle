@@ -7,6 +7,7 @@ import pymysql
 import json
 import re
 
+
 # mysql 접속
 conn = pymysql.connect(host='45.119.146.152', port=1024, user='trivle', password='Trivle_96', db='trivle', use_unicode=True, charset='utf8')
 
@@ -145,12 +146,15 @@ def Listen_List(parameters):
     for elem in rows:
         if (elem[0] != ''):
             element = str(elem)
-            element = re.sub('[,())\'\"]', '',element)
+            element = re.sub('[,()\'\"]', '',element)
             lists.append(element)
             
     print(lists)
     
-    hello = {'list' : lists[0]}
+    lists = str(lists)
+    lists = re.sub('[()]', '',lists)
+#    hello = {'list' : lists}
+    hello = {'list': lists}
     
     return hello
 # ------------------------------------------------------------------------------
