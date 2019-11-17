@@ -150,14 +150,11 @@ def Listen_List(parameters):
             element = str(elem)
             element = re.sub('[,()\'\"]', '',element)
             lists.append(element)
-            lists.append('<break type="strong"/>')
             
     print(lists)
     
     lists = str(lists)
     lists = re.sub('[()\[\]\'\"]', '',lists)
-    lists = re.sub(', <', '<',lists)
-    lists = re.sub('>, ', '> ',lists)
     hello = {'list': lists}
     
     return hello
