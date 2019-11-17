@@ -53,7 +53,7 @@ def actionRequest(action):
     return output
 #------------------------------------------------------------------------------
 def NPKResponse(output):
-    npkResponse = {'version':'2.0', 'resultCode':'OK', 'output':{'list': output}, 'directives': []}
+    npkResponse = {'version':'2.0', 'resultCode':'OK', 'output':output, 'directives': []}
     print('npkResponse')
     print(npkResponse)
     return npkResponse
