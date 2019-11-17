@@ -154,7 +154,7 @@ def Listen_List(parameters):
     print(lists)
     
 #    hello = {'list' : lists}
-    hello = {'list': str(rows)}
+    hello = {'list': tuple(lists)}
     
     return hello
 # ------------------------------------------------------------------------------
