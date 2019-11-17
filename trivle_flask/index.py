@@ -6,7 +6,6 @@ from random import *
 import pymysql
 import json
 import re
-import chardet
 
 
 # mysql 접속
