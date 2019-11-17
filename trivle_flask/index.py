@@ -127,8 +127,15 @@ def Listen_List(parameters):
             lists.append(element)
             
     print(lists)
-
-    hello = {'list' : lists}
+    
+    hello = {'list' : lists[0]}
+    
+    
+    hello = {"version":"2.0"}
+    hello["resultCode"] = "OK"
+    hello["output"] = hello
+    hello["directives"] = []
+    
     return hello
 
 
