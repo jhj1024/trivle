@@ -121,16 +121,13 @@ def Listen_List(parameters):
     lists = []
     for elem in rows:
         if (elem[0] != ''):
-            #element = str(elem)
-            #print(type(element))
-            element=elem
-            lists.append(element)
+            element = str(elem)
+            lists.append(element.encode('ascii, ignore'))
     lists.append('hello')
             
     print(lists)
 
     hello = {'list': lists}  # 'list'는 각자 action parameter와 일치시킬 것
-    json.dumps(hello)
     return hello
 
 
