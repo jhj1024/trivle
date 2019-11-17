@@ -22,14 +22,12 @@ def Set_Location(parameters):
     rows = cur.fetchall() #결과 가져옴(데이터타입: 튜플)
     print(rows)
 
-
-    hello = {'Destination1':'춘천 여행 리스트 생성과 같이 말씀해주세요'}
-
     for i in rows:
         for j in i:
             if(j == parameters['DestinationForSet']['value']):
                 hello = {'Destination1':'존재'}#하는 리스트예요. 듣기를 원하시면 ' + parameters['DestinationForSet']['value'] + ' 리스트 들려줘라고 말씀해주세요'}
                 return hello
+
 
     #존재하는 리스트 return
 
@@ -38,6 +36,7 @@ def Set_List(parameters):
     #여행지 + 일수 -> 리스트 생성
     cur = conn.cursor()
 
+    
     if(parameters['DestinationForSet']['type'] == 'HEY'):
         if(int(parameters['FewDay']['value'])<=7):
 
@@ -58,7 +57,9 @@ def Set_List(parameters):
             setsql = "CREATE TABLE " + parameters['DestinationForSet']['value'] + " SELECT * FROM IL;"
             cur.execute(setsql)
             print('in long create table')
-
+    
+    plusql = "Insert into location(L, fewday) value(" + parameters['DestinationForSet']['value'] + ", " + parameters['FewDay']['value'] + ");" 
+    cur.execute(plusql)
     hello = {'parameter':parameters['DestinationForSet']['value']+' 여행 체크 리스트를 만들었어요'}
     return hello
 
