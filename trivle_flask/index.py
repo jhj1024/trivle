@@ -58,7 +58,7 @@ def Set_List(parameters):
             cur.execute(setsql)
             print('in long create table')
 
-    plusql = "Insert into trivle.location value('" + parameters['DestinationForSet']['value'] + "', '" + parameters['FewDay']['value'] + "');" 
+    plusql = "Insert into location value('" + parameters['DestinationForSet']['value'] + "', '" + parameters['FewDay']['value'] + "');" 
     print(123123123)
     print(plusql)
     cur.execute(plusql)
