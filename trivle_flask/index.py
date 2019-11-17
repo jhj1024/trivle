@@ -154,7 +154,7 @@ def Listen_List(parameters):
     print(lists)
     
 #    hello = {'list' : lists}
-    hello = str(rows[0], 'utf-8')
+    hello = str(rows[0])
     
     return hello
 # ------------------------------------------------------------------------------
