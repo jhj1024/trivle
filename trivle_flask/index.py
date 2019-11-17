@@ -153,7 +153,8 @@ def Listen_List(parameters):
             
     print(lists)
     
-    hello = lists
+#    hello = {'list' : lists}
+    hello = str(rows[0])
     
     return hello
 # ------------------------------------------------------------------------------
