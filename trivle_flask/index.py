@@ -71,19 +71,23 @@ def Delete_List(parameters):
 
     Destination = parameters['DestinationForDelete']['value']  # 여행지
 
-    print(Destination)
+    #print(Destination)
     # query 결과물 받아서 return
     cursor = conn.cursor()
     check = "SHOW TABLES LIKE '" + Destination + "';"
     cursor.execute(check)
-    result = cursor.fetchall()
-    if len(result) == 0:
-        print('테이블 존재 안 함')
+    res = cursor.fetchall()
+    if len(res) == 0:
+        result = '존재하지 않는 여행지에요.'
     else:
         sql = 'DROP TABLE ' + Destination + ';'
         cursor.execute(sql)  # 쿼리 수행
+        result = Destination + '여행 리스트를 삭제할게요.'
 
-
+    print('@@')
+    print(result)
+    hello = {'DONE': result}
+    return hello
 
 # ------------------------------------------------------------------------------
 def Listen_List(parameters):
