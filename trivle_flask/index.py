@@ -147,14 +147,12 @@ def Listen_List(parameters):
     lists = []
     for elem in rows:
         if (elem[0] != ''):
-            element = str(elem)
-            element = re.sub('[,()\'\"]', '',element)
-            lists.append(element)
+            lists.append(elem)
             
     print(lists)
     
 #    hello = {'list' : lists}
-    hello = {'list': tuple(lists)}
+    hello = {'list': str(tuple(lists))}
     
     return hello
 # ------------------------------------------------------------------------------
