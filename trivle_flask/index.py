@@ -153,7 +153,7 @@ def Listen_List(parameters):
             
     print(lists)
     
-    hello = {'list' : lists[0]}
+    hello = lists
     
     return hello
 # ------------------------------------------------------------------------------
