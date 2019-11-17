@@ -29,7 +29,11 @@ def actionRequest(action):
     parameters = action['parameters'] #parameters 추출
     
     #python은 switch문이 없으므로 if-else문으로 대체
-    if(actionName == 'Set_List'):
+
+    if(actionName == 'Set_Location'):
+        output = index.Set_Location(parameters)
+
+    elif(actionName == 'Set_List'):
         output = index.Set_List(parameters)
         
     elif(actionName == 'Delete_List'):

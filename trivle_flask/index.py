@@ -9,7 +9,7 @@ import pymysql
 conn = pymysql.connect(host='45.119.146.152', port=1024, user='trivle', password='Trivle_96', db='trivle', use_unicode=True, charset='utf8')
 
 # ------------------------------------------------------------------------------
-def Set_List(parameters):
+def Set_Location(parameters):
     print('Set_List: parameters')
     print('Set:' + parameters['DestinationForSet']['value'])
 
@@ -30,17 +30,16 @@ def Set_List(parameters):
                 return hello
 
     #존재하는 리스트 return
-    #존재하지 않으면 일수를 물어봐야함
 
+#------------------------------------------------------------------------------
+def Set_List(parameters):
+    #여행지 + 일수 -> 리스트 생성
     cur = conn.cursor()
 
     if(parameters['DestinationForSet']['type'] == 'HEY'):
         if(int(parameters['FewDay']['value'])<=7):
 
             setsql = "CREATE TABLE " + parameters['DestinationForSet']['value'] + " SELECT * FROM OS;"
-            print(setsql)
-            #"CREATE TABLE ' +  parameters['DestinationForSet']['value'] + ' SELECT * FROM OS;"
-
             cur.execute(setsql)
             print('out create table')
         else:
@@ -60,7 +59,6 @@ def Set_List(parameters):
 
     hello = {'parameter':parameters['DestinationForSet']['value']+' 여행 체크 리스트를 만들었어요'}
     return hello
-
 
 
 # ------------------------------------------------------------------------------
