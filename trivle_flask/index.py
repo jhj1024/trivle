@@ -77,6 +77,7 @@ def Delete_List(parameters):
         cursor.execute(sql)  # 쿼리 수행
 
 
+
 # ------------------------------------------------------------------------------
 def Listen_List(parameters):
     print('parameters')
