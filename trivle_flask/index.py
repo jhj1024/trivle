@@ -147,7 +147,9 @@ def Listen_List(parameters):
     lists = []
     for elem in rows:
         if (elem[0] != ''):
-            lists.append(elem)
+            element = str(elem)
+            element = re.sub('[,()\'\"]', '',element)
+            lists.append(element)
             
     print(lists)
     
