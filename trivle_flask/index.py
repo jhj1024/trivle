@@ -89,6 +89,28 @@ def Delete_List(parameters):
     return hello
 
 # ------------------------------------------------------------------------------
+def Listen_Location(parameters):
+    print('parameters')
+    print(parameters)
+
+    # parameters에서 필요한 인자 추출
+    Destination = parameters['DestinationForListen']['value']  # 여행지
+    print('Destination: ', Destination)
+    
+    Destination = str(Destination)
+    Destination = re.sub('[,())\'\"]', '',Destination)
+    
+    # query 결과물 받아서 return
+    cursor = conn.cursor()
+    sql = 'SELECT EXISTS (SELECT * FROM location WHERE L=%s);'
+    cursor.execute(sql, Destination)  # 쿼리 수행
+    rows = cursor.fetchone()  # 결과 가져옴(데이터타입: 튜플)
+    print(rows)
+    
+    #if(rows[0] == '0'):
+        
+    
+
 def Listen_List(parameters):
     print('parameters')
     print(parameters)
