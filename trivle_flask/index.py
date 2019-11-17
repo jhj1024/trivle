@@ -4,6 +4,8 @@ trivle 함수 선언부
 """
 from random import *
 import pymysql
+import json
+import re
 
 # mysql 접속
 conn = pymysql.connect(host='45.119.146.152', port=1024, user='trivle', password='Trivle_96', db='trivle', use_unicode=True, charset='utf8')
@@ -119,13 +121,12 @@ def Listen_List(parameters):
     for elem in rows:
         if (elem[0] != ''):
             element = str(elem)
-            print(type(element))
+            element = re.sub('[,())\'\"]', '',element)
             lists.append(element)
-    lists.append('hello')
             
     print(lists)
 
-    hello = {'list': lists}  # 'list'는 각자 action parameter와 일치시킬 것
+    hello = {'list' : lists}
     return hello
 
 

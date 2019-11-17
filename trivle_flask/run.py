@@ -72,8 +72,7 @@ def nugu_delete():
 def nugu_listen():
     body = request.json #전송받은 json 객체를 dictionary로 변환 
     npkResponse = NPKRequest(body)
-    resp = json.dumps(npkResponse, ensure_ascii=False)
-    return Response(resp, content_type='application/json; charset=utf-8')
+    return (json.dumps(npkResponse, ensure_ascii=False))
 
 @app.route("/nugu/Listen_Tip", methods=['POST'])
 def nugu_tip():
