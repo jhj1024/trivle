@@ -153,8 +153,10 @@ def Listen_List(parameters):
             
     print(lists)
     
+    lists = str(lists)
+    lists = re.sub('[()]', '',lists)
 #    hello = {'list' : lists}
-    hello = {'list': str(tuple(lists))}
+    hello = {'list': lists}
     
     return hello
 # ------------------------------------------------------------------------------
