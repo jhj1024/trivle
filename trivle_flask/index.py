@@ -141,7 +141,7 @@ def Listen_List(parameters):
 
     # query 결과물 받아서 return
     cursor = conn.cursor()
-    sql = 'SELECT ' + attribute + ' FROM ' + Destination + ';'
+    sql = 'SELECT ' + attribute + ' FROM ' + Destination + ' LIMIT 5;'
     cursor.execute(sql)  # 쿼리 수행
     rows = cursor.fetchall()  # 결과 가져옴(데이터타입: 튜플)
     print(rows)
