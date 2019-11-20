@@ -126,7 +126,7 @@ def Listen_Location(parameters):
 '''        
     
 # ------------------------------------------------------------------------------
-def Listen_Location(parameters):
+def Listen_List(parameters):
     print('parameters')
     print(parameters)
 
