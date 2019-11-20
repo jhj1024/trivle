@@ -7,6 +7,8 @@ import pymysql
 import json
 import re
 
+Destination = ''
+attribute = ''
 
 # mysql 접속
 conn = pymysql.connect(host='45.119.146.152', port=1024, user='trivle', password='Trivle_96', db='trivle', use_unicode=True, charset='utf8')
@@ -57,11 +59,13 @@ def Set_List(parameters):
             setsql = "CREATE TABLE " + parameters['DestinationForSet']['value'] + " SELECT * FROM trivle.IL;"
             cur.execute(setsql)
             print('in long create table')
-
+    
+    conn.commit()
     plusql = "Insert into location value('" + parameters['DestinationForSet']['value'] + "', '" + parameters['FewDay']['value'] + "');" 
     print(123123123)
     print(plusql)
     cur.execute(plusql)
+    conn.commit()
     hello = {'parameter':parameters['DestinationForSet']['value']+' 여행 체크 리스트를 만들었어요'}
     return hello
 
@@ -84,10 +88,13 @@ def Delete_List(parameters):
     else:
         sql = 'DROP TABLE ' + Destination + ';'
         cursor.execute(sql)  # 쿼리 수행
+        conn.commit()
+        
         delsql = "Delete from trivle.location where place = '" + Destination + "';"
         print(1111111111111111111)
         print(delsql)
         cursor.execute(delsql)
+        conn.commit()
         result = Destination + ' 여행 리스트를 삭제할게요.'
 
     print('@@')
@@ -96,12 +103,13 @@ def Delete_List(parameters):
     return hello
 
 # ------------------------------------------------------------------------------
+'''
 def Listen_Location(parameters):
     print('parameters')
     print(parameters)
 
     # parameters에서 필요한 인자 추출
-    Destination = parameters['DestinationForListen']['value']  # 여행지
+    Destination = parameters['Destination']['value']  # 여행지
     print('Destination: ', Destination)
     
     Destination = str(Destination)
@@ -115,15 +123,16 @@ def Listen_Location(parameters):
     print(rows)
     
     #if(rows[0] == '0'):
-        
+'''        
     
-
+# ------------------------------------------------------------------------------
 def Listen_List(parameters):
     print('parameters')
     print(parameters)
 
     # parameters에서 필요한 인자 추출
-    Destination = parameters['DestinationForListen']['value']  # 여행지
+    DestinationForListen = parameters['DestinationForListen']['value']  # 여행지
+    Destination = DestinationForListen
     Category = parameters['CategoryForListen']['value']  # 카테고리
     print(Destination, Category)
 
@@ -158,6 +167,33 @@ def Listen_List(parameters):
     lists = str(lists)
     lists = re.sub('[()\[\]\'\"]', '',lists)
     hello = {'list': lists}
+    
+    return hello
+
+# ------------------------------------------------------------------------------
+def Listen(parameters):
+    print('parameters')
+    print(parameters)
+
+    # query 결과물 받아서 return
+    cursor = conn.cursor()
+    sql = 'SELECT ' + attribute + ' FROM ' + Destination + ' LIMIT 5;'
+    cursor.execute(sql)  # 쿼리 수행
+    rows = cursor.fetchall()  # 결과 가져옴(데이터타입: 튜플)
+    print(rows)
+
+    lists = []
+    for elem in rows:
+        if (elem[0] != ''):
+            element = str(elem)
+            element = re.sub('[,()\'\"]', '',element)
+            lists.append(element)
+            
+    print(lists)
+    
+    lists = str(lists)
+    lists = re.sub('[()\[\]\'\"]', '',lists)
+    hello = {'lists': lists}
     
     return hello
 # ------------------------------------------------------------------------------
