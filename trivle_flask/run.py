@@ -42,9 +42,12 @@ def actionRequest(action):
     elif(actionName == 'Listen_List'):
         output = index.Listen_List(parameters)
         
+    elif(actionName == 'Listen'):
+        output = index.Listen(parameters)
+    
     elif(actionName == 'Listen_Location'):
         output = index.Listen_Location(parameters)
-        
+            
     elif(actionName == 'Listen_Tip'):
         output = index.Listen_Tip()
     else:
@@ -76,14 +79,20 @@ def nugu_delete():
     body = request.json #전송받은 json 객체를 dictionary로 변환 
     npkResponse = NPKRequest(body)
     return (json.dumps(npkResponse, ensure_ascii=False))
-
+'''
 @app.route("/nugu/Listen_Location", methods=['POST'])
 def nugu_listen1():
     body = request.json #전송받은 json 객체를 dictionary로 변환 
     npkResponse = NPKRequest(body)
     return (json.dumps(npkResponse, ensure_ascii=False))
-
+'''
 @app.route("/nugu/Listen_List", methods=['POST'])
+def nugu_listen():
+    body = request.json #전송받은 json 객체를 dictionary로 변환 
+    npkResponse = NPKRequest(body)
+    return (json.dumps(npkResponse, ensure_ascii=False))
+
+@app.route("/nugu/Listen", methods=['POST'])
 def nugu_listen():
     body = request.json #전송받은 json 객체를 dictionary로 변환 
     npkResponse = NPKRequest(body)

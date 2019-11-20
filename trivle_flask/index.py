@@ -7,6 +7,8 @@ import pymysql
 import json
 import re
 
+Destination = ''
+attribute = ''
 
 # mysql 접속
 conn = pymysql.connect(host='45.119.146.152', port=1024, user='trivle', password='Trivle_96', db='trivle', use_unicode=True, charset='utf8')
@@ -101,12 +103,13 @@ def Delete_List(parameters):
     return hello
 
 # ------------------------------------------------------------------------------
+'''
 def Listen_Location(parameters):
     print('parameters')
     print(parameters)
 
     # parameters에서 필요한 인자 추출
-    Destination = parameters['DestinationForListen']['value']  # 여행지
+    Destination = parameters['Destination']['value']  # 여행지
     print('Destination: ', Destination)
     
     Destination = str(Destination)
@@ -120,15 +123,16 @@ def Listen_Location(parameters):
     print(rows)
     
     #if(rows[0] == '0'):
-        
+'''        
     
-
+# ------------------------------------------------------------------------------
 def Listen_List(parameters):
     print('parameters')
     print(parameters)
 
     # parameters에서 필요한 인자 추출
-    Destination = parameters['DestinationForListen']['value']  # 여행지
+    DestinationForListen = parameters['DestinationForListen']['value']  # 여행지
+    Destination = DestinationForListen
     Category = parameters['CategoryForListen']['value']  # 카테고리
     print(Destination, Category)
 
@@ -163,6 +167,33 @@ def Listen_List(parameters):
     lists = str(lists)
     lists = re.sub('[()\[\]\'\"]', '',lists)
     hello = {'list': lists}
+    
+    return hello
+
+# ------------------------------------------------------------------------------
+def Listen(parameters):
+    print('parameters')
+    print(parameters)
+
+    # query 결과물 받아서 return
+    cursor = conn.cursor()
+    sql = 'SELECT ' + attribute + ' FROM ' + Destination + ' LIMIT 5;'
+    cursor.execute(sql)  # 쿼리 수행
+    rows = cursor.fetchall()  # 결과 가져옴(데이터타입: 튜플)
+    print(rows)
+
+    lists = []
+    for elem in rows:
+        if (elem[0] != ''):
+            element = str(elem)
+            element = re.sub('[,()\'\"]', '',element)
+            lists.append(element)
+            
+    print(lists)
+    
+    lists = str(lists)
+    lists = re.sub('[()\[\]\'\"]', '',lists)
+    hello = {'lists': lists}
     
     return hello
 # ------------------------------------------------------------------------------
