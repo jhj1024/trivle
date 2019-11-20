@@ -171,9 +171,8 @@ def Listen_Tip():
     rand = randint(0, len(rows)-1)
     print(rows[rand])
     result = rows[rand]
-    result = result
     #lists = [list(elem) for elem in rows]  # 튜플을 리스트로 변환
-
+    result = str(result)
     hello = {'TIP':result}
     return hello
 # ------------------------------------------------------------------------------
