@@ -39,14 +39,11 @@ def actionRequest(action):
     elif(actionName == 'Delete_List'):
         output = index.Delete_List(parameters)
         
-    elif(actionName == 'Listen_List'):
+    elif(actionName == 'Listen_Location'):
         output = index.Listen_List(parameters)
         
     elif(actionName == 'Listen'):
         output = index.Listen(parameters)
-    
-    elif(actionName == 'Listen_Location'):
-        output = index.Listen_Location(parameters)
             
     elif(actionName == 'Listen_Tip'):
         output = index.Listen_Tip()
@@ -86,7 +83,7 @@ def nugu_listen1():
     npkResponse = NPKRequest(body)
     return (json.dumps(npkResponse, ensure_ascii=False))
 '''
-@app.route("/nugu/Listen_List", methods=['POST'])
+@app.route("/nugu/Listen_Location", methods=['POST'])
 def nugu_listen():
     body = request.json #전송받은 json 객체를 dictionary로 변환 
     npkResponse = NPKRequest(body)
