@@ -74,7 +74,7 @@ def Delete_List(parameters):
     Destination = parameters['DestinationForDelete']['value']  # 여행지
 
     #print(Destination)
-    # query 결과물 받아서 return
+    #query 결과물 받아서 return
     cursor = conn.cursor()
     check = "SHOW TABLES LIKE '" + Destination + "';"
     cursor.execute(check)
