@@ -135,10 +135,10 @@ def Listen_DTN_YES(parameters): #location table에서 DestinationForListen이 �
     sql = "SELECT EXISTS (SELECT * FROM location WHERE place = '" + Destination + "');"
     print(sql)
     cursor.execute(sql)  # 쿼리 수행
-    rows = cursor.fetchall()  # 결과 가져옴(데이터타입: 튜플)
-    print(rows)
+    rows = cursor.fetchone()  # 결과 가져옴(데이터타입: 튜플)
+    print(rows[0])
     
-    if(rows[0] == 1):
+    if(rows[0] == '1'):
         hello = {'is_exist': 'exist'}
         recently(Destination)
         
@@ -159,7 +159,7 @@ def Listen_DTN_NO(parameters): #recent table에서 Destination이 존재하는�
     rows = cursor.fetchone()  # 결과 가져옴(데이터타입: 튜플)
     print(rows)
     
-    if(rows[0] != 0):
+    if(rows[0] != '0'):
         hello = {'exist_recent': 'exist'}
         
     else:
