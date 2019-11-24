@@ -166,36 +166,36 @@ def Listen_DTN_NO(parameters): #recent table에서 Destination이 존재하는�
     
     return hello
 # ------------------------------------------------------------------------------
-def Listen(parameters): #해당 여행지와 해당 카테고리 들려줌
+def Listen(parameters): #해당 여행지와 해당 카테고리 들려줌 
+    #여행지 있음 : CategoryForListen1 - list1
+    #여행지 없음 : CategoryForListen2 - list3    
     print('parameters')
     print(parameters)
-
-    if(parameters['DestinationForListen']['value']): #목적지가 존재하면 최근 목록 업데이트
-        recently(parameters['DestinationForSet']['value'])
     
-    #목적지 없으면 recent 테이블에서 최근 여행지 가져옴
+    is_exist = False #목적지 존재 여부
+    cursor = conn.cursor()
+    
+    #목적지 존재
+    if(parameters['DestinationForListen']['value']):
+        Destination = parameters['DestinationForSet']['value']
+        recently(Destination) #최근 목록 업데이트
+        is_exist = True
+        
+    #목적지 없음
+    else: #recent 테이블에서 최근 여행지 가져옴
+        sql = 'SELECT R FROM RECENT;'
+        cursor.execute(sql)  # 쿼리 수행
+        rows = cursor.fetchone()  # 결과 가져옴(데이터타입: 튜플)        
+        Destination = rows[0]
     
     # parameters에서 필요한 인자 추출
-    DestinationForListen = parameters['DestinationForListen']['value']  # 여행지
-    Destination = DestinationForListen
     Category = parameters['CategoryForListen']['value']  # 카테고리
+    Category_check = Category + '_checked'
     print(Destination, Category)
 
-    # 카테고리에 따라 mysql에 저장한 attribute 이름으로 변환
-    if (Category == '개인'):
-        attribute = 'P'
-    elif (Category == '의류'):
-        attribute = 'C'
-    elif (Category == '생필품'):
-        attribute = 'S'
-    elif (Category == '전자기기'):
-        attribute = 'E'
-    else:
-        attribute = 'G'
-
-    # query 결과물 받아서 return
-    cursor = conn.cursor()
-    sql = 'SELECT ' + attribute + ' FROM ' + Destination + ' LIMIT 5;'
+    # query 결과물 받아서 return    
+    sql = 'SELECT ' + Category + ', ' + Category_check + ' FROM ' + Destination + 'WHERE ' + Category_check + ' IS NULL LIMIT 5;'
+    print(sql)
     cursor.execute(sql)  # 쿼리 수행
     rows = cursor.fetchall()  # 결과 가져옴(데이터타입: 튜플)
     print(rows)
@@ -211,7 +211,12 @@ def Listen(parameters): #해당 여행지와 해당 카테고리 들려줌
     
     lists = str(lists)
     lists = re.sub('[()\[\]\'\"]', '',lists)
-    hello = {'lists': lists}
+    
+    if(is_exist == True):
+        hello = {'list1': lists}
+    
+    else:
+        hello = {'list3': lists}
     
     return hello
 
@@ -285,6 +290,7 @@ def Checked_List(parameters):
                    cur.execute(sql)
                    conn.commit()
                    hello = {'check_recently':'yes'}
+                   recently(Destination)
                    return hello
 
         #존재하지 않는 목적지일 경우
