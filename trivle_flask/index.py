@@ -274,7 +274,7 @@ def Checked_List(parameters):
             for j in i:
                 if(j == parameters['Destination']['value']):
                    Destination = parameters['Destination']['value']
-                   sql = "update " + Destination + " set " + parameters['itme']['type'] + "_checked = 'C' where " + parameters['item']['type'] + "= " + parameters['item']['value'] + "';"
+                   sql = "update " + Destination + " set " + parameters['item']['type'] + "_checked = 'C' where " + parameters['item']['type'] + "= " + parameters['item']['value'] + "';"
                    cur.exxectue(sql)
                    hello = {'check_recently':'yes'}
                    return hello
