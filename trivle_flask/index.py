@@ -13,11 +13,26 @@ attribute = ''
 # mysql 접속
 conn = pymysql.connect(host='45.119.146.152', port=1024, user='trivle', password='Trivle_96', db='trivle', use_unicode=True, charset='utf8')
 
+def recently(destination):
+    #쿼리문을 통해서 최근 여행지 update 하는 함수
+    cur = conn.cursor()
+    tsql = "Truncate table RECENT"
+    cur.execute(tsql) #쿼리 수행
+    conn.commit()
+
+    sql = "Insert into RECENT value('" + destination "');"
+
+    cur.execute(sql)
+    conn.commit()
+
+
 # ------------------------------------------------------------------------------
 def Set_Location(parameters):
+
     print('Set_List: parameters')
     print('Set:' + parameters['DestinationForSet']['value'])
 
+    recently(parameters['DestinationForSet']['value'])
 
     cur = conn.cursor()
     sql = 'SELECT * from location;'
@@ -77,9 +92,13 @@ def Delete_List(parameters):
 
     Destination = parameters['DestinationForDelete']['value']  # 여행지
 
+    cursor = conn.cursor()
+    tsql = "Truncate table RECENT"
+    cur.execute(tsql) #쿼리 수행
+    conn.commit()
+
     #print(Destination)
     #query 결과물 받아서 return
-    cursor = conn.cursor()
     check = "SHOW TABLES LIKE '" + Destination + "';"
     cursor.execute(check)
     res = cursor.fetchall()
@@ -129,6 +148,9 @@ def Listen_Location(parameters):
 def Listen_List(parameters):
     print('parameters')
     print(parameters)
+
+    if(parameters['DestinationForListen']['value']) #목적지가 존재하면 최근 목록 업데이트
+        recently(parameters['DestinationForSet']['value'])
 
     # parameters에서 필요한 인자 추출
     DestinationForListen = parameters['DestinationForListen']['value']  # 여행지
@@ -216,10 +238,23 @@ def Listen(parameters):
 # ------------------------------------------------------------------------------
 def Checked_List(parameters):
     cursor = conn.cursor()
-    sql = "SELECT * from " + Destination + "where " + parameters['item']['value'] + ";"
 
-    cursor.exxectue(sql)
 
+    if(parameters['Destination']['value']): #목적지가 존재하면
+        Destination = parameters['Destination']['value']
+        sql = "update " + Destination + " set " + parameters['itme']['type'] + "_checked = 'C' where " + parameters['item']['type'] + "= " + parameters['item']['value'] + "';"
+        cursor.exxectue(sql)
+
+    else:
+        rsql = "SELECT * FROM RECENT;"
+        cursor.execute(sql)  # 쿼리 수행
+        rows = cursor.fetchall()  # 결과 가져옴(데이터타입: 튜플)
+        if(rosw == NULL)
+            hello = {'recently':'no'}
+            return hello
+
+
+    
     return hello
 
 #--------------------------------------------------------------------------------- 
