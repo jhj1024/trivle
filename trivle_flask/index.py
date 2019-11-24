@@ -125,40 +125,46 @@ def Delete_List(parameters):
 def Listen_DTN_YES(parameters): #location table에서 DestinationForListen이 존재하는지 확인
     print('parameters')
     print(parameters)
-    '''
-    # parameters에서 필요한 인자 추출
-    Destination = parameters['Destination']['value']  # 여행지
-    print('Destination: ', Destination)
     
-    Destination = str(Destination)
-    Destination = re.sub('[,())\'\"]', '',Destination)
+    # parameters에서 필요한 인자 추출
+    Destination = parameters['DestinationForListen']['value']  # 여행지
+    print('Destination: ', Destination)
     
     # query 결과물 받아서 return
     cursor = conn.cursor()
-    sql = 'SELECT EXISTS (SELECT * FROM location WHERE L=%s);'
-    cursor.execute(sql, Destination)  # 쿼리 수행
+    sql = 'SELECT EXISTS (SELECT * FROM location WHERE place= ' + Destination + ');'
+    cursor.execute(sql)  # 쿼리 수행
     rows = cursor.fetchone()  # 결과 가져옴(데이터타입: 튜플)
     print(rows)
-    '''
+    
+    if(rows[0] == 1):
+        hello = {'is_exist': 'exist'}
+        recently(Destination)
+        
+    else:
+        hello = {'is_exist': 'not_exist'}
+    
+    return hello
+    
 # ------------------------------------------------------------------------------
 def Listen_DTN_NO(parameters): #recent table에서 Destination이 존재하는지 확인
     print('parameters')
     print(parameters)
-    '''
-    # parameters에서 필요한 인자 추출
-    Destination = parameters['Destination']['value']  # 여행지
-    print('Destination: ', Destination)
-    
-    Destination = str(Destination)
-    Destination = re.sub('[,())\'\"]', '',Destination)
     
     # query 결과물 받아서 return
     cursor = conn.cursor()
-    sql = 'SELECT EXISTS (SELECT * FROM location WHERE L=%s);'
-    cursor.execute(sql, Destination)  # 쿼리 수행
+    sql = 'SELECT COUNT(R) FROM RECENT;'
+    cursor.execute(sql)  # 쿼리 수행
     rows = cursor.fetchone()  # 결과 가져옴(데이터타입: 튜플)
-    print(rows)  
-    '''
+    print(rows)
+    
+    if(rows[0] != 0):
+        hello = {'exist_recent': 'exist'}
+        
+    else:
+        hello = {'exist_recent': 'not_exist'}
+    
+    return hello
 # ------------------------------------------------------------------------------
 def Listen(parameters): #해당 여행지와 해당 카테고리 들려줌
     print('parameters')
