@@ -20,7 +20,7 @@ def recently(destination):
     cur.execute(tsql) #쿼리 수행
     conn.commit()
 
-    sql = "Insert into RECENT value('" + destination "');"
+    sql = "Insert into location value('" + destination + "');"
 
     cur.execute(sql)
     conn.commit()
@@ -94,7 +94,7 @@ def Delete_List(parameters):
 
     cursor = conn.cursor()
     tsql = "Truncate table RECENT"
-    cur.execute(tsql) #쿼리 수행
+    cursor.execute(tsql) #쿼리 수행
     conn.commit()
 
     #print(Destination)
@@ -258,24 +258,48 @@ def Listen_Continue(parameters):
     return hello
 # ------------------------------------------------------------------------------
 def Checked_List(parameters):
-    cursor = conn.cursor()
+    cur = conn.cursor()
 
 
-    if(parameters['Destination']['value']): #목적지가 존재하면
-        Destination = parameters['Destination']['value']
-        sql = "update " + Destination + " set " + parameters['itme']['type'] + "_checked = 'C' where " + parameters['item']['type'] + "= " + parameters['item']['value'] + "';"
-        cursor.exxectue(sql)
+    print(parameters['Destination']['value'])
+    print("destination")
+    if(parameters['Destination']['value']): #목적지가 있을 때
+        sql = "SELECT * from location;"
+        cur.execute(sql) #쿼리 수행
+        rows = cur.fetchall() #결과 가져옴(데이터타입: 튜플)
+        print(rows)
 
+        #목적지가 location에 존재하면
+        for i in rows:
+            for j in i:
+                if(j == parameters['DestinationForSet']['value']):
+                   Destination = parameters['Destination']['value']
+                   sql = "update " + Destination + " set " + parameters['itme']['type'] + "_checked = 'C' where " + parameters['item']['type'] + "= " + parameters['item']['value'] + "';"
+                   cur.exxectue(sql)
+                   hello = {'check_recently':'yes'}
+                   return hello
+
+        #존재하지 않는 목적지일 경우
+        hello = {'check_recently':'no'}
+        return hello
+    
+    #사용자가 목적지를 말하지 않았을 때
     else:
         rsql = "SELECT * FROM RECENT;"
-        cursor.execute(sql)  # 쿼리 수행
-        rows = cursor.fetchall()  # 결과 가져옴(데이터타입: 튜플)
-        if(rosw == NULL)
-            hello = {'recently':'no'}
+        cur.execute(rsql)  # 쿼리 수행
+        rows = cur.fetchall()  # 결과 가져옴(데이터타입: 튜플)
+        #최근 목적지가 존재하지 않을 때
+        if (len(rows) == 0):
+            hello = {'check_recently':'rno'}
+            return hello
+        #최근 목적지가 존재할 때
+        else:
+            Destination = str(rows)
+            sql = "update " + Destination + " set " + parameters['itme']['type'] + "_checked = 'C' where " + parameters['item']['type'] + "= " + parameters['item']['value'] + "';"
+            cur.exxectue(sql)
+            hello = {'check_recently': 'yes'}
             return hello
 
-
-    
     return hello
 
 #--------------------------------------------------------------------------------- 
