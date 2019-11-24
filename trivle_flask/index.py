@@ -197,6 +197,15 @@ def Listen(parameters):
     
     return hello
 # ------------------------------------------------------------------------------
+def Checked_List(parameters):
+    cursor = conn.cursor()
+    sql = "SELECT * from " + Destination + "where " + parameters['item']['value'] + ";"
+
+    cursor.exxectue(sql)
+
+    return hello
+
+#--------------------------------------------------------------------------------- 
 def Listen_Tip():
     # query 결과물 받아서 return
     cursor = conn.cursor()
