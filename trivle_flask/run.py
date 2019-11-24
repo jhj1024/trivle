@@ -39,12 +39,18 @@ def actionRequest(action):
     elif(actionName == 'Delete_List'):
         output = index.Delete_List(parameters)
         
-    elif(actionName == 'Listen_Location'):
-        output = index.Listen_List(parameters)
+    elif(actionName == 'Listen_DTN_YES'):
+        output = index.Listen_DTN_YES(parameters)
         
-    elif(actionName == 'Listen'):
+    elif(actionName == 'Listen_DTN_NO'):
+        output = index.Listen_DTN_NO(parameters)
+        
+    elif((actionName == 'Listen_Category1') or (actionName == 'Listen_Category2')):
         output = index.Listen(parameters)
-
+        
+    elif((actionName == 'Listen_Continue1') or (actionName == 'Listen_Continue2')):
+        output = index.Listen_Continue(parameters)
+        
     elif(actionName == 'Checked_List'):
         output = index.Checked_List(parameters)
             
@@ -80,14 +86,38 @@ def nugu_delete():
     npkResponse = NPKRequest(body)
     return (json.dumps(npkResponse, ensure_ascii=False))
 
-@app.route("/nugu/Listen_Location", methods=['POST'])
-def nugu_listen():
+@app.route("/nugu/Listen_DTN_YES", methods=['POST'])
+def nugu_listen1():
     body = request.json #전송받은 json 객체를 dictionary로 변환 
     npkResponse = NPKRequest(body)
     return (json.dumps(npkResponse, ensure_ascii=False))
 
-@app.route("/nugu/Listen", methods=['POST'])
-def nugu_listen1():
+@app.route("/nugu/Listen_DTN_NO", methods=['POST'])
+def nugu_listen2():
+    body = request.json #전송받은 json 객체를 dictionary로 변환 
+    npkResponse = NPKRequest(body)
+    return (json.dumps(npkResponse, ensure_ascii=False))
+
+@app.route("/nugu/Listen_Category1", methods=['POST'])
+def nugu_listen3():
+    body = request.json #전송받은 json 객체를 dictionary로 변환 
+    npkResponse = NPKRequest(body)
+    return (json.dumps(npkResponse, ensure_ascii=False))
+
+@app.route("/nugu/Listen_Category2", methods=['POST'])
+def nugu_listen4():
+    body = request.json #전송받은 json 객체를 dictionary로 변환 
+    npkResponse = NPKRequest(body)
+    return (json.dumps(npkResponse, ensure_ascii=False))
+
+@app.route("/nugu/Listen_Continue1", methods=['POST'])
+def nugu_listen5():
+    body = request.json #전송받은 json 객체를 dictionary로 변환 
+    npkResponse = NPKRequest(body)
+    return (json.dumps(npkResponse, ensure_ascii=False))
+
+@app.route("/nugu/Listen_Continue2", methods=['POST'])
+def nugu_listen6():
     body = request.json #전송받은 json 객체를 dictionary로 변환 
     npkResponse = NPKRequest(body)
     return (json.dumps(npkResponse, ensure_ascii=False))

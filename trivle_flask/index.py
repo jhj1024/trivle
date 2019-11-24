@@ -122,11 +122,10 @@ def Delete_List(parameters):
     return hello
 
 # ------------------------------------------------------------------------------
-'''
-def Listen_Location(parameters):
+def Listen_DTN_YES(parameters): #location table에서 DestinationForListen이 존재하는지 확인
     print('parameters')
     print(parameters)
-
+    '''
     # parameters에서 필요한 인자 추출
     Destination = parameters['Destination']['value']  # 여행지
     print('Destination: ', Destination)
@@ -140,18 +139,36 @@ def Listen_Location(parameters):
     cursor.execute(sql, Destination)  # 쿼리 수행
     rows = cursor.fetchone()  # 결과 가져옴(데이터타입: 튜플)
     print(rows)
-    
-    #if(rows[0] == '0'):
-'''        
-    
+    '''
 # ------------------------------------------------------------------------------
-def Listen_List(parameters):
+def Listen_DTN_NO(parameters): #recent table에서 Destination이 존재하는지 확인
+    print('parameters')
+    print(parameters)
+    '''
+    # parameters에서 필요한 인자 추출
+    Destination = parameters['Destination']['value']  # 여행지
+    print('Destination: ', Destination)
+    
+    Destination = str(Destination)
+    Destination = re.sub('[,())\'\"]', '',Destination)
+    
+    # query 결과물 받아서 return
+    cursor = conn.cursor()
+    sql = 'SELECT EXISTS (SELECT * FROM location WHERE L=%s);'
+    cursor.execute(sql, Destination)  # 쿼리 수행
+    rows = cursor.fetchone()  # 결과 가져옴(데이터타입: 튜플)
+    print(rows)  
+    '''
+# ------------------------------------------------------------------------------
+def Listen(parameters): #해당 여행지와 해당 카테고리 들려줌
     print('parameters')
     print(parameters)
 
-    if(parameters['DestinationForListen']['value']) #목적지가 존재하면 최근 목록 업데이트
+    if(parameters['DestinationForListen']['value']): #목적지가 존재하면 최근 목록 업데이트
         recently(parameters['DestinationForSet']['value'])
-
+    
+    #목적지 없으면 recent 테이블에서 최근 여행지 가져옴
+    
     # parameters에서 필요한 인자 추출
     DestinationForListen = parameters['DestinationForListen']['value']  # 여행지
     Destination = DestinationForListen
@@ -193,12 +210,16 @@ def Listen_List(parameters):
     return hello
 
 # ------------------------------------------------------------------------------
-def Listen(parameters):
+def Listen_Continue(parameters):
     print('parameters')
     print(parameters)
 
     # parameters에서 필요한 인자 추출
     Destination = parameters['DestinationForListen']['value']  # 여행지
+    
+    #목적지 없으면 recent 테이블에서 최근 여행지 가져옴
+    
+    
     Category = parameters['CategoryForListen']['value']  # 카테고리
     print(Destination, Category)
 
