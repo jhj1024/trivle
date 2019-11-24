@@ -240,6 +240,8 @@ def Checked_List(parameters):
     cur = conn.cursor()
 
 
+    print(parameters['Destination']['value'])
+    print("destination")
     if(parameters['Destination']['value']): #목적지가 있을 때
         sql = "SELECT * from location;"
         cur.execute(sql) #쿼리 수행
