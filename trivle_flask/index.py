@@ -282,7 +282,7 @@ def Listen_Continue(parameters):
     print(Destination, Category)
 
     # query 결과물 받아서 return
-    sql ='SELECT '+Category+' FROM (SELECT @rownum:=@rownum+1 AS rnum, '+Category+', '+Category_check+' FROM '+Destination+' WHERE (@rownum:=0)=0) AS A WHERE '+Category_check+' IS NULL AND rnum > 6;'    
+    sql ='SELECT '+Category+' FROM (SELECT @rownum:=@rownum+1 AS rnum, '+Category+', '+Category_check+' FROM '+Destination+' WHERE (@rownum:=0)=0) AS A WHERE '+Category_check+' IS NULL;'    
     print(sql)
     cursor.execute(sql)  # 쿼리 수행
     rows = cursor.fetchall()  # 결과 가져옴(데이터타입: 튜플)
