@@ -272,7 +272,7 @@ def Checked_List(parameters):
         #목적지가 location에 존재하면
         for i in rows:
             for j in i:
-                if(j == parameters['DestinationForSet']['value']):
+                if(j == parameters['Destination']['value']):
                    Destination = parameters['Destination']['value']
                    sql = "update " + Destination + " set " + parameters['itme']['type'] + "_checked = 'C' where " + parameters['item']['type'] + "= " + parameters['item']['value'] + "';"
                    cur.exxectue(sql)
