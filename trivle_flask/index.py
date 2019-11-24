@@ -20,7 +20,7 @@ def recently(destination):
     cur.execute(tsql) #쿼리 수행
     conn.commit()
 
-    sql = "Insert into RECENT value('" + destination "');"
+    sql = "Insert into location value('" + destination + "');"
 
     cur.execute(sql)
     conn.commit()
