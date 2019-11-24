@@ -177,7 +177,7 @@ def Listen(parameters): #해당 여행지와 해당 카테고리 들려줌
     cursor = conn.cursor()
     
     #목적지 존재
-    if(parameters['DestinationForListen']['value']):
+    if 'DestinationForListen' in dict.keys():
         Destination = parameters['DestinationForListen']['value'] #여행지
         CategoryForListen = parameters['CategoryForListen1']['value']  # 카테고리
         recently(Destination) #최근 목록 업데이트
@@ -248,8 +248,8 @@ def Listen_Continue(parameters):
     cursor = conn.cursor()
     
     #목적지 존재
-    if(parameters['DestinationForListen']['value']):
-        Destination = parameters['DestinationForListen']['value'] #여행지
+    if 'DestinationForListen' in dict.keys():
+        Destination = parameters['']['value'] #여행지
         CategoryForListen = parameters['CategoryForListen1']['value']  # 카테고리
         recently(Destination) #최근 목록 업데이트
         is_exist = True
