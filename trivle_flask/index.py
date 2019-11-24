@@ -166,7 +166,7 @@ def Listen_List(parameters):
     
     lists = str(lists)
     lists = re.sub('[()\[\]\'\"]', '',lists)
-    hello = {'list': lists}
+    hello = {'lists': lists}
     
     return hello
 
@@ -174,6 +174,23 @@ def Listen_List(parameters):
 def Listen(parameters):
     print('parameters')
     print(parameters)
+
+    # parameters에서 필요한 인자 추출
+    Destination = parameters['DestinationForListen']['value']  # 여행지
+    Category = parameters['CategoryForListen']['value']  # 카테고리
+    print(Destination, Category)
+
+    # 카테고리에 따라 mysql에 저장한 attribute 이름으로 변환
+    if (Category == '개인'):
+        attribute = 'P'
+    elif (Category == '의류'):
+        attribute = 'C'
+    elif (Category == '생필품'):
+        attribute = 'S'
+    elif (Category == '전자기기'):
+        attribute = 'E'
+    else:
+        attribute = 'G'
 
     # query 결과물 받아서 return
     cursor = conn.cursor()
