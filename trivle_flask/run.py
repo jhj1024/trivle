@@ -103,6 +103,12 @@ def nugu_tip():
     body = request.json #전송받은 json 객체를 dictionary로 변환 
     npkResponse = NPKRequest(body)   
     return (json.dumps(npkResponse, ensure_ascii=False))
+
+@app.route("/nugu/Checked_List", methods=['POST'])
+def nugu_check():
+    body = request.json #전송받은 json 객체를 dictionary로 변환 
+    npkResponse = NPKRequest(body)   
+    return (json.dumps(npkResponse, ensure_ascii=False))
 #------------------------------------------------------------------------------
 if __name__ == '__main__':    
     app.run(host="0.0.0.0", port=3000)
