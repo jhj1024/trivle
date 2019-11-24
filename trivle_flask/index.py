@@ -296,7 +296,7 @@ def Checked_List(parameters):
         else:
             Destination = str(rows)
             sql = "update " + Destination + " set " + parameters['item']['type'] + "_checked = 'C' where " + parameters['item']['type'] + "= " + parameters['item']['value'] + "';"
-            cur.exxectue(sql)
+            cur.exectue(sql)
             hello = {'check_recently': 'yes'}
             return hello
 
