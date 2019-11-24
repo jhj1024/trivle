@@ -20,7 +20,7 @@ def recently(destination):
     cur.execute(tsql) #쿼리 수행
     conn.commit()
 
-    sql = "Insert into location value('" + destination + "');"
+    sql = "INSERT INTO RECENT VALUE('" + destination + "');"
 
     cur.execute(sql)
     conn.commit()
@@ -138,7 +138,7 @@ def Listen_DTN_YES(parameters): #location table에서 DestinationForListen이 �
     rows = cursor.fetchone()  # 결과 가져옴(데이터타입: 튜플)
     print(rows[0])
     
-    if(rows[0] == '1'):
+    if(rows[0] == 1):
         hello = {'is_exist': 'exist'}
         recently(Destination)
         
@@ -159,7 +159,7 @@ def Listen_DTN_NO(parameters): #recent table에서 Destination이 존재하는�
     rows = cursor.fetchone()  # 결과 가져옴(데이터타입: 튜플)
     print(rows)
     
-    if(rows[0] != '0'):
+    if(rows[0] != 0):
         hello = {'exist_recent': 'exist'}
         
     else:
@@ -190,8 +190,25 @@ def Listen(parameters): #해당 여행지와 해당 카테고리 들려줌
         Destination = rows[0]
     
     # parameters에서 필요한 인자 추출
-    Category = parameters['CategoryForListen']['value']  # 카테고리
-    Category_check = Category + '_checked'
+    CategoryForListen = parameters['CategoryForListen']['value']  # 카테고리
+    
+    # 카테고리에 따라 mysql에 저장한 attribute 이름으로 변환
+    if (CategoryForListen == '개인'):
+        Category = 'P'
+        Category_check = 'P_checked'
+    elif (CategoryForListen == '의류'):
+        Category = 'C'
+        Category_check = 'C_checked'
+    elif (CategoryForListen == '생필품'):
+        Category = 'S'
+        Category_check = 'S_checked'
+    elif (CategoryForListen == '전자기기'):
+        Category = 'E'
+        Category_check = 'E_checked'
+    else:
+        Category = 'G'
+        Category_check = 'G_checked'
+        
     print(Destination, Category)
 
     # query 결과물 받아서 return    
