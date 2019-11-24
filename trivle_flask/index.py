@@ -178,7 +178,8 @@ def Listen(parameters): #해당 여행지와 해당 카테고리 들려줌
     
     #목적지 존재
     if(parameters['DestinationForListen']['value']):
-        Destination = parameters['DestinationForSet']['value']
+        Destination = parameters['DestinationForListen']['value'] #여행지
+        CategoryForListen = parameters['CategoryForListen1']['value']  # 카테고리
         recently(Destination) #최근 목록 업데이트
         is_exist = True
         
@@ -187,10 +188,8 @@ def Listen(parameters): #해당 여행지와 해당 카테고리 들려줌
         sql = 'SELECT R FROM RECENT;'
         cursor.execute(sql)  # 쿼리 수행
         rows = cursor.fetchone()  # 결과 가져옴(데이터타입: 튜플)        
-        Destination = rows[0]
-    
-    # parameters에서 필요한 인자 추출
-    CategoryForListen = parameters['CategoryForListen']['value']  # 카테고리
+        Destination = rows[0]  #여행지
+        CategoryForListen = parameters['CategoryForListen2']['value']  # 카테고리  
     
     # 카테고리에 따라 mysql에 저장한 attribute 이름으로 변환
     if (CategoryForListen == '개인'):
