@@ -312,10 +312,7 @@ def Listen_Continue(parameters):
 def Checked_List(parameters):
     cur = conn.cursor()
 
-
-    print(parameters['Destination']['value'])
-    print("destination")
-    if(parameters['Destination']['value']): #목적지가 있을 때
+    if 'Destination' in parameters:#목적지가 있을 때
         sql = "SELECT * from location;"
         cur.execute(sql) #쿼리 수행
         rows = cur.fetchall() #결과 가져옴(데이터타입: 튜플)
