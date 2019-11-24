@@ -94,7 +94,7 @@ def Delete_List(parameters):
 
     cursor = conn.cursor()
     tsql = "Truncate table RECENT"
-    cur.execute(tsql) #쿼리 수행
+    cursor.execute(tsql) #쿼리 수행
     conn.commit()
 
     #print(Destination)
@@ -254,7 +254,7 @@ def Checked_List(parameters):
                 if(j == parameters['DestinationForSet']['value']):
                    Destination = parameters['Destination']['value']
                    sql = "update " + Destination + " set " + parameters['itme']['type'] + "_checked = 'C' where " + parameters['item']['type'] + "= " + parameters['item']['value'] + "';"
-                   cursor.exxectue(sql)
+                   cur.exxectue(sql)
                    hello = {'check_recently':'yes'}
                    return hello
 
