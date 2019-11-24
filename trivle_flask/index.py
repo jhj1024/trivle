@@ -295,7 +295,7 @@ def Checked_List(parameters):
         #최근 목적지가 존재할 때
         else:
             Destination = str(rows)
-            sql = "update " + Destination + " set " + parameters['itme']['type'] + "_checked = 'C' where " + parameters['item']['type'] + "= " + parameters['item']['value'] + "';"
+            sql = "update " + Destination + " set " + parameters['item']['type'] + "_checked = 'C' where " + parameters['item']['type'] + "= " + parameters['item']['value'] + "';"
             cur.exxectue(sql)
             hello = {'check_recently': 'yes'}
             return hello
