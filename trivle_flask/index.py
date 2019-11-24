@@ -149,7 +149,7 @@ def Listen_List(parameters):
     print('parameters')
     print(parameters)
 
-    if(parameters['DestinationForListen']['value']) #목적지가 존재하면 최근 목록 업데이트
+    if(parameters['DestinationForListen']['value']): #목적지가 존재하면 최근 목록 업데이트
         recently(parameters['DestinationForSet']['value'])
 
     # parameters에서 필요한 인자 추출
