@@ -132,7 +132,8 @@ def Listen_DTN_YES(parameters): #location table에서 DestinationForListen이 �
     
     # query 결과물 받아서 return
     cursor = conn.cursor()
-    sql = 'SELECT EXISTS (SELECT * FROM location WHERE place= ' + Destination + ');'
+    sql = 'SELECT EXISTS (SELECT * FROM location WHERE place = ' + Destination + ');'
+    print(sql)
     cursor.execute(sql)  # 쿼리 수행
     rows = cursor.fetchone()  # 결과 가져옴(데이터타입: 튜플)
     print(rows)
