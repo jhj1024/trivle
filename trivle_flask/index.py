@@ -249,7 +249,7 @@ def Listen_Continue(parameters):
     
     #목적지 존재
     if 'DestinationForListen' in parameters:
-        Destination = parameters['']['value'] #여행지
+        Destination = parameters['DestinationForListen']['value'] #여행지
         CategoryForListen = parameters['CategoryForListen1']['value']  # 카테고리
         recently(Destination) #최근 목록 업데이트
         is_exist = True
@@ -290,7 +290,7 @@ def Listen_Continue(parameters):
     print(rows)
 
     lists = []
-    for i in range(6, len(rows)):
+    for i in range(5, len(rows)):
         if (rows[i][0] != ''):
             element = str(rows[i][0])
             element = re.sub('[,()\'\"]', '',element)
