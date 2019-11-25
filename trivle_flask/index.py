@@ -154,13 +154,13 @@ def Listen_DTN_NO(parameters): #recent table에서 Destination이 존재하는�
     
     # query 결과물 받아서 return
     cursor = conn.cursor()
-    sql = 'SELECT COUNT(R) FROM RECENT;'
+    sql = 'SELECT R FROM RECENT;'
     cursor.execute(sql)  # 쿼리 수행
     rows = cursor.fetchone()  # 결과 가져옴(데이터타입: 튜플)
     print(rows)
     
-    if(rows[0] != 0):
-        hello = {'exist_recent': 'exist'}
+    if(rows[0] != ''):
+        hello = {'exist_recent': str(rows[0])}
         
     else:
         hello = {'exist_recent': 'not_exist'}
