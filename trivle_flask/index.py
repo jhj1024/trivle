@@ -208,7 +208,7 @@ def Listen(parameters): #해당 여행지와 해당 카테고리 들려줌
     print(Destination, Category)
 
 
-    fewday_Check = 'SELECT * from location where place = ' + Destination + ';'
+    fewday_Check = "SELECT * from location where place = '" + Destination + ";"
     cursor.execute(fewday_Check) #쿼리 수행
     fewdays = cursor.fetchone() #결과 가져옴(데이터타입: 튜플)
     print("Fewdays: " + fewdays)
