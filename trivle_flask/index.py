@@ -333,7 +333,7 @@ def Listen_Continue(parameters):
     length = len(rows) - empty
     
     lists = []
-    for i in range(0, int(length/2)):
+    for i in range(int(length/2), length):
         if (rows[i][0] == ''):
             break
         else:
