@@ -224,12 +224,18 @@ def Listen(parameters): #해당 여행지와 해당 카테고리 들려줌
     rows = cursor.fetchall()  # 결과 가져옴(데이터타입: 튜플)
     print(rows)
     
+    empty = 0
+    for item in rows:
+        if(item[0] == ''):
+            empty = empty+1
     
-    length = len(rows)
+    length = len(rows) - empty
     
     lists = []
     for i in range(0, int(length/2)):
-        if (rows[i][0] != ''):
+        if (rows[i][0] == ''):
+            break
+        else:
             element = str(rows[i])
             print(element)
             if(Category == 'C'):
@@ -319,11 +325,18 @@ def Listen_Continue(parameters):
     rows = cursor.fetchall()  # 결과 가져옴(데이터타입: 튜플)
     print(rows)
 
-    length = len(rows)
+    empty = 0
+    for item in rows:
+        if(item[0] == ''):
+            empty = empty+1
+    
+    length = len(rows) - empty
     
     lists = []
-    for i in range(int(length/2), length):
-        if (rows[i][0] != ''):
+    for i in range(0, int(length/2)):
+        if (rows[i][0] == ''):
+            break
+        else:
             element = str(rows[i])
             print(element)
             if(Category == 'C'):
