@@ -228,7 +228,7 @@ def Listen(parameters): #해당 여행지와 해당 카테고리 들려줌
     length = len(rows)
     
     lists = []
-    for i in range(0, length/2):
+    for i in range(0, int(length/2)):
         if (rows[i][0] != ''):
             element = str(rows[i])
             print(element)
@@ -322,7 +322,7 @@ def Listen_Continue(parameters):
     length = len(rows)
     
     lists = []
-    for i in range(length/2, length):
+    for i in range(int(length/2), length):
         if (rows[i][0] != ''):
             element = str(rows[i])
             print(element)
