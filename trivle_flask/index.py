@@ -251,7 +251,6 @@ def Listen_Continue(parameters):
     if 'DestinationForListen' in parameters:
         Destination = parameters['DestinationForListen']['value'] #여행지
         CategoryForListen = parameters['CategoryForListen1']['value']  # 카테고리
-        recently(Destination) #최근 목록 업데이트
         is_exist = True
         
     #목적지 없음
@@ -281,8 +280,7 @@ def Listen_Continue(parameters):
         
     print(Destination, Category)
 
-    # query 결과물 받아서 return
-    
+    # query 결과물 받아서 return   
     sql ='SELECT '+Category+' FROM '+Destination+' WHERE '+Category_check+' IS NULL;'    
     print(sql)
     cursor.execute(sql)  # 쿼리 수행
