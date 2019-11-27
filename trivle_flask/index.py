@@ -38,7 +38,6 @@ def Set_Location(parameters):
     sql = 'SELECT * from location;'
     cur.execute(sql) #쿼리 수행
     rows = cur.fetchall() #결과 가져옴(데이터타입: 튜플)
-    print(rows)
 
     for i in rows:
         for j in i:
@@ -77,8 +76,7 @@ def Set_List(parameters):
     
     conn.commit()
     plusql = "Insert into location value('" + parameters['DestinationForSet']['value'] + "', '" + parameters['FewDay']['value'] + "');" 
-    print(123123123)
-    print(plusql)
+    
     cur.execute(plusql)
     conn.commit()
     hello = {'parameter':parameters['DestinationForSet']['value']+' 여행 체크 리스트를 만들었어요'}
@@ -110,7 +108,6 @@ def Delete_List(parameters):
         conn.commit()
         
         delsql = "Delete from trivle.location where place = '" + Destination + "';"
-        print(1111111111111111111)
         print(delsql)
         cursor.execute(delsql)
         conn.commit()
@@ -216,11 +213,30 @@ def Listen(parameters): #해당 여행지와 해당 카테고리 들려줌
     cursor.execute(sql)  # 쿼리 수행
     rows = cursor.fetchall()  # 결과 가져옴(데이터타입: 튜플)
     print(rows)
+    
+
+    fewday_Check = 'SELECT * from location where place = ' + Destination + ';'
+    cursor.execute(fewday_Check) #쿼리 수행
+    fewday = cursor.fetchall() #결과 가져옴(데이터타입: 튜플)
+
+
 
     lists = []
     for elem in rows:
         if (elem[0] != ''):
             element = str(elem)
+            if(Category == 'C'):
+                if(int(fewday) <= 7):
+                    if(element == "속옷" or element == "양말"):
+                        element = element + " " + fewday + "개"
+                    elif(element == "잠옷"):
+                        element = element + " 1개"
+                else:
+                    if(element == "속옷" or element == "양말"):
+                        element = element + " 7개"
+                    elif(element == "잠옷"):
+                        element = element + " 2개"
+
             element = re.sub('[,()\'\"]', '',element)
             lists.append(element)
             
