@@ -427,6 +427,7 @@ def Listen_Tip():
     result = rows[rand]
     #lists = [list(elem) for elem in rows]  # 튜플을 리스트로 변환
     result = str(result)
+    result = re.sub('[()\[\]\'\"]', '',result)
     hello = {'TIP':result}
     return hello
 # ------------------------------------------------------------------------------
